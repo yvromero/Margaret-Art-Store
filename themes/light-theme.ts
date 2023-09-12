@@ -57,12 +57,16 @@ export const lightTheme = createTheme({
       },
       styleOverrides: {
         root: {
+          background: 'linear-gradient(45deg, rgba(255, 192, 203, 0.05) 30%, rgba(192, 192, 192, 0.05) 70%)', 
+          color:'black',
           textTransform: 'none',
           boxShadow: 'none',
-          borderRadius: 10,
+          borderRadius: 20,
+
           ":hover": {
-            backgroundColor: 'rgba(0,0,0,0.05)',
-            transition: 'all 0.3s ease-in-out'
+            // backgroundColor: 'rgba(0,0,0,0.05)',
+            background: 'linear-gradient(45deg, rgba(255, 192, 203, 0.7) 30%, rgba(192, 192, 192, 0.7) 70%)', 
+            transition: 'all 0.1s ease-in-out'
           }
         }
       }
