@@ -31,6 +31,23 @@ interface SeedData {
 export const initialData: SeedData = {
     products: [
         {
+            description: "Esta pintura exhibe una textura rica y vívida que cobra vida a través de su relieve intrincado. Los colores, que van desde tonos profundos de azul y púrpura hasta cálidos matices de dorado y rojo, se combinan en un juego armonioso de luces y sombras. Cada trazo y relieve contribuyen a crear una obra de arte que invita a explorarla táctilmente, permitiendo que los espectadores se sumerjan en la profundidad y la energía de la pintura.",
+            images: [
+                'vistoso-2.jpg'
+            ],
+            inStock: 1,
+            price: 800,
+            framed: 'No',
+            dimensions: '40x95cm',
+            weight: '0.845g',
+            slug: "la_diversion_texturizada",
+            tags: ['diversión-textura','colores','manchas','trazos'],
+            title: "Diversión Texturizada",
+            materials: 'Lienzo',
+            theme: 'Vistoso',
+            category: 'abstracto-contemporaneo'
+        },
+        {
             description: "Ecos en 'Gris y Tierra' es una pintura al óleo de estilo abstracto que evoca una sensación de misterio y serenidad. En esta obra, tonalidades grises sutiles se mezclan con manchas terrosas, creando una atmósfera enigmática y cautivadora.",
             images: [
                 'vistoso-1.jpg'
@@ -47,23 +64,22 @@ export const initialData: SeedData = {
             theme: 'Vistoso',
             category: 'abstracto-contemporaneo'
         },
-    
         {
-            description: "En 'Fuego Floral', el artista deslumbra con una explosión de colores cálidos que capturan la esencia de un jardín en plena efervescencia. Los tonos naranja, amarillo y rojo se mezclan en una danza vibrante de pinceladas espatuladas que crean la ilusión de un fuego ardiente entre las flores",
+            description: " Pinceladas texturizadas de colores que sugieren formas cuadradas en una obra de arte abstracta y evocativa.",
             images: [
-                'floral-1.jpg'
+                'vistoso-3.jpg'
             ],
             inStock: 1,
-            price: 450,
+            price: 800,
             framed: 'No',
-            dimensions: '45x15cm',
-            weight: '0.400g',
-            slug: "fuego_floral",
-            tags: ['fuego-floral','flores','colores'],
-            title: "Fuego Floral",
+            dimensions: '40x95cm',
+            weight: '0.845g',
+            slug: "la_abstraccion_texturizada",
+            tags: ['abstraccion-textura','colores','cuadrados','hombre'],
+            title: "Abstracción Texturizada",
             materials: 'Lienzo',
-            theme: 'Floral',
-            category: 'paisajes-naturaleza'
+            theme: 'Vistoso',
+            category: 'abstracto-contemporaneo'
         },
         {
             description: "En 'Jardín de Explosión Cromática', el espectador se sumerge en un mundo de exuberante diversidad de colores. Esta obra rebosa vitalidad y alegría con flores de tonos vivos y vibrantes que chocan y se entrelazan en una explosión de cromatismo.Cada flor parece competir por destacar en esta fiesta de color, creando una sensación de alegría y vitalidad que ilumina cualquier espacio en el que se exhiba.",
@@ -100,7 +116,7 @@ export const initialData: SeedData = {
             category: 'paisajes-naturaleza'
         },
         {
-            description: "En 'Encanto Floral', las flores se entrelazan en un baile de colores y formas. La delicadeza de las flores contrasta con la riqueza de los tonos formados, creando una obra que irradia alegría y belleza natural.",
+            description: "Las flores se entrelazan en un baile de colores y formas. La delicadeza de las flores contrasta con la riqueza de los tonos formados, creando una obra que irradia alegría y belleza natural.",
             images: [
                 'floral-4.jpg'
             ],
@@ -109,26 +125,60 @@ export const initialData: SeedData = {
             framed: 'No',
             dimensions: '20x50cm',
             weight: '0.600g',
-            slug: "encanto_floral",
-            tags: ['rosas', 'girasoles','encanto-floral','flores'],
+            slug: "el_encanto_floral",
+            tags: ['rosas', 'girasoles','flores'],
             title: "Encanto Floral",
             materials: 'Lienzo',
             theme: 'Floral',
             category: 'paisajes-naturaleza'
         },
         {
-            description: "La pintura 'Elegancia en Rosa' retrata la delicadeza y la sofisticación de una peonía en plena floración. Con tonos rosados suaves y detalles meticulosos, esta obra capta la belleza atemporal de esta flor. Cada pincelada resalta la exquisita textura de los pétalos y la serenidad que emana de esta peonía, convirtiéndola en una pieza artística que evoca una sensación de calma y admiración.",
+            description: "En 'Fuego Floral', el artista deslumbra con una explosión de colores cálidos que capturan la esencia de un jardín en plena efervescencia. Los tonos naranja, amarillo y rojo se mezclan en una danza vibrante de pinceladas espatuladas que crean la ilusión de un fuego ardiente entre las flores",
             images: [
-                'floral-5.jpg'
+                'floral-1.jpg'
+            ],
+            inStock: 1,
+            price: 450,
+            framed: 'No',
+            dimensions: '45x15cm',
+            weight: '0.400g',
+            slug: "fuego_floral",
+            tags: ['fuego-floral','flores','colores'],
+            title: "Fuego Floral",
+            materials: 'Lienzo',
+            theme: 'Floral',
+            category: 'paisajes-naturaleza'
+        },
+        {
+            description: "Un majestuoso ramo de rosas y otras flores, lleno de colores y texturas vibrantes, que destilan belleza y elegancia en una obra cautivadora.",
+            images: [
+                'floral-9.jpg'
+            ],
+            inStock: 1,
+            price: 450,
+            framed: 'No',
+            dimensions: '45x15cm',
+            weight: '0.400g',
+            slug: "el-esplendor-floral",
+            tags: ['esplendor-floral','flores','colores'],
+            title: "Esplendor Floral",
+            materials: 'Lienzo',
+            theme: 'Floral',
+            category: 'paisajes-naturaleza'
+        },
+        {
+            description: "En 'Primavera Vintage de Peonías', el artista combina la nostalgia del estilo vintage con la frescura de la primavera a través de la representación detallada de peonías en pleno florecimiento. Los tonos suaves y los matices pastel evocan una sensación de romanticismo y encanto antiguo. Esta obra transporta al espectador a un jardín de época, donde las peonías despiertan con gracia y elegancia en un mundo de belleza atemporal.",
+            images: [
+                'floral-8.jpg'
             ],
             inStock: 1,
             price: 650,
             framed: 'No',
-            dimensions: '25x40cm',
-            weight: '0.600g',
-            slug: "encanto_floral",
-            tags: ['peonia', 'peonia-rosa','peonia-serena', 'flor-rosada','flores'],
-            title: "Peonia Serena",
+            dimensions: '45x15cm',
+            weight: '0.420g',
+            slug: "primavera_vintage_de_peonías",
+            tags: ['peonias', 'vintage-peonias','primavera-vintage-peonias'],
+            title: "Primavera Vintage de Peonías",
             materials: 'Lienzo',
             theme: 'Floral',
             category: 'paisajes-naturaleza'
@@ -151,6 +201,23 @@ export const initialData: SeedData = {
             category: 'paisajes-naturaleza'
         },
         {
+            description: "La pintura 'Elegancia en Rosa' retrata la delicadeza y la sofisticación de una peonía en plena floración. Con tonos rosados suaves y detalles meticulosos, esta obra capta la belleza atemporal de esta flor. Cada pincelada resalta la exquisita textura de los pétalos y la serenidad que emana de esta peonía, convirtiéndola en una pieza artística que evoca una sensación de calma y admiración.",
+            images: [
+                'floral-5.jpg'
+            ],
+            inStock: 1,
+            price: 650,
+            framed: 'No',
+            dimensions: '25x40cm',
+            weight: '0.600g',
+            slug: "encanto_floral",
+            tags: ['peonia', 'peonia-rosa','peonia-serena', 'flor-rosada','flores'],
+            title: "Peonia Serena",
+            materials: 'Lienzo',
+            theme: 'Floral',
+            category: 'paisajes-naturaleza'
+        },
+        {
             description: "En 'Resplandor de Girasoles', la energía y vitalidad de los girasoles son capturadas de manera única mediante pinceladas espatuladas. La obra irradia la luminosidad y la alegría característica de estas flores icónicas. Los colores vibrantes y las texturas audaces dan vida a un campo de girasoles en constante movimiento, invitando al espectador a sumergirse en su cálido resplandor.",
             images: [
                 'floral-7.jpg'
@@ -163,23 +230,6 @@ export const initialData: SeedData = {
             slug: "resplandor_de_girasoles",
             tags: ['girasoles', 'resplandor-girasoles','flores-amarillas','flores'],
             title: "Resplandor de Girasoles",
-            materials: 'Lienzo',
-            theme: 'Floral',
-            category: 'paisajes-naturaleza'
-        },
-        {
-            description: "En 'Primavera Vintage de Peonías', el artista combina la nostalgia del estilo vintage con la frescura de la primavera a través de la representación detallada de peonías en pleno florecimiento. Los tonos suaves y los matices pastel evocan una sensación de romanticismo y encanto antiguo. Esta obra transporta al espectador a un jardín de época, donde las peonías despiertan con gracia y elegancia en un mundo de belleza atemporal.",
-            images: [
-                'floral-8.jpg'
-            ],
-            inStock: 1,
-            price: 650,
-            framed: 'No',
-            dimensions: '45x15cm',
-            weight: '0.420g',
-            slug: "primavera_vintage_de_peonías",
-            tags: ['peonias', 'vintage-peonias','primavera-vintage-peonias'],
-            title: "Primavera Vintage de Peonías",
             materials: 'Lienzo',
             theme: 'Floral',
             category: 'paisajes-naturaleza'
@@ -279,28 +329,11 @@ export const initialData: SeedData = {
             framed: 'No',
             dimensions: '25x45cm',
             weight: '0.550g',
-            slug: "amanecer_en_el_velero",
+            slug: "el_amanecer_en_el_velero",
             tags: ['velero', 'amanecer','barco','mar-cristalino','cielo'],
             title: "Amanecer en Velero",
             materials: 'Lienzo',
             theme: 'Marino',
-            category: 'paisajes-naturaleza'
-        },
-        {
-            description: "En 'El Roble Rosa junto al Río', el artista transporta al espectador a un paisaje montañoso donde un majestuoso roble de hojas rosadas se alza al lado de un río sereno. La niebla envuelve las montañas distantes y los pinos a lo lejos, creando un aura de misterio. El roble, con sus hojas en tonos rosados, es el punto focal de la composición y simboliza la esperanza de la primavera que está por llegar. La pintura transmite una sensación de belleza tranquila y anticipación en medio de la neblina y la serenidad del río.",
-            images: [
-                'natura-1.jpg'
-            ],
-            inStock: 1,
-            price: 540,
-            framed: 'No',
-            dimensions: '30x20cm',
-            weight: '0.470g',
-            slug: "amanecer_en_el_velero",
-            tags: ['árbol-rosa','rio','neblina','montañas','pino'],
-            title: "Misterio en las Montañas",
-            materials: 'Lienzo',
-            theme: 'Natura',
             category: 'paisajes-naturaleza'
         },
         {
@@ -321,37 +354,54 @@ export const initialData: SeedData = {
             category: 'paisajes-naturaleza'
         },
         {
-            description: "En 'Alegría en Movimiento', el artista captura la esencia de un pastor alemán corriendo con felicidad. Las pinceladas dinámicas y enérgicas transmiten la alegría y la vitalidad de este peludo amigo en movimiento, celebrando la belleza y la inocencia de su espíritu juguetón.",
+            description: "En 'El Roble Rosa junto al Río', el artista transporta al espectador a un paisaje montañoso donde un majestuoso roble de hojas rosadas se alza al lado de un río sereno. La niebla envuelve las montañas distantes y los pinos a lo lejos, creando un aura de misterio. El roble, con sus hojas en tonos rosados, es el punto focal de la composición y simboliza la esperanza de la primavera que está por llegar. La pintura transmite una sensación de belleza tranquila y anticipación en medio de la neblina y la serenidad del río.",
             images: [
-                'animales-1.jpg'
+                'natura-1.jpg'
             ],
             inStock: 1,
-            price: 640,
+            price: 540,
             framed: 'No',
-            dimensions: '25x25cm',
-            weight: '0.430g',
-            slug: "alegria_en_movimiento",
-            tags: ['perro','animales','plenitud','alegría','peludo','pastor-alemán'],
-            title: "Alegría en Movimiento",
+            dimensions: '30x20cm',
+            weight: '0.470g',
+            slug: "amanecer_en_el_velero",
+            tags: ['árbol-rosa','rio','neblina','montañas','pino'],
+            title: "Misterio en las Montañas",
             materials: 'Lienzo',
-            theme: 'Animales',
-            category: 'retrato-figuras'
+            theme: 'Natura',
+            category: 'paisajes-naturaleza'
         },
         {
-            description: "En 'Delicias en la Mesa', el artista rinde homenaje a los detalles más finos de la vida cotidiana. Un pan cuidadosamente cortado, una jarra de miel transparente adornada con flores pintadas que parecen margaritas y una taza de té reposan sobre un plato. Cada elemento es una obra de arte por sí mismo, y juntos crean una escena que celebra la belleza en la simplicidad.",
+            description: "Esta pintura evoca una escena tranquila que representa el paso del tiempo. Las flores emergen de aguas estancadas en el terreno, simbolizando la belleza y la renovación que pueden surgir incluso en lugares aparentemente inertes. El cuadro captura la armonía entre el flujo y la quietud, invitando a la reflexión sobre el ciclo de la vida y la naturaleza en constante cambio",
             images: [
-                'bodegones-1.jpg'
+                'natura-3.jpg'
             ],
             inStock: 1,
-            price: 810,
+            price: 670,
             framed: 'No',
             dimensions: '40x85cm',
-            weight: '0.730g',
-            slug: "delicias_en_la_mesa",
-            tags: ['pan','miel','jarra','vaso','plato','té','mesa','hojas-de-menta'],
-            title: "Delicias en la Mesa",
+            weight: '0.540g',
+            slug: "transicion_serena",
+            tags: ['serena','flores-silvestres','agua','estanque'],
+            title: "Transición Serena",
             materials: 'Lienzo',
-            theme: 'Bodegones',
+            theme: 'Natura',
+            category: 'paisajes-naturaleza'
+        },
+        {
+            description: "En 'Vibrante vida urbana', la representación abstracta cobra vida con calles bulliciosas y personajes coloridos bajo cada edificio que albergan tiendas. Esta obra captura la energía vibrante de una era marcada por el cambio y la extravagancia, donde las calles están llenas de vida y la ciudad se convierte en un escenario para personajes memorables.",
+            images: [
+                'urbano-3.jpg'
+            ],
+            inStock: 1,
+            price: 820,
+            framed: 'No',
+            dimensions: '40x85cm',
+            weight: '0.735g',
+            slug: "vibrante-vida-urbana",
+            tags: ['otra-época','urbana','colores','personas','edificios','calles'],
+            title: "Vibrante Vida Urbana",
+            materials: 'Lienzo',
+            theme: 'Urbano',
             category: 'retrato-figuras'
         },
         {
@@ -389,20 +439,37 @@ export const initialData: SeedData = {
             category: 'retrato-figuras'
         },
         {
-            description: "En 'Vibrante vida urbana', la representación abstracta cobra vida con calles bulliciosas y personajes coloridos bajo cada edificio que albergan tiendas. Esta obra captura la energía vibrante de una era marcada por el cambio y la extravagancia, donde las calles están llenas de vida y la ciudad se convierte en un escenario para personajes memorables.",
+            description: "En 'Alegría en Movimiento', el artista captura la esencia de un pastor alemán corriendo con felicidad. Las pinceladas dinámicas y enérgicas transmiten la alegría y la vitalidad de este peludo amigo en movimiento, celebrando la belleza y la inocencia de su espíritu juguetón.",
             images: [
-                'urbano-3.jpg'
+                'animales-1.jpg'
             ],
             inStock: 1,
-            price: 820,
+            price: 640,
+            framed: 'No',
+            dimensions: '25x25cm',
+            weight: '0.430g',
+            slug: "alegria_en_movimiento",
+            tags: ['perro','animales','plenitud','alegría','peludo','pastor-alemán'],
+            title: "Alegría en Movimiento",
+            materials: 'Lienzo',
+            theme: 'Animales',
+            category: 'retrato-figuras'
+        },
+        {
+            description: "En 'Delicias en la Mesa', el artista rinde homenaje a los detalles más finos de la vida cotidiana. Un pan cuidadosamente cortado, una jarra de miel transparente adornada con flores pintadas que parecen margaritas y una taza de té reposan sobre un plato. Cada elemento es una obra de arte por sí mismo, y juntos crean una escena que celebra la belleza en la simplicidad.",
+            images: [
+                'bodegon-1.jpg'
+            ],
+            inStock: 1,
+            price: 810,
             framed: 'No',
             dimensions: '40x85cm',
-            weight: '0.735g',
-            slug: "vibrante-vida-urbana",
-            tags: ['otra-época','urbana','colores','personas','edificios','calles'],
-            title: "Vibrante Vida Urbana",
+            weight: '0.730g',
+            slug: "delicias_en_la_mesa",
+            tags: ['pan','miel','jarra','vaso','plato','té','mesa','hojas-de-menta'],
+            title: "Delicias en la Mesa",
             materials: 'Lienzo',
-            theme: 'Urbano',
+            theme: 'Bodegones',
             category: 'retrato-figuras'
         },
         {
@@ -422,6 +489,7 @@ export const initialData: SeedData = {
             theme: 'Urbano',
             category: 'retrato-figuras'
         },
+
     ]
 
 };
