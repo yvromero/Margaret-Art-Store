@@ -51,7 +51,7 @@ export const Navbar = () => {
 
         <NextLink legacyBehavior href="/cart" passHref>
             <Link>
-                <Badge badgeContent={ 0 } color="secondary">
+                <Badge badgeContent={ 2 } color="secondary">
                     <ShoppingCart/>
                 </Badge>
             </Link>

@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 export interface IProduct {
     _id: string;
     description: string;
@@ -14,7 +13,6 @@ export interface IProduct {
     materials: string;
     theme: ITheme;
     category: 'paisajes-naturaleza'|'retrato-figuras'|'abstracto-contemporaneo';
-    children: ReactNode;
 }
 
 export type ITheme = 

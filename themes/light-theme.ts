@@ -9,6 +9,9 @@ export const lightTheme = createTheme({
     },
     secondary: {
       main: '#3A64D8'
+    },
+    info: {
+      main: '#fff'
     }
   },
   components: {
@@ -53,18 +56,20 @@ export const lightTheme = createTheme({
         variant: 'contained',
         size: 'small',
         disableElevation: true,
+        color: 'info'
       },
       styleOverrides: {
         root: {
-          background: 'linear-gradient(45deg, rgba(255, 192, 203, 0.05) 30%, rgba(192, 192, 192, 0.05) 70%)', 
-          color:'black',
+          // background: '#646464',
+          // color:'black',
           textTransform: 'none',
           boxShadow: 'none',
           borderRadius: 20,
 
           ":hover": {
-            // backgroundColor: 'rgba(0,0,0,0.05)',
-            background: 'linear-gradient(45deg, rgba(255, 192, 203, 0.7) 30%, rgba(192, 192, 192, 0.7) 70%)', 
+            // background: 'linear-gradient(blue, 10%, pink)',
+    
+           background: 'radial-gradient(pink, blue)',
             transition: 'all 0.1s ease-in-out'
           }
         }
