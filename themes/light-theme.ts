@@ -67,10 +67,10 @@ export const lightTheme = createTheme({
           borderRadius: 20,
 
           ":hover": {
-            // background: 'linear-gradient(blue, 10%, pink)',
-    
-           background: 'radial-gradient(pink, blue)',
-            transition: 'all 0.1s ease-in-out'
+          background: 'linear-gradient(pink, 80%, blue)',
+          //background: 'radial-gradient(pink, blue)',
+          //background: 'linear-gradient(70deg, blue, pink)',
+          transition: 'all 0.1s ease-in-out'
           }
         }
       }

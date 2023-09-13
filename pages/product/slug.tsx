@@ -1,6 +1,6 @@
 import { ShopLayout } from "@/components/layouts";
 import { initialData } from "@/database/products";
-import { Grid, Typography, Box, Button } from '@mui/material';
+import { Grid, Typography, Box, Button, Chip } from '@mui/material';
 
 const product = initialData.products[0];
 
@@ -20,15 +20,44 @@ const ProductPage = () => {
             <Typography variant='subtitle1' component='h2'>{ `$${product.price}` }</Typography>
           
             {/* Cantidad */}
-            <Box sx={{ my: 2 }}>
+            <Box sx={{ my: 4 }}>
             <Typography variant='subtitle2'>Cantidad</Typography>
             {/* ItemCounter */}
             </Box>
+
+            {/* Agregar al carrito */}
             <Button color="secondary" className="circular-btn">
               Agregar al carrito
             </Button>
 
+            {/* <Chip label="No disponible" color="error" variant="outlined"/> */}
+            
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="subtitle2">Medidas</Typography>
+              <Typography variant="body2">{ product.dimensions }</Typography>
+            </Box>
 
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="subtitle2">Peso</Typography>
+              <Typography variant="body2">{ product.weight }</Typography>
+            </Box>
+
+            
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="subtitle2">Material</Typography>
+              <Typography variant="body2">{ product.materials }</Typography>
+            </Box>
+
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="subtitle2">Enmarcado</Typography>
+              <Typography variant="body2">{ product.framed }</Typography>
+            </Box>
+
+            {/* Descripcion */}
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="subtitle2">Descripción de la obra</Typography>
+              <Typography variant="body2">{ product.description }</Typography>
+            </Box>
           </Box>
         </Grid>
       </Grid>
