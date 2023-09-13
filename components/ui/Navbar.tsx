@@ -16,7 +16,7 @@ export const Navbar = () => {
                 </Link>
             </NextLink>
 
-        <Box flex={ 1 }/>
+        <Box flex={ 2 }/>
             <Box sx={{ display: {xs: 'none', sm: 'none', md: 'block'} }}>
                 <NextLink legacyBehavior href='/category/paisajes-naturaleza'>
                         <Link>
@@ -42,7 +42,8 @@ export const Navbar = () => {
                         </Link>
                     </NextLink>
             </Box>
-        <Box flex={ 1 }/>
+
+        <Box flex={ 2 }/>
 
         <IconButton>
             <SearchOutlined/>
