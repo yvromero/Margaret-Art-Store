@@ -34,7 +34,7 @@ export const Navbar = () => {
                         </Link>
                     </NextLink>
 
-                    <NextLink legacyBehavior href='/category/abstracto-contemporáneo'>
+                    <NextLink legacyBehavior href='/category/abstracto-contemporaneo'>
                         <Link>
                             <Button>
                             Abstracto y Contemporáneo 

@@ -1,8 +1,11 @@
 import type { NextPage } from 'next';
-import { Card, CardActionArea, CardMedia, Grid, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 import { ShopLayout } from '@/components/layouts';
 import { initialData } from '@/database/products';
+import { ProductList } from '@/components/products';
+import { IProduct } from '@/interfaces';
+
 
 
 const Home: NextPage = () => {
@@ -15,26 +18,9 @@ const Home: NextPage = () => {
         <Typography variant='h1' component='h1'>GALERIA</Typography>
         <Typography variant='h2' sx={{ mb:1 }}>Todos los cuadros</Typography>
 
-
-        <Grid container spacing={4}>
-          {
-            initialData.products.map( product =>(
-              <Grid item xs={12} sm={12} md={4} lg={4} key={ product.slug }>
-                <Card style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component='img'
-                      image={`products/${ product.images[0] }` }
-                      alt={ product.title }
-                      style={{ alignSelf: 'center', maxWidth: '100%', maxHeight:'100%', borderRadius: '8px'}}
-                    />
-                  </CardActionArea>
-                </Card>
-              </Grid>
-            ))
-          }
-        </Grid>
-
+        <ProductList 
+          products={ initialData.products as any }
+        />
       </ShopLayout>
   )
 }

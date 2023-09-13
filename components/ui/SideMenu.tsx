@@ -9,7 +9,7 @@ import FormatColorFillOutlinedIcon from '@mui/icons-material/FormatColorFillOutl
 export const SideMenu = () => {
   return (
     <Drawer
-        open={ true }
+        open={ false }
         anchor='right'
         sx={{ backdropFilter: 'blur(4px)', transition: 'all 0.5s ease-out' }}
     >
@@ -87,7 +87,7 @@ export const SideMenu = () => {
 
                 {/* Admin */}
                 <Divider />
-                <ListSubheader>Admin Panel</ListSubheader>
+                <ListSubheader>Administrador Panel</ListSubheader>
 
                 <ListItem button>
                     <ListItemIcon>
