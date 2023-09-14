@@ -35,7 +35,7 @@ export const initialData: SeedData = {
             images: [
                 'vistoso-2.jpg'
             ],
-            inStock: 1,
+            inStock: 3,
             price: 800,
             framed: 'No',
             dimensions: '40x95cm',
