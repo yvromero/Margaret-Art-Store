@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 
+import './ProductMagnify.module.css';
+
 
 interface Props {
     images: string[];
@@ -8,17 +10,17 @@ interface Props {
 
 export const ProductMagnify: FC<Props> = ({ images }) => {
     return (
-        <div>
+        <div className="fluid">
             {images.map((image) => {
                 const url = `/products/${image}`;
                 return (
-                    <div key={image}>
+                    <div className="fluid__image-container" key={image}>
                         <ReactImageMagnify
                             {...{
                                 smallImage: {
                                     alt: `Product ${image}`,
                                     isFluidWidth: true,
-                                    src: url,
+                                    src: url
                                 },
                                 largeImage: {
                                     src: url,
