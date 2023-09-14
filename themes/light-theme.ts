@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 
-
 export const lightTheme = createTheme({
   palette: {
     mode: 'light',
@@ -14,6 +13,7 @@ export const lightTheme = createTheme({
       main: '#fff'
     }
   },
+
   components: {
     MuiLink: {
       defaultProps: {
@@ -50,7 +50,6 @@ export const lightTheme = createTheme({
       }
     },
 
-
     MuiButton: {
       defaultProps: {
         variant: 'contained',
@@ -65,7 +64,6 @@ export const lightTheme = createTheme({
           textTransform: 'none',
           boxShadow: 'none',
           borderRadius: 20,
-
           ":hover": {
           background: 'linear-gradient(pink, 80%, blue)',
           //background: 'radial-gradient(pink, blue)',
@@ -75,7 +73,6 @@ export const lightTheme = createTheme({
         }
       }
     },
-
 
     MuiCard: {
       defaultProps: {

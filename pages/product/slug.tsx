@@ -1,6 +1,8 @@
 import { ShopLayout } from "@/components/layouts";
+
 import { initialData } from "@/database/products";
 import { Grid, Typography, Box, Button, Chip } from '@mui/material';
+import { ProductMagnify } from '@/components/products';
 
 const product = initialData.products[0];
 
@@ -9,7 +11,10 @@ const ProductPage = () => {
     <ShopLayout title={ product.title } pageDescription={ product.description }>
       <Grid container spacing={3}>
         <Grid item xs={ 12 } sm={ 7 }>
-          {/* Slideshow */}
+          
+          <ProductMagnify
+            images={ product.images }
+          />
         </Grid>
 
         <Grid item xs={ 12 } sm={ 5 }>
