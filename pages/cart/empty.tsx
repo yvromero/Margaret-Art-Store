@@ -15,7 +15,7 @@ const EmptyPage = () => {
             justifyContent='center'
             alignItems='center'
             height='calc(100vh - 200px)'
-            sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row' } }}
+            sx={{ flexDirection: { xs: 'column', sm: 'row' } }}
         >
             <RemoveShoppingCartOutlined sx={{ fontSize: 100}}/>
             <Box display='flex' flexDirection='column' alignItems='center'>
