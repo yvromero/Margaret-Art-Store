@@ -1,17 +1,34 @@
 import NextLink from 'next/link';
-
-import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Chip, Divider, Grid, Link, Typography } from "@mui/material";
 
 import { CartList, OrderSummary } from "@/components/cart";
 import { ShopLayout } from "@/components/layouts";
+import { CreditCardOffOutlined, CreditScoreOutlined } from '@mui/icons-material';
 
 
-const SummaryPage = () => {
+const OrderPage = () => {
     return (
-        <ShopLayout title='Tu pedido' pageDescription={'Revisar pedido y confirmar la orden de pedido'}>
-            <Typography variant='h1' component='h1'>
-                Resumen de la orden
+        <ShopLayout title='Resumen de la orden 12314384234' pageDescription={'Resumen de la orden'}>
+            <Typography variant='subtitle1' component='h1'>
+                ORDEN DE COMPRA: AASDASD
             </Typography>
+{/* 
+            <Chip
+                sx={{ my: 2}}
+                label="Orden pendiente de pago"
+                variant='outlined'
+                color='error'
+                icon={<CreditCardOffOutlined/>}
+            /> */}
+
+            <Chip
+                sx={{ my: 2}}
+                label="Pagado"
+                variant='outlined'
+                color='success'
+                icon={<CreditScoreOutlined/>}
+            />
+
 
             <Grid container sx={{ mt: 3}}>
             <Grid item xs={12} sm={ 7 }>
@@ -52,9 +69,21 @@ const SummaryPage = () => {
                         <OrderSummary/>
 
                         <Box sx={{ mt: 2 }}>
+                            {/* TODO */}
                             <Button color="secondary" className='circular-btn' fullWidth>
-                                PLACE HOLDER
+                                PAGAR
                             </Button>
+                            <Chip
+                                sx={{ my: 2, '& .MuiChip-label': 
+                                    {   
+                                        fontWeight: "bold"
+                                    }
+                                }}
+                                label="Orden pagada"
+                                variant='outlined'
+                                color='success'
+                                icon={<CreditScoreOutlined/>}
+                            />
                         </Box>
 
                     </CardContent>
@@ -65,4 +94,4 @@ const SummaryPage = () => {
   )
 }
 
-export default SummaryPage;
+export default OrderPage;
