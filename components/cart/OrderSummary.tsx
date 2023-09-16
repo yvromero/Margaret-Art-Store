@@ -31,10 +31,10 @@ export const OrderSummary = () => {
         <Divider sx={{ my: 1 }} />
       </Grid>
 
-        <Grid item xs={6} sx={{ mt:2 }}>
+        <Grid item xs={6} sx={{ mt:1 }}>
             <Typography variant="subtitle1">Total</Typography>
         </Grid>
-        <Grid item xs={6} sx={{ mt:2 }} display='flex' justifyContent='end'>
+        <Grid item xs={6} sx={{ mt:1 }} display='flex' justifyContent='end'>
             <Typography variant="subtitle1"> {`$${ 1320 }`} </Typography>
         </Grid>
 
