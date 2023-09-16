@@ -1,3 +1,4 @@
+
 import { Divider, Grid, Typography } from "@mui/material"
 
 
@@ -14,7 +15,7 @@ export const OrderSummary = () => {
         </Grid>
 
         <Grid item xs={6}>
-            <Typography>SubTotal</Typography>
+            <Typography>Subtotal</Typography>
         </Grid>
         <Grid item xs={6} display='flex' justifyContent='end'>
             <Typography> {`$${ 1200 }`} </Typography>

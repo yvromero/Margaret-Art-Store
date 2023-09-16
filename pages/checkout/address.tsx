@@ -4,7 +4,7 @@ import { Box, Button, FormControl, Grid, MenuItem, Select, TextField, Typography
 
 const AddressPage = () => {
   return (
-    <ShopLayout title={"Datos de facturación y envío"} pageDescription={"Datos Personales: Dirección de envío del producto"} >
+    <ShopLayout title={"Datos de facturación y envío"} pageDescription={"Dirección de envío del producto"} >
         <Typography variant='h2' component='h1'>Datos de facturación y envío</Typography>
 
         <Grid container spacing={ 2 } sx={{ mt:1}}>

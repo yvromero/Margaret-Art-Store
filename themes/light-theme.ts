@@ -7,7 +7,7 @@ export const lightTheme = createTheme({
       main: '#1E1E1E'
     },
     secondary: {
-      main: '#3A64D8'
+      main: '#800080'
     },
     info: {
       main: '#fff'
@@ -65,9 +65,9 @@ export const lightTheme = createTheme({
           boxShadow: 'none',
           borderRadius: 20,
           ":hover": {
-          background: 'linear-gradient(pink, 80%, blue)',
+          // background: 'linear-gradient(pink, 80%, purple)',
           //background: 'radial-gradient(pink, blue)',
-          //background: 'linear-gradient(70deg, blue, pink)',
+          background: 'linear-gradient(30deg, pink, purple)',
           transition: 'all 0.1s ease-in-out'
           }
         }
