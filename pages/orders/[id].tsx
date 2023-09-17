@@ -9,7 +9,8 @@ import { CreditCardOffOutlined, CreditScoreOutlined } from '@mui/icons-material'
 const OrderPage = () => {
     return (
         <ShopLayout title='Resumen de la orden 12314384234' pageDescription={'Resumen de la orden'}>
-            <Typography variant='subtitle1' component='h1'>
+            <Typography variant='subtitle1' component='h1'
+            >
                 ORDEN DE COMPRA: AASDASD
             </Typography>
 {/* 

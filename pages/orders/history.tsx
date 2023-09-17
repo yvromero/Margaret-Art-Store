@@ -1,21 +1,23 @@
+
 import NextLink from 'next/link';
 
 import { Chip, Grid, Link, Typography } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams, gridClasses } from "@mui/x-data-grid";
+import { grey } from '@mui/material/colors';
+import { ShopLayout } from "@/components/layouts";
 
-import { ShopLayout } from "@/components/layouts"
-import { truncate } from 'fs';
+
 
 const columns: GridColDef[] = [
-    { field: 'id', headName: 'ID', width: 100},
-    { field: 'fullname', headName: 'Nombre Completo', width: 300},
+    { field: 'id', headerName: 'ID', width: 100},
+    { field: 'fullname', headerName: 'Nombre Completo', width: 300},
 
     {
         field: 'paid',
         headerName: 'Pagada',
         description: 'Estado de la orden generada',
         width: 200,
-        renderCell: (params: GridValueGetterParams) => {
+        renderCell: (params: GridRenderCellParams) => {
             return (
                 params.row.paid
                     ? <Chip color="success" label="Pagada" variant='outlined'/>
@@ -48,29 +50,46 @@ const rows = [
     {id: 4, paid: true, fullname: 'Frank Romero'},
     {id: 5, paid: false, fullname: 'Frank Romero'},
     {id: 6, paid: true, fullname: 'Frank Romero'},
-    {id: 7, paid: false, fullname: 'Frank Romero'}
+    {id: 7, paid: false, fullname: 'Frank Romero'},
+    {id: 8, paid: false, fullname: 'Frank Romero'},
+    {id: 9, paid: true, fullname: 'Frank Romero'},
+    {id: 10, paid: false, fullname: 'Frank Romero'},
+    {id: 11, paid: false, fullname: 'Frank Romero'}
 ]
 
 const HistoryOrderPage = () => {
-  return (
+
+
+    return (
+
     <ShopLayout title={'Historial de pedidos'} pageDescription="Historial de pedidos del cliente">
-        <Typography variant='subtitle1' component='h1'>
-            Historial de pedidos
+        <Typography
+            variant="h1"
+            component="h1"
+            sx={{ textAlign: 'center', mt: 3, mb: 3 }}
+        >
+            Historial de ordenes
         </Typography>
+
         <Grid container sx={{ mt: 3}}>
             <Grid item xs={12} sx={{ height:650, width:'100%'}}>
                 <DataGrid 
                     rows={ rows }
                     columns={ columns }
-                    pageSize={ 10 }
-                    rowsPerPageOptions={ [5] }
-                    disableClickEventBubbling={true}
-                    onCellClick={(params, event) => {
-                        event.stopPropagation(); // Evita que se propague el evento de clic
+                    pageSize={10}
+                    rowsPerPageOptions={[10]}
+                    getRowSpacing={(params) => ({
+                        top: params.isFirstVisible ? 0 : 5,
+                        bottom: params.isLastVisible ? 0 : 5,
+                    })}
+                    sx={{
+                      [`& .${gridClasses.row}`]: {
+                        bgcolor: (theme) =>
+                          theme.palette.mode === 'light' ? grey[200] : grey[900],
+                      },
                     }}
-                    
+                  />
                 
-                />
             </Grid>
         </Grid>
     </ShopLayout>
