@@ -1,4 +1,3 @@
-
 import NextLink from 'next/link';
 
 import { Chip, Grid, Link, Typography } from "@mui/material";
@@ -17,7 +16,7 @@ const columns: GridColDef[] = [
         headerName: 'Pagada',
         description: 'Estado de la orden generada',
         width: 200,
-        renderCell: (params: GridRenderCellParams) => {
+        renderCell: (params: GridValueGetterParams) => {
             return (
                 params.row.paid
                     ? <Chip color="success" label="Pagada" variant='outlined'/>
@@ -27,10 +26,10 @@ const columns: GridColDef[] = [
     },
     {
         field: 'orden',
-        headerName: 'Orden',
+        headerName: 'Ver orden',
         sortable: false,
         width: 200,
-        renderCell: (params: GridValueGetterParams) => {
+        renderCell: (params: GridRenderCellParams) => {
             return (
                 <NextLink legacyBehavior href={`/orders/${ params.row.id }`} passHref>
                     <Link underline='always'>
@@ -56,6 +55,8 @@ const rows = [
     {id: 10, paid: false, fullname: 'Frank Romero'},
     {id: 11, paid: false, fullname: 'Frank Romero'}
 ]
+
+
 
 const HistoryOrderPage = () => {
 
