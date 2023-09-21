@@ -12,7 +12,12 @@ export interface IProduct {
     title: string;
     materials: string;
     theme: ITheme;
-    category: 'paisajes-naturaleza'|'retrato-figuras'|'abstracto-contemporaneo';
+    category: 'paisajes-naturaleza'|'retrato-figuras'|'abstracto-contemporaneo'
+
+    //TODO: agregar createAT y updateAT
+    createAt: string;
+    updateAt: string;
+
 }
 
 export type ITheme = 
