@@ -42,7 +42,7 @@ const searchProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) =
     const products = await Product.find({
         $text: { $search: filter }
     })
-    .select('title tags images price inStock slug -_id')
+    .select('title images price inStock slug tags -_id')
     .lean();
 
 
