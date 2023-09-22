@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import NextLink from 'next/link';
 import { Grid, Card, CardActionArea, CardMedia, Box, Typography, Link } from '@mui/material';
 
@@ -9,6 +9,8 @@ interface Props {
 }
 
 export const ProductCard: FC<Props> = ({ product }) => {
+
+    const [isImageloaded, setIsImageLoaded] = useState(false);
 
     return (
       <Grid item xs={12} sm={12} md={4} lg={4}>
@@ -29,13 +31,14 @@ export const ProductCard: FC<Props> = ({ product }) => {
                         className='fadeIn'
                         image={ `products/${ product.images[0] }`}
                         alt={ product.title }
+                        onLoad={ () => setIsImageLoaded(true)}
                     />
                   </CardActionArea>
                 </Link>
               </NextLink>
           </Card>
 
-          <Box sx={{ mt: 1 }} className='fadeIn'>
+          <Box sx={{ mt: 1, display: isImageloaded ? 'block' : 'none' }} className='fadeIn'>
               <Typography fontWeight={700}>{ product.title }</Typography>
               <Typography fontWeight={500}>{ `$${product.price}` }</Typography>
           </Box>
