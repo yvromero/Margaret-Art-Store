@@ -3,9 +3,13 @@ import NextLink from 'next/link';
 import { AppBar, Badge, Box, Button, IconButton, Link, Toolbar, Typography } from "@mui/material";
 import { SearchOutlined, ShoppingCart  } from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useRouter } from 'next/router';
 
 
 export const Navbar = () => {
+
+    const { asPath } = useRouter();
+
   return (
     <AppBar>
         <Toolbar>
@@ -20,7 +24,7 @@ export const Navbar = () => {
             <Box sx={{ display: {xs: 'none', sm: 'none', md: 'block'} }}>
                 <NextLink legacyBehavior href='/category/paisajes-naturaleza'>
                         <Link>
-                            <Button>
+                            <Button color={ asPath === '/category/paisajes-naturaleza' ? 'secondary': 'info'}>
                             Paisajes y Naturaleza 
                             </Button>
                         </Link>
@@ -28,7 +32,7 @@ export const Navbar = () => {
 
                     <NextLink legacyBehavior href='/category/retrato-figuras'>
                         <Link>
-                            <Button>
+                            <Button color={ asPath === '/category/retrato-figuras' ? 'secondary': 'info'}>
                             Retrato y Figuras 
                             </Button>
                         </Link>
@@ -36,7 +40,7 @@ export const Navbar = () => {
 
                     <NextLink legacyBehavior href='/category/abstracto-contemporaneo'>
                         <Link>
-                            <Button>
+                            <Button color={ asPath === '/category/abstracto-contemporaneo' ? 'secondary': 'info'}>
                             Abstracto y Contemporáneo 
                             </Button>
                         </Link>
