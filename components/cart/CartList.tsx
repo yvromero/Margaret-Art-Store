@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import NextLink from 'next/link';
-import { initialData } from "@/database/products";
+import { initialData } from '../../database/products';
 import { CardActionArea, CardMedia, Link, Grid, Box, Typography, Button } from "@mui/material";
 import { ItemCounter } from '../ui';
 
@@ -12,10 +12,10 @@ const productsInCart = [
 ]
 
 interface Props {
-  editable: boolean;
+  editable?: boolean;
 }
 
-export const CartList:FC<Props> = ({editable}) => {
+export const CartList:FC<Props> = ({editable = false}) => {
 
   return (
     <>

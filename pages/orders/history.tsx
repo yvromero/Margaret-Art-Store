@@ -16,7 +16,7 @@ const columns: GridColDef[] = [
         headerName: 'Pagada',
         description: 'Estado de la orden generada',
         width: 200,
-        renderCell: (params: GridValueGetterParams) => {
+        renderCell: (params: GridRenderCellParams) => {
             return (
                 params.row.paid
                     ? <Chip color="success" label="Pagada" variant='outlined'/>
@@ -77,8 +77,8 @@ const HistoryOrderPage = () => {
                 <DataGrid 
                     rows={ rows }
                     columns={ columns }
-                    pageSize={10}
-                    rowsPerPageOptions={[10]}
+                    // pageSize={10}
+                    // rowsPerPageOptions={[10]}
                     getRowSpacing={(params) => ({
                         top: params.isFirstVisible ? 0 : 5,
                         bottom: params.isLastVisible ? 0 : 5,

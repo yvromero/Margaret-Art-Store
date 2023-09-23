@@ -3,7 +3,7 @@ import { ItemCounter, ProductMagnify } from "@/components/ui";
 import { dbProducts } from "@/database";
 import { IProduct } from "@/interfaces";
 import { Grid, Typography, Box, Button, Chip } from '@mui/material';
-import { NextPage, GetServerSideProps, GetStaticPaths } from "next";
+import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 
 interface Props {
   product: IProduct
