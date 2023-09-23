@@ -35,7 +35,7 @@ const searchProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) =
         })
     }
 
-    filter = filter.toString().toLowerCase()
+    filter = filter.toString().toLowerCase();
 
     await db.connect();
 
