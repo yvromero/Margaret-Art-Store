@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 
 import { Box, Divider, Drawer, IconButton, Input, InputAdornment, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
 
@@ -11,12 +12,16 @@ import FormatColorFillOutlinedIcon from '@mui/icons-material/FormatColorFillOutl
 import { UiContext } from '@/context';
 
 
+
 export const SideMenu = () => {
 
+
+    const router = useRouter();
     const { isMenuOpen, toggleSideMenu} = useContext(UiContext)
 
     const navigateTo = ( url: string ) => {
         toggleSideMenu();
+        router.push(url)
 
     }
     return (
@@ -24,6 +29,7 @@ export const SideMenu = () => {
             open={ isMenuOpen }
             anchor='right'
             sx={{ backdropFilter: 'blur(4px)', transition: 'all 0.5s ease-out' }}
+            onClose={ toggleSideMenu }
         >
             <Box sx={{ width: 250, paddingTop: 5 }}>
                 

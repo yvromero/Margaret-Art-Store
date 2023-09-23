@@ -15,6 +15,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
     return (
       <Grid item xs={12} sm={12} md={4} lg={4}>
           <Card
+
               sx={{
                 transition: '0.2',
                 "&:hover":
@@ -23,7 +24,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
                   },
               }}
           >
-            <NextLink legacyBehavior href="/product/slug" passHref prefetch={ false }>
+            <NextLink legacyBehavior href={`/product/${ product.slug }`} passHref prefetch={ false }>
               <Link>
                 <CardActionArea>
                     <CardMedia 
