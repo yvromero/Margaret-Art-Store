@@ -3,7 +3,7 @@ import { ItemCounter, ProductMagnify } from "@/components/ui";
 import { dbProducts } from "@/database";
 import { IProduct } from "@/interfaces";
 import { Grid, Typography, Box, Button, Chip } from '@mui/material';
-import { NextPage, GetServerSideProps } from "next";
+import { NextPage, GetServerSideProps, GetStaticPaths } from "next";
 
 interface Props {
   product: IProduct
@@ -85,11 +85,48 @@ const ProductPage:NextPage<Props> = ({product}) => {
 //getServerSideProps
 // You should use getServerSideProps when:
 // - Only if you need to pre-render a page whose data must be fetched at request time
+// NO USAR SSR
+// export const getServerSideProps: GetServerSideProps = async ({params}) => {
 
-export const getServerSideProps: GetServerSideProps = async ({params}) => {
+//   const { slug = '' } = params as { slug: string };
+//   const product = await dbProducts.getProductBySlug( slug );
 
-  const { slug = '' } = params as { slug: string };
-  const product = await dbProducts.getProductBySlug( slug );
+//   if ( !product ) {
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false
+//       }
+//     }
+//   }
+
+//   return {
+//     props: {
+//       product
+//     }
+//   }
+// }
+
+
+// getStaticPaths...
+
+export const getStaticPaths: GetStaticPaths = async (ctx) => {
+  const productSlugs = await dbProducts.getAllProductSlugs();
+
+  return {
+    paths: productSlugs.map(({slug}) => ({
+      params: { slug }
+    })),
+    //fallback: false
+    fallback: 'blocking'
+  }
+}
+
+// getStaticsProps...
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+
+  const { slug = ''} = params as { slug: string };
+  const product =  await dbProducts.getProductBySlug(slug);
 
   if ( !product ) {
     return {
@@ -100,10 +137,12 @@ export const getServerSideProps: GetServerSideProps = async ({params}) => {
     }
   }
 
+
   return {
     props: {
       product
-    }
+    },
+    revalidate: 86400,
   }
 }
 
