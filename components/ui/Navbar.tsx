@@ -1,19 +1,26 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UiContext } from '../../context';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 
-import { AppBar, Badge, Box, Button, IconButton, Link, Toolbar, Typography } from "@mui/material";
-import { SearchOutlined, ShoppingCart  } from '@mui/icons-material';
+import { AppBar, Badge, Box, Button, IconButton, Input, Link, Toolbar, Typography, InputAdornment } from '@mui/material';
+import { ClearOutlined, SearchOutlined, ShoppingCart  } from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
-
-
 
 
 export const Navbar = () => {
 
-    const { asPath } = useRouter();
+    const { asPath, push } = useRouter();
     const { toggleSideMenu } = useContext( UiContext )
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isSearchVisible, SetIsSearchVisible] = useState(false);
+
+    const onSearchTerm = () => {
+        if( searchTerm.trim().length === 0 ) return;
+        push(`/search/${ searchTerm }`)
+    }
+
 
   return (
     <AppBar>
@@ -26,7 +33,9 @@ export const Navbar = () => {
             </NextLink>
 
         <Box flex={ 2 }/>
-            <Box sx={{ display: {xs: 'none', sm: 'none', md: 'block'} }}>
+            <Box sx={{ display: isSearchVisible ? 'none' : {xs: 'none', sm: 'none', md: 'block'} }}
+                className="fadeIn"
+            >
                 <NextLink legacyBehavior href='/category/paisajes-naturaleza'>
                         <Link>
                             <Button color={ asPath === '/category/paisajes-naturaleza' ? 'secondary': 'info'}>
@@ -54,25 +63,71 @@ export const Navbar = () => {
 
         <Box flex={ 2 }/>
 
-        <IconButton>
+        {/* Pantallas grandes */}
+        {/* Crear condicion para mostrar u ocultar la caja de busqueda */}
+        
+        {
+            isSearchVisible
+            ?
+            (
+                <Input
+                    sx={{ display: {xs: 'none', sm: 'flex'} }}
+                    className='fadeIn'
+                    autoFocus
+                    value={ searchTerm }
+                    onChange={ (e) => setSearchTerm( e.target.value )}
+                    onKeyUp={ (e) => e.key === 'Enter' ? onSearchTerm() : null }
+                    type='text'
+                    placeholder="Buscar..."
+                    endAdornment={
+                        <InputAdornment position="end">
+                        <IconButton
+                            onClick={ () => SetIsSearchVisible(false) }
+                        >
+                        <ClearOutlined/>
+                        </IconButton>
+                        </InputAdornment>
+                    }
+                />
+            )
+            :
+            (
+            <IconButton 
+                onClick={ () => SetIsSearchVisible(true) }
+                className='fadeIn'
+                sx={{ display: { xs: 'none', sm: 'flex'} }}
+            >
+                <SearchOutlined/>
+            </IconButton>
+
+            )
+        }
+        
+
+
+        {/* Pantallas pequenhas */}
+        <IconButton
+            sx={{ display: { xs: 'flex', sm: 'none'} }}
+            onClick={ toggleSideMenu }
+        >
             <SearchOutlined/>
         </IconButton>
 
         <NextLink legacyBehavior href="/cart" passHref>
             <Link>
-                <Badge badgeContent={ 2 } color="secondary">
+                <Badge 
+                badgeContent={ 2 } color="secondary">
                     <ShoppingCart/>
                 </Badge>
             </Link>
         </NextLink>
 
-        <IconButton onClick={ toggleSideMenu }>
+        <IconButton 
+        onClick={ toggleSideMenu }
+        sx={{ ml: 0.5 }}>
             <MenuIcon />
         </IconButton>
 
-        {/* <Button>
-            Menu
-        </Button> */}
 
         </Toolbar>
     </AppBar>

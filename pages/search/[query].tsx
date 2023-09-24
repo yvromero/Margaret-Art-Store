@@ -26,14 +26,17 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
                 foundProducts
                 ?
                 <Box display='flex'>
-                    <Typography variant='h2' sx={{ mb:1 }} >Búsqueda:</Typography>
-                    <Typography variant='h2' sx={{ ml:1 }} color="secondary" >{ query }</Typography>
+                    <Typography variant='h2' sx={{ mb:1 }}>Búsqueda:</Typography>
+                    <Typography variant='h2' sx={{ ml:1 }} color="secondary" textTransform="capitalize">{ query }</Typography>
                 </Box>
                 : 
                 (
-                <Box display='flex'>
+                <Box
+                display='flex'
+                flexDirection={{ xs: 'column', sm: 'row' }}
+                >
                     <Typography variant='h2' sx={{ mb:2 }}>No encontramos ningún cuadro con la palabra:</Typography>
-                    <Typography variant='h2' sx={{ ml:1 }} color="secondary" >{ query }</Typography>
+                    <Typography variant='h2' sx={{ ml:1, mb:1 }} color="secondary" textTransform="capitalize">{ query }</Typography>
                 </Box>
                 )
             }
@@ -58,11 +61,11 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         }
     }
 
-    // no hay productos
+    // Si no hay productos
     let products = await dbProducts.getProductsByTerm( query );
     const foundProducts = products.length > 0;
 
-    // TODO: retornar otros productos
+    // Retornar otros productos
 
     if ( !foundProducts ) {
         products = await dbProducts.getAllProducts();

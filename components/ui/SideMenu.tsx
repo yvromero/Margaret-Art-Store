@@ -12,9 +12,7 @@ import FormatColorFillOutlinedIcon from '@mui/icons-material/FormatColorFillOutl
 import { UiContext } from '@/context';
 
 
-
 export const SideMenu = () => {
-
 
     const router = useRouter();
     const { isMenuOpen, toggleSideMenu} = useContext(UiContext);
@@ -32,6 +30,7 @@ export const SideMenu = () => {
         router.push(url)
 
     }
+
     return (
         <Drawer
             open={ isMenuOpen }
@@ -45,6 +44,7 @@ export const SideMenu = () => {
 
                     <ListItem>
                         <Input
+                            autoFocus
                             value={ searchTerm }
                             onChange={ (e) => setSearchTerm( e.target.value )}
                             onKeyUp={ (e) => e.key === 'Enter' ? onSearchTerm() : null }
