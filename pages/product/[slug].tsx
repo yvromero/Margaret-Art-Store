@@ -1,9 +1,11 @@
+import { useState } from "react";
+import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import { ShopLayout } from "@/components/layouts";
 import { ItemCounter, ProductMagnify } from "@/components/ui";
 import { dbProducts } from "@/database";
-import { IProduct } from "@/interfaces";
+import { ICartProduct, IProduct } from "@/interfaces";
 import { Grid, Typography, Box, Button, Chip } from '@mui/material';
-import { NextPage, GetStaticPaths, GetStaticProps } from "next";
+
 
 interface Props {
   product: IProduct
@@ -11,10 +13,31 @@ interface Props {
 
 const ProductPage:NextPage<Props> = ({product}) => {
 
-  // const router = useRouter();
-  // const { products: product, isLoading } = useProducts(`/products/${ router.query.slug}`);
+  const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
+    _id: product._id,
+    image: product.images[0],
+    price: product.price,
+    framed: product.framed,
+    dimensions: product.dimensions,
+    slug: product.slug,
+    title: product.title,
+    category: product.category,
+    quantity: 1,
+  })
 
+  // 
+  const onUpdateQuantity = ( quantity: number ) => {
+    setTempCartProduct( currentProduct => ({
+      ...currentProduct,
+      quantity
+    }));
+  }
 
+  const onAddProduct = () => {
+    console.log({ tempCartProduct });
+  }
+
+  
   return (
     <ShopLayout title={product.title} pageDescription={product.description}>
       <Grid container spacing={3}>
@@ -41,19 +64,35 @@ const ProductPage:NextPage<Props> = ({product}) => {
               </Typography>
               <Typography variant='body2'>{product.description}</Typography>
             </Box>
+
             {/* Cantidad */}
             <Box sx={{ my: 3 }}>
               <Typography variant='subtitle2'>Cantidad</Typography>
+
               {/* ItemCounter */}
-              <ItemCounter />
+              <ItemCounter 
+                currentValue={ tempCartProduct.quantity }
+                updateQuantity={ onUpdateQuantity }
+                maxValue={ product.inStock }
+              />
             </Box>
 
             {/* Agregar al carrito */}
-            <Button color='secondary' className='circular-btn'>
-              Agregar al carrito
-            </Button>
-
-            {/* <Chip label="No disponible" color="error" variant="outlined"/> */}
+            {
+              (product.inStock > 0 )
+              ?(
+                <Button 
+                  color='secondary' 
+                  className='circular-btn'
+                  onClick={ onAddProduct }
+                >
+                  Agregar al carrito
+                </Button>
+              )
+              :(
+                <Chip label="No disponible" color="error" variant="outlined"/>
+              )
+            }
 
             <Box sx={{ mt: 2 }}>
               <Typography variant='subtitle2'>Medidas</Typography>

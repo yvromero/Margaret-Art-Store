@@ -3,19 +3,44 @@ import { AddCircleOutline, RemoveCircleOutline } from '@mui/icons-material';
 import { Box, IconButton, Typography } from '@mui/material';
 
 interface Props {
+  currentValue: number;
+  maxValue: number;
 
+  // Methods
+  updateQuantity: (newValue: number) => void;
 }
 
-export const ItemCounter: FC<Props> = () => {
+
+export const ItemCounter: FC<Props> = ({ currentValue, updateQuantity, maxValue }) => {
+
+  const addOnRemove = ( value: number ) => {
+    if ( value === -1 ) {
+      if ( currentValue === 1 ) return; // Si el valor es 1, sale de la condicion
+
+      return updateQuantity( currentValue -1 )
+    }
+
+      if ( currentValue >= maxValue ) return;
+
+    updateQuantity( currentValue + 1)
+  }
+
+
   return (
     <Box display='flex' alignItems='center'>
-        <IconButton>
-            <RemoveCircleOutline />
-        </IconButton>
-        <Typography sx={{ width: 40, textAlign: 'center' }}> 1 </Typography>
-        <IconButton>
-            <AddCircleOutline />
-        </IconButton>
-        </Box>
+
+      <IconButton onClick={ () => addOnRemove(-1) }>
+          <RemoveCircleOutline />
+      </IconButton>
+
+      <Typography sx={{ width: 40, textAlign: 'center' }}> 
+        { currentValue }
+      </Typography>
+
+      <IconButton onClick={ () => addOnRemove(+1) }>
+          <AddCircleOutline />
+      </IconButton>
+
+    </Box>
   );
 };

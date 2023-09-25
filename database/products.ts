@@ -52,7 +52,7 @@ export const initialData: SeedData = {
             images: [
                 'vistoso-1.jpg'
             ],
-            inStock: 1,
+            inStock: 3,
             price: 900,
             framed: 'NO',
             dimensions: '120x60cm',
@@ -307,7 +307,7 @@ export const initialData: SeedData = {
             images: [
                 'marino-5.jpg'
             ],
-            inStock: 1,
+            inStock: 0,
             price: 690,
             framed: 'NO',
             dimensions: '25x45cm',
