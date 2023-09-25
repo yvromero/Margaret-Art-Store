@@ -49,7 +49,7 @@ export const SideMenu = () => {
                             onChange={ (e) => setSearchTerm( e.target.value )}
                             onKeyUp={ (e) => e.key === 'Enter' ? onSearchTerm() : null }
                             type='text'
-                            placeholder="Buscar..."
+                            placeholder="Buscar cuadros..."
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
