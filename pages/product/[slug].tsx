@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from 'react';
 import { NextPage, GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
+
+import { Grid, Typography, Box, Button, Chip } from '@mui/material';
+
+import { CartContext } from '@/context';
+
 import { ShopLayout } from "@/components/layouts";
 import { ItemCounter, ProductMagnify } from "@/components/ui";
+
 import { dbProducts } from "@/database";
 import { ICartProduct, IProduct } from "@/interfaces";
-import { Grid, Typography, Box, Button, Chip } from '@mui/material';
+
+
+
 
 
 interface Props {
@@ -12,6 +21,9 @@ interface Props {
 }
 
 const ProductPage:NextPage<Props> = ({product}) => {
+
+  const router = useRouter();
+  const { addProductToCart } = useContext( CartContext )
 
   const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
     _id: product._id,
@@ -34,7 +46,11 @@ const ProductPage:NextPage<Props> = ({product}) => {
   }
 
   const onAddProduct = () => {
-    console.log({ tempCartProduct });
+
+    // Llamar a la accion del context para add al carrito
+    addProductToCart( tempCartProduct )
+    // console.log({ tempCartProduct });
+    router.push('/cart');
   }
 
   
@@ -68,6 +84,8 @@ const ProductPage:NextPage<Props> = ({product}) => {
             {/* Cantidad */}
             <Box sx={{ my: 3 }}>
               <Typography variant='subtitle2'>Cantidad</Typography>
+
+              {/* <h1>{product.inStock}</h1> */}
 
               {/* ItemCounter */}
               <ItemCounter 
