@@ -5,13 +5,22 @@ import { ICartProduct } from '@/interfaces';
 
 export interface CartState {
     cart: ICartProduct[];
+    numberOfItems: number;
+    subTotal: number;
+    tax: number;
+    total: number;
 }
+
 interface UiProviderProps {
     children: ReactNode; 
 }
 
 const CART_INITIAL_STATE: CartState = {
     cart: [],
+    numberOfItems: 0,
+    subTotal: 0,
+    tax: 0,
+    total: 0,
 }
 
 
@@ -68,7 +77,8 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
             total: subTotal + (subTotal * taxRate) 
         }
 
-        console.log({orderSummary});
+        dispatch({ type: '[Cart] - Update order summary', payload: orderSummary})
+        // console.log({orderSummary});
 
     }, [state.cart]);
 
