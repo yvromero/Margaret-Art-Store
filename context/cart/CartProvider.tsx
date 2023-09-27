@@ -1,4 +1,5 @@
-import { FC, useReducer, ReactNode } from 'react';
+import { FC, useEffect, useState, useReducer, ReactNode } from 'react';
+import Cookie from 'js-cookie';
 import { CartContext, cartReducer } from './';
 import { ICartProduct } from '@/interfaces';
 
@@ -17,6 +18,54 @@ const CART_INITIAL_STATE: CartState = {
 export const CartProvider:FC<UiProviderProps> = ({ children }) => {
 
     const [state, dispatch] = useReducer( cartReducer , CART_INITIAL_STATE);
+
+    const [isMounted, setIsMounted] = useState(false);
+
+    // Para resolver el problema del Strict Mode en React
+    // Para leer de las cookies
+
+    useEffect(() => {
+
+        if (!isMounted) {
+            try {
+
+                const cookieProducts = Cookie.get('cart')
+                ? JSON.parse( Cookie.get('cart')! )
+                : [];
+                dispatch({ 
+                    type: '[Cart] - LoadCart from cookies | storage', 
+                    payload: cookieProducts });
+            } catch (error) {
+                dispatch({ type: '[Cart] - LoadCart from cookies | storage', 
+                payload: [] });
+            }
+            setIsMounted(true);
+        }
+
+    }, [isMounted]);
+
+    useEffect(() => {
+
+        if (isMounted) Cookie.set('cart', JSON.stringify(state.cart));
+
+    }, [state.cart, isMounted]);
+
+
+
+    // // Para leer de las cookies
+    // useEffect(() => {
+    //     const cookieProducts = Cookie.get('cart') ? JSON.parse( Cookie.get('cart')! ): []
+    //     dispatch({ type : '[Cart] - LoadCart from cookies | storage', payload: cookieProducts });
+    // }, [])
+
+
+    // // Para almacenar las cookies
+    // useEffect(() => {
+    //     Cookie.set('cart', JSON.stringify( state.cart ))
+
+    // }, [state.cart])
+
+
 
     const addProductToCart = ( product: ICartProduct ) => {
 
