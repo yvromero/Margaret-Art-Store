@@ -7,15 +7,13 @@ import { CartContext } from '@/context';
 import { ICartProduct } from '@/interfaces';
 
 
-
-
 interface Props {
   editable?: boolean;
 }
 
 export const CartList:FC<Props> = ({editable = false}) => {
 
-  const { cart, updateCartQuantity } = useContext(CartContext);
+  const { cart, updateCartQuantity, removeCartProduct } = useContext(CartContext);
 
   const onNewCartQuantityValue = ( product: ICartProduct, newQuantityValue: number) => {
     product.quantity = newQuantityValue;
@@ -52,24 +50,28 @@ export const CartList:FC<Props> = ({editable = false}) => {
                     ? (
                         <ItemCounter 
                         currentValue={ product.quantity} 
-                        maxValue={ 3 } // Regla de negocio Pantalla Carrito
+                        maxValue={ 2 } // Regla de negocio Pantalla Carrito
                         updateQuantity={( newValue ) => onNewCartQuantityValue( product, newValue )}
                         />
                       )
                     : (
                         <Typography variant='body2'>{ product.quantity }
-                          { product.quantity > 1 ? 'cuadros':'cuadro' }</Typography>)
+                          { product.quantity > 1 ? ' cuadros':' cuadro' }</Typography>)
                   }
                   </Box>
                 </Grid>
 
                 <Grid item xs={2}  display='flex' alignItems='center' flexDirection='column'>
                   <Typography variant='subtitle1'>
-                    { `$${ product.price }`}
+                    { `$${ product.price }` }
                   </Typography>
                 {
                   editable && (
-                    <Button variant='text' color='secondary'>
+                    <Button 
+                      variant='text' 
+                      color='secondary'
+                      onClick={ () => removeCartProduct( product )}
+                    >
                     Remover
                   </Button>
                   )

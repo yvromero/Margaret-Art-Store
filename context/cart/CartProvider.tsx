@@ -27,6 +27,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
     useEffect(() => {
 
         if (!isMounted) {
+
             try {
 
                 const cookieProducts = Cookie.get('cart')
@@ -35,6 +36,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
                 dispatch({ 
                     type: '[Cart] - LoadCart from cookies | storage', 
                     payload: cookieProducts });
+
             } catch (error) {
                 dispatch({ type: '[Cart] - LoadCart from cookies | storage', 
                 payload: [] });
@@ -49,7 +51,6 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
         if (isMounted) Cookie.set('cart', JSON.stringify(state.cart));
 
     }, [state.cart, isMounted]);
-
 
 
     // // Para leer de las cookies
@@ -69,6 +70,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
 
     const addProductToCart = ( product: ICartProduct ) => {
 
+        console.log(product);
 
         const productInCart = state.cart.some( p => p._id === product._id)
 
@@ -82,12 +84,10 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
         // Acumular
         const updateProducts = state.cart.map( p => {
             if ( p._id !== product._id )
-            
             return p;
         
         // Actualizar cantidad
         p.quantity += product.quantity;
-            
             return p;
         });
 
@@ -98,18 +98,23 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
 
     }
 
-
     const updateCartQuantity = ( product: ICartProduct ) => {
         dispatch({ type: '[Cart] - Change cart quantity', payload: product });
     }
-    
+
+    const removeCartProduct = ( product: ICartProduct ) => {
+        dispatch({ type: '[Cart] - Remove product in cart', payload: product });
+    }
+
+
     return (
         <CartContext.Provider value={{
             ...state,
 
             // Methods
             addProductToCart,
-            updateCartQuantity
+            removeCartProduct,
+            updateCartQuantity,
         }}>
             { children }
         </CartContext.Provider>

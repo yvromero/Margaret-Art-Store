@@ -13,9 +13,6 @@ import { dbProducts } from "@/database";
 import { ICartProduct, IProduct } from "@/interfaces";
 
 
-
-
-
 interface Props {
   product: IProduct
 }
@@ -48,7 +45,7 @@ const ProductPage:NextPage<Props> = ({product}) => {
   const onAddProduct = () => {
 
     // Llamar a la accion del context para add al carrito
-    addProductToCart( tempCartProduct )
+    addProductToCart( tempCartProduct );
     // console.log({ tempCartProduct });
     router.push('/cart');
   }
@@ -91,7 +88,7 @@ const ProductPage:NextPage<Props> = ({product}) => {
               <ItemCounter 
                 currentValue={ tempCartProduct.quantity }
                 updateQuantity={ onUpdateQuantity }
-                maxValue={ product.inStock }
+                maxValue={ product.inStock > 2 ? 2: product.inStock }
               />
             </Box>
 
