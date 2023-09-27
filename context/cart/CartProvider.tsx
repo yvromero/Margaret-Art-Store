@@ -69,32 +69,47 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
 
     const addProductToCart = ( product: ICartProduct ) => {
 
-        console.log(product);
+
         const productInCart = state.cart.some( p => p._id === product._id)
-        if ( !productInCart ) return dispatch({ type: '[Cart] - Update products in cart', payload: [...state.cart, product ] })
+
+        if ( !productInCart )
+
+            return dispatch({
+                type: '[Cart] - Update products in cart', 
+                payload: [...state.cart, product ] 
+            })
 
         // Acumular
         const updateProducts = state.cart.map( p => {
             if ( p._id !== product._id )
-        
+            
             return p;
-
+        
         // Actualizar cantidad
         p.quantity += product.quantity;
             
             return p;
         });
 
-        dispatch({ type: '[Cart] - Update products in cart', payload: updateProducts });
+        dispatch({ 
+            type: '[Cart] - Update products in cart', 
+            payload: updateProducts 
+        });
 
     }
 
+
+    const updateCartQuantity = ( product: ICartProduct ) => {
+        dispatch({ type: '[Cart] - Change cart quantity', payload: product });
+    }
+    
     return (
         <CartContext.Provider value={{
             ...state,
 
             // Methods
-            addProductToCart
+            addProductToCart,
+            updateCartQuantity
         }}>
             { children }
         </CartContext.Provider>

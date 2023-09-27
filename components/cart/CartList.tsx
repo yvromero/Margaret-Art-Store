@@ -4,6 +4,7 @@ import { initialData } from '../../database/products';
 import { CardActionArea, CardMedia, Link, Grid, Box, Typography, Button } from "@mui/material";
 import { ItemCounter } from '../ui';
 import { CartContext } from '@/context';
+import { ICartProduct } from '@/interfaces';
 
 
 
@@ -14,7 +15,12 @@ interface Props {
 
 export const CartList:FC<Props> = ({editable = false}) => {
 
-  const { cart } = useContext(CartContext)
+  const { cart, updateCartQuantity } = useContext(CartContext);
+
+  const onNewCartQuantityValue = ( product: ICartProduct, newQuantityValue: number) => {
+    product.quantity = newQuantityValue;
+    updateCartQuantity ( product );
+  }
 
   return (
     <>
@@ -46,8 +52,8 @@ export const CartList:FC<Props> = ({editable = false}) => {
                     ? (
                         <ItemCounter 
                         currentValue={ product.quantity} 
-                        maxValue={ 2 } // Regla de negocio
-                        updateQuantity={() => {}}
+                        maxValue={ 3 } // Regla de negocio Pantalla Carrito
+                        updateQuantity={( newValue ) => onNewCartQuantityValue( product, newValue )}
                         />
                       )
                     : (

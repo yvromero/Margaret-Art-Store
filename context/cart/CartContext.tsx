@@ -7,6 +7,7 @@ interface ContextProps {
 
     // Methods
     addProductToCart: (product: ICartProduct) => void;
+    updateCartQuantity: (product: ICartProduct) => void
 }
 
 
