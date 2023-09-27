@@ -18,7 +18,6 @@ const CART_INITIAL_STATE: CartState = {
 export const CartProvider:FC<UiProviderProps> = ({ children }) => {
 
     const [state, dispatch] = useReducer( cartReducer , CART_INITIAL_STATE);
-
     const [isMounted, setIsMounted] = useState(false);
 
     // Para resolver el problema del Strict Mode en React
@@ -46,6 +45,8 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
 
     }, [isMounted]);
 
+
+    // Para almacenar y actualizar las cookies
     useEffect(() => {
 
         if (isMounted) Cookie.set('cart', JSON.stringify(state.cart));
@@ -53,24 +54,33 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
     }, [state.cart, isMounted]);
 
 
-    // // Para leer de las cookies
-    // useEffect(() => {
-    //     const cookieProducts = Cookie.get('cart') ? JSON.parse( Cookie.get('cart')! ): []
-    //     dispatch({ type : '[Cart] - LoadCart from cookies | storage', payload: cookieProducts });
-    // }, [])
+    // Calcular montos 
+    useEffect(() => {
 
+        const numberOfItems = state.cart.reduce( ( prev, current ) => current.quantity + prev, 0 );
+        const subTotal = state.cart.reduce( ( prev, current ) => (current.price * current.quantity) + prev, 0 );
+        const taxRate = Number(process.env.NEXT_PUBLIC_TAX_RATE || 0);
 
-    // // Para almacenar las cookies
-    // useEffect(() => {
-    //     Cookie.set('cart', JSON.stringify( state.cart ))
+        const orderSummary = {
+            numberOfItems,
+            subTotal,
+            tax: subTotal * taxRate,
+            total: subTotal + (subTotal * taxRate) 
+        }
 
-    // }, [state.cart])
+        console.log({orderSummary});
+
+    }, [state.cart]);
 
 
 
     const addProductToCart = ( product: ICartProduct ) => {
 
-        console.log(product);
+        const productsInCart = state.cart.filter( p => p._id !== product._id );
+        dispatch({ 
+            type: '[Cart] - Update products in cart', 
+            payload: [ ...productsInCart, product ]})
+
 
         const productInCart = state.cart.some( p => p._id === product._id)
 
@@ -95,7 +105,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
             type: '[Cart] - Update products in cart', 
             payload: updateProducts 
         });
-
+        console.log(product);
     }
 
     const updateCartQuantity = ( product: ICartProduct ) => {

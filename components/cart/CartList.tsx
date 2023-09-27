@@ -49,7 +49,7 @@ export const CartList:FC<Props> = ({editable = false}) => {
                     editable
                     ? (
                         <ItemCounter 
-                        currentValue={ product.quantity} 
+                        currentValue={ product.quantity}
                         maxValue={ 2 } // Regla de negocio Pantalla Carrito
                         updateQuantity={( newValue ) => onNewCartQuantityValue( product, newValue )}
                         />
