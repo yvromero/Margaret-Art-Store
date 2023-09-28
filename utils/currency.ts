@@ -1,5 +1,6 @@
 
 export const format = ( value: number ) => {
+    
     // Crear formateador
 
     const formatter = new Intl.NumberFormat('en-US', {

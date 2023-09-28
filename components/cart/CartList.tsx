@@ -5,6 +5,7 @@ import { CardActionArea, CardMedia, Link, Grid, Box, Typography, Button } from "
 import { ItemCounter } from '../ui';
 import { CartContext } from '@/context';
 import { ICartProduct } from '@/interfaces';
+import { currency } from '@/utils';
 
 
 interface Props {
@@ -12,6 +13,8 @@ interface Props {
 }
 
 export const CartList:FC<Props> = ({editable = false}) => {
+
+  // const { numberOfItems, subTotal, total, tax } = useContext( CartContext );
 
   const { cart, updateCartQuantity, removeCartProduct } = useContext(CartContext);
 
@@ -60,11 +63,16 @@ export const CartList:FC<Props> = ({editable = false}) => {
                   }
                   </Box>
                 </Grid>
+                
+                <Grid
+                  item xs={2}
+                  display='flex' 
+                  alignItems='center' 
+                  flexDirection='column'
+                  >
+                  <Typography variant='subtitle1'>{ `$${ product.price }` }</Typography>
+                   {/* <Typography> { currency.format(subTotal) } </Typography> */}
 
-                <Grid item xs={2}  display='flex' alignItems='center' flexDirection='column'>
-                  <Typography variant='subtitle1'>
-                    { `$${ product.price }` }
-                  </Typography>
                 {
                   editable && (
                     <Button 
