@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 interface SeedProduct {
     description: string;
     images: string[];
@@ -32,24 +34,24 @@ type ValidTheme =
     |'Animales'
     |'Vistoso';
 
+
 interface SeedData {
-    users: SeedUser[];
+    users   : SeedUser[];
     products: SeedProduct[];
 }
-
 
 export const initialData: SeedData = {
     users: [
         {
             name: 'Yvonne Romero',
             email: 'yvonne.romero@uds.edu.py',
-            password: '123456',
+            password: bcrypt.hashSync('123456'),
             role: 'admin'
         },
         {
             name: 'Frank Romero',
             email: 'juan.romero@uds.edu.py',
-            password: '123456',
+            password: bcrypt.hashSync('123456'),
             role: 'client'
         },
     ],

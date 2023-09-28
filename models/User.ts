@@ -1,16 +1,16 @@
-import { IUser} from '@/interfaces';
-import mongoose, { Schema, model, Model }from 'mongoose';
+import mongoose, { Schema, model, Model } from 'mongoose';
+import { IUser } from '../interfaces';
 
 const userSchema = new Schema({
 
     name    : { type: String, required: true },
     email   : { type: String, required: true, unique: true },
-    password: { type: String, requiered: true },
+    password: { type: String, required: true },
     role: {
         type: String,
         enum: {
-            values: ['admin', 'cliente'],
-            message: '{VALUE} no es un rol permitido',
+            values: ['admin','client'],
+            message: '{VALUE} no es un role válido',
             default: 'client',
             required: true
         }
@@ -18,9 +18,6 @@ const userSchema = new Schema({
 }, {
     timestamps: true,
 })
-
-
-// Definir el modelo
 
 const User:Model<IUser> = mongoose.models.User || model('User',userSchema);
 
