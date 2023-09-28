@@ -14,6 +14,14 @@ interface SeedProduct {
     category: 'paisajes-naturaleza'|'retrato-figuras'|'abstracto-contemporaneo'
 }
 
+interface SeedUser {
+    name     : string;
+    email    : string;
+    password : string;
+    role     : 'admin'|'client'
+}
+
+
 type ValidTheme = 
     |'Natura'
     |'Urbano'
@@ -25,10 +33,26 @@ type ValidTheme =
     |'Vistoso';
 
 interface SeedData {
-    products: SeedProduct[],
+    users: SeedUser[];
+    products: SeedProduct[];
 }
 
+
 export const initialData: SeedData = {
+    users: [
+        {
+            name: 'Yvonne Romero',
+            email: 'yvonne.romero@uds.edu.py',
+            password: '123456',
+            role: 'admin'
+        },
+        {
+            name: 'Frank Romero',
+            email: 'juan.romero@uds.edu.py',
+            password: '123456',
+            role: 'client'
+        },
+    ],
     products: [
         {
             description: "Esta pintura exhibe una textura rica y vívida que cobra vida a través de su relieve intrincado. Los colores, que van desde tonos profundos de azul y púrpura hasta cálidos matices de dorado y rojo, se combinan en un juego armonioso de luces y sombras. Cada trazo y relieve contribuyen a crear una obra de arte que invita a explorarla táctilmente, permitiendo que los espectadores se sumerjan en la profundidad y la energía de la pintura.",
