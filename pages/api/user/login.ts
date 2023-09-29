@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 
 import { db } from '@/database';
 import { User } from '@/models';
+import { jwt } from '@/utils';
 
 
 type Data = 
@@ -42,14 +43,16 @@ const loginUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         return res.status(400).json({ message: 'Correo o contraseña no válidos - Email'})
     }
 
-    if ( !bcrypt.compareSync( password, user.password! ) )
+    if ( !bcrypt.compareSync( password, user.password! ) ) {
         return res.status(400).json({ message: 'Correo o contraseña no válidos - Password'})
+    }
 
+    const { name, role, _id } = user;
 
-    const { name, role } = user;
+    const token = jwt.signToken( _id, email );
 
     return res.status(200).json({
-        token: '', //jwt
+        token, //jwt
         user: {
             name, email, role
         }
