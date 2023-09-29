@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 
-
 export const signToken = ( _id: string, email: string ) => {
 
     if ( !process.env.JWT_SECRET_SEED ) {
@@ -19,7 +18,6 @@ export const signToken = ( _id: string, email: string ) => {
     )
 
 }
-
 
 
 export const isValidToken = ( token: string ):Promise<string> => {
