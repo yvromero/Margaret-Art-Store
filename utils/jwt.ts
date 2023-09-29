@@ -15,7 +15,7 @@ export const signToken = ( _id: string, email: string ) => {
         process.env.JWT_SECRET_SEED,
     
     //Options
-    { expiresIn: '30d' }
+        { expiresIn: '30d' }
 
     )
 }
