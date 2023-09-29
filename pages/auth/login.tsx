@@ -13,13 +13,14 @@ type FormData = {
 const loginPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+    // console.log({errors});
     const onLoginUser = ( data: FormData ) => {
         console.log({data});
     }
 
     return (
         <AuthLayout title={'Ingresar'}>
-            <form onSubmit={ handleSubmit(onLoginUser) }>
+            <form onSubmit={ handleSubmit(onLoginUser) } noValidate>
                 <Box sx={{ width: 350, padding:'10px 30px'}}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -33,7 +34,12 @@ const loginPage = () => {
                                 label="Correo electrónico" 
                                 variant="filled" 
                                 fullWidth
-                                { ...register('email')}
+                                {...register('email', {
+                                    required: 'Este campo es requerido'
+                                })
+                                }
+                                error={ !!errors.email }
+                                helperText={ errors.email?.message }
                             />
                         </Grid>
 
@@ -44,7 +50,13 @@ const loginPage = () => {
                                 type="password" 
                                 variant="filled" 
                                 fullWidth
-                                { ...register('password')}
+                                {...register('password',{
+                                    required: 'Este campo es requerido',
+                                    minLength: { value: 8, message: 'Mínimo 8 caracteres' }
+                                })
+                                }
+                                error={ !!errors.password }
+                                helperText={ errors.password?.message }
                             />
                         </Grid>
 
