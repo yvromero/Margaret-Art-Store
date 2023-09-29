@@ -24,6 +24,7 @@
     "@types/react-dom": "18.2.7",
     "@types/react-image-magnify": "^2.7.1",
     "D": "^1.0.0",
+    "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
