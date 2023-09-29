@@ -3,6 +3,7 @@ import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { useForm } from 'react-hook-form';
 
 import { AuthLayout } from "@/components/layouts";
+import { validations } from '@/utils';
 
 
 type FormData = {
@@ -35,7 +36,8 @@ const loginPage = () => {
                                 variant="filled" 
                                 fullWidth
                                 {...register('email', {
-                                    required: 'Este campo es requerido'
+                                    required: 'Este campo es requerido',
+                                    validate: (val) => validations.isEmail(val)
                                 })
                                 }
                                 error={ !!errors.email }
