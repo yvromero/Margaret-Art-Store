@@ -137,7 +137,10 @@ export const SideMenu = () => {
                             </ListItem>
                         )
                         : (
-                            <ListItem button>
+                            <ListItem 
+                                button
+                                onClick={ () => navigateTo(`/auth/login?p=${ router.asPath }`) }
+                            >
                                 <ListItemIcon>
                                     <VpnKeyOutlined/>
                                 </ListItemIcon>
