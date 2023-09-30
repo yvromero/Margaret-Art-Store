@@ -10,8 +10,8 @@ type Data =
 | { 
     token: string;
     user: {
-        email: string;
         name: string;
+        email: string;
         role: string;
     }
 }
@@ -31,7 +31,7 @@ function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 
 const registerUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
-    const { email = '', password = '', name = '' } = req.body as { email: string, password: string, name: string };
+    const { name = '', email = '', password = '' } = req.body as { name: string, email: string, password: string };
 
     if ( password.length < 8 ) {
         return res.status(400).json({
@@ -39,7 +39,7 @@ const registerUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
         });
     }
     
-    if ( name.length < 3 ) {
+    if ( name.length < 2 ) {
         return res.status(400).json({
             message: 'El nombre debe contener un mínimo de 2 caracteres'
         });
@@ -56,8 +56,9 @@ const registerUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
     const user = await User.findOne({ email });
 
     if ( user ) {
-        await db.disconnect();
-        return res.status(400).json({ message: 'Este correo ya se encuentra registrado'})
+        return res.status(400).json({ 
+            message: 'Este correo ya se encuentra registrado'
+        })
     }
 
     const newUser = new User({
@@ -85,8 +86,8 @@ const registerUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
         token, //jwt
         user: {
             name,
-            role,
             email,
+            role,
         }
     })
 }

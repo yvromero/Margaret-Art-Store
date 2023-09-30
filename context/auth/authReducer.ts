@@ -27,6 +27,6 @@ export const authReducer = ( state: AuthState, action: AuthActionType ): AuthSta
 
     default:
         return state;
-}
+    }
 
 }

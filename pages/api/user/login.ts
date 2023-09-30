@@ -11,8 +11,8 @@ type Data =
 |{ 
     token: string;
     user: {
-        email: string;
         name: string;
+        email: string;
         role: string;
     }
 }
