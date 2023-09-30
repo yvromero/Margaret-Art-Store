@@ -1,7 +1,10 @@
 import { FC, ReactNode, useReducer, useEffect } from 'react';
-import { AuthContext, authReducer } from './';
+import { useRouter } from 'next/router';
+
 import Cookies from 'js-cookie';
 import axios from 'axios';
+
+import { AuthContext, authReducer } from './';
 
 import { margaretApi } from '@/api';
 import { IUser } from '@/interfaces';
@@ -25,12 +28,17 @@ const Auth_INITIAL_STATE: AuthState = {
 export const AuthProvider:FC<AuthProviderProps> = ({ children }) => {
 
     const [state, dispatch] = useReducer( authReducer , Auth_INITIAL_STATE);
+    const router = useRouter();
 
     useEffect(() => {
         okToken();
     }, [])
 
     const okToken = async() => {
+
+        if ( !Cookies.get('token') ) {
+            return;
+        }
 
         try {
             const { data } = await margaretApi.get('/user/validate-token');
@@ -82,6 +90,16 @@ export const AuthProvider:FC<AuthProviderProps> = ({ children }) => {
         }
     }
 
+    const logoutUser = () => {
+        Cookies.remove('token');
+        Cookies.remove('cart');
+        router.reload();
+    }
+
+
+
+
+
     return (
         <AuthContext.Provider value={{
             ...state,
@@ -89,6 +107,7 @@ export const AuthProvider:FC<AuthProviderProps> = ({ children }) => {
             // Methods
             loginUser,
             registerUser,
+            logoutUser,
 
         }}>
             { children }

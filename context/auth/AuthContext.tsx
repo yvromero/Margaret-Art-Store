@@ -11,6 +11,9 @@ interface ContextProps {
         hasError: boolean;
         message?: string | undefined;
     }>;
+
+    logoutUser: () => void;
+    
 }
 
 
