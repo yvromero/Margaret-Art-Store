@@ -102,7 +102,11 @@ const LoginPage = () => {
                         </Grid>
 
                         <Grid item xs={12} display='flex' justifyContent='end'>
-                            <NextLink legacyBehavior href="/auth/register" passHref>
+                            <NextLink 
+                                legacyBehavior 
+                                href={ router.query.p ? `/auth/register?p=${ router.query.p }` : `/auth/register` }
+                                passHref
+                            >
                                 <Link>
                                 ¿Eres un cliente nuevo?&nbsp;
                                 <Box 
