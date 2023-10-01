@@ -19,7 +19,10 @@ const CartPage = () => {
         }
     }, [ isLoaded, cart, router ])
     
-
+    // Renderizar la pantalla del cart y mostrar solo Empty Cart
+    if ( !isLoaded || cart.length === 0 ) {
+        return (<></>);
+    }
 
     return (
         <ShopLayout title='Carrito' pageDescription={'Carrito de compras de la tienda'}>
@@ -50,7 +53,7 @@ const CartPage = () => {
             </Grid>
         </Grid>
         </ShopLayout >
-  )
+    )
 }
 
 export default CartPage
