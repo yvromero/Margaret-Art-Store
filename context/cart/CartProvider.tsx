@@ -1,7 +1,7 @@
 import { FC, useEffect, useState, useReducer, ReactNode } from 'react';
-import Cookie from 'js-cookie';
 import { CartContext, cartReducer } from './';
 import { ICartProduct } from '@/interfaces';
+import Cookie from 'js-cookie';
 
 export interface CartState {
     isLoaded: boolean;
@@ -10,6 +10,23 @@ export interface CartState {
     subTotal: number;
     tax: number;
     total: number;
+
+    shippingAddress?: ShippingAddress;
+}
+
+export interface ShippingAddress {
+    firstName     : string;
+    lastName      : string;
+    documentType  : string;
+    documentNumber: string;
+    country       : string;
+    region        : string;
+    city          : string;
+    address       : string;
+    address2?     : string;
+    prefix        : string;
+    phone         : string;
+    email         : string;
 }
 
 interface UiProviderProps {
@@ -23,6 +40,7 @@ const CART_INITIAL_STATE: CartState = {
     subTotal: 0,
     tax: 0,
     total: 0,
+    shippingAddress: undefined
 }
 
 
@@ -56,6 +74,31 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
 
     }, [isMounted]);
 
+
+    //Para cargar la direccion en el state
+
+    useEffect(() => {
+
+        if ( Cookie.get('firstName')){
+            const shippingAddress = {
+        
+                firstName     : Cookie.get('firstName') || '',
+                lastName      : Cookie.get('lastName') || '',
+                documentType  : Cookie.get('documentType') || '',
+                documentNumber: Cookie.get('documentNumber') || '',
+                country       : Cookie.get('country') || '',
+                region        : Cookie.get('region') || '',
+                city          : Cookie.get('city') || '',
+                address       : Cookie.get('address') || '',
+                address2      : Cookie.get('address2') || '',
+                prefix        : Cookie.get('prefix') || '',
+                phone         : Cookie.get('phone') || '',
+                email         : Cookie.get('email') || '',
+            }  
+
+            dispatch({ type:'[Cart] - LoadAddress from Cookies', payload: shippingAddress })
+        }
+    }, [])
 
     // Para almacenar y actualizar las cookies
     useEffect(() => {
@@ -128,7 +171,21 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
         dispatch({ type: '[Cart] - Remove product in cart', payload: product });
     }
 
-
+    const updateAddress = ( address: ShippingAddress ) => {
+        Cookie.set('firstName',address.firstName);
+        Cookie.set('lastName',address.lastName);
+        Cookie.set('documentType',address.documentType);
+        Cookie.set('documentNumber',address.documentNumber);
+        Cookie.set('country',address.country);
+        Cookie.set('region',address.region);
+        Cookie.set('city',address.city);
+        Cookie.set('address',address.address);
+        Cookie.set('address2',address.address2 || '');
+        Cookie.set('prefix',address.prefix);
+        Cookie.set('phone',address.phone);
+        Cookie.set('email',address.email);
+        dispatch({ type: '[Cart] - UpdateAddress from Cookies', payload: address });
+    }
     return (
         <CartContext.Provider value={{
             ...state,
@@ -137,6 +194,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
             addProductToCart,
             removeCartProduct,
             updateCartQuantity,
+            updateAddress,
         }}>
             { children }
         </CartContext.Provider>

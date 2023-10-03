@@ -39,7 +39,7 @@ const OrderPage = () => {
             <Grid item xs={12} sm={ 5 } > 
                 <Card className='summary-card'>
                     <CardContent>
-                        <Typography variant='h2'>Tu pedido(3 productos)</Typography>
+                        <Typography variant='h2'>Tu pedido( 3 productos) </Typography>
                         <Divider sx={{ my:1 }} />
 
                         <Box display='flex' justifyContent='space-between'>
@@ -51,11 +51,11 @@ const OrderPage = () => {
                             </NextLink>
                         </Box>
 
-                        <Typography>Frank Romero</Typography>
+                        {/* <Typography>Frank Romero</Typography>
                         <Typography>Primer Presidente</Typography>
                         <Typography>Asuncion</Typography>
                         <Typography>Paraguay</Typography>
-                        <Typography>+5953939484</Typography>
+                        <Typography>+5953939484</Typography> */}
 
                         <Divider sx={{ my:1 }} />
 
