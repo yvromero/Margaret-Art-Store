@@ -20,7 +20,7 @@ const CartPage = () => {
     }, [ isLoaded, cart, router ])
     
     // Renderizar la pantalla del cart y mostrar solo Empty Cart
-    if ( !isLoaded || cart.length === 0 ) {
+    if ( !isLoaded || cart.length === 0 ) { 
         return (<></>);
     }
 
@@ -43,8 +43,13 @@ const CartPage = () => {
                         <OrderSummary/>
 
                         <Box sx={{ mt: 2 }}>
-                            <Button color="secondary" className='circular-btn' fullWidth>
-                                SIGUIENTE
+                            <Button 
+                                color="secondary" 
+                                className='circular-btn' 
+                                fullWidth
+                                href='/checkout/address'
+                            >
+                                CHECKOUT
                             </Button>
                         </Box>
 

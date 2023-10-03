@@ -4,7 +4,6 @@ import { CardActionArea, CardMedia, Link, Grid, Box, Typography, Button } from "
 import { ItemCounter } from '../ui';
 import { CartContext } from '@/context';
 import { ICartProduct } from '@/interfaces';
-import { currency } from '@/utils';
 
 
 interface Props {
