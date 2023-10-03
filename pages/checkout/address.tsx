@@ -1,6 +1,8 @@
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { ShopLayout } from "@/components/layouts";
 import { Box, Button, FormControl, Grid, MenuItem, Select, TextField, Typography } from "@mui/material";
+import Cookies from "js-cookie";
 
 import { jwt, countries} from '@/utils';
 import { useForm } from 'react-hook-form';
@@ -24,6 +26,8 @@ type FormData = {
 
 const AddressPage = () => {
 
+    const router = useRouter();
+
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         defaultValues: {
             firstName: '',
@@ -43,6 +47,20 @@ const AddressPage = () => {
 
     const onSubmitAddress = ( data: FormData ) => {
         console.log(data);
+        Cookies.set('firstName',data.firstName);
+        Cookies.set('lastName',data.lastName);
+        Cookies.set('documentType',data.documentType);
+        Cookies.set('documentNumber',data.documentNumber);
+        Cookies.set('country',data.country);
+        Cookies.set('region',data.region);
+        Cookies.set('city',data.city);
+        Cookies.set('address',data.address);
+        Cookies.set('address2',data.address2 || '');
+        Cookies.set('prefix',data.prefix);
+        Cookies.set('phone',data.phone);
+        Cookies.set('email',data.email);
+
+        router.push('/checkout/summary');
     }
 
     return (
