@@ -24,7 +24,7 @@ export interface ShippingAddress {
     city          : string;
     address       : string;
     address2?     : string;
-    prefix        : string;
+    zip           : string;
     phone         : string;
     email         : string;
 }
@@ -91,7 +91,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
                 city          : Cookie.get('city') || '',
                 address       : Cookie.get('address') || '',
                 address2      : Cookie.get('address2') || '',
-                prefix        : Cookie.get('prefix') || '',
+                zip           : Cookie.get('zip') || '',
                 phone         : Cookie.get('phone') || '',
                 email         : Cookie.get('email') || '',
             }  
@@ -99,6 +99,8 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
             dispatch({ type:'[Cart] - LoadAddress from Cookies', payload: shippingAddress })
         }
     }, [])
+
+    
 
     // Para almacenar y actualizar las cookies
     useEffect(() => {
@@ -181,7 +183,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
         Cookie.set('city',address.city);
         Cookie.set('address',address.address);
         Cookie.set('address2',address.address2 || '');
-        Cookie.set('prefix',address.prefix);
+        Cookie.set('zip',address.zip);
         Cookie.set('phone',address.phone);
         Cookie.set('email',address.email);
         dispatch({ type: '[Cart] - UpdateAddress from Cookies', payload: address });

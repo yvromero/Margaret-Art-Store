@@ -21,7 +21,7 @@ type FormData = {
     city          : string;
     address       : string;
     address2?     : string;
-    prefix        : string;
+    zip           : string;
     phone         : string;
     email         : string;
 
@@ -38,7 +38,7 @@ const getAddressFromCookies = ():FormData => {
         city          : Cookies.get('city') || '',
         address       : Cookies.get('address') || '',
         address2      : Cookies.get('address2') || '',
-        prefix        : Cookies.get('prefix') || '',
+        zip           : Cookies.get('zip') || '',
         phone         : Cookies.get('phone') || '',
         email         : Cookies.get('email') || '',
     }
@@ -118,32 +118,33 @@ const AddressPage = () => {
                             helperText={ errors.documentNumber?.message }
                             />
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <FormControl fullWidth>
-                                <TextField
-                                    select
-                                    variant="filled"
-                                    label="País"
-                                    defaultValue={ countries[17].code }
-                                    {...register('country',{
-                                        required: 'Este campo es requerido',
-                                    })
-                                    }
-                                    error={ !!errors.country }
-                                    // helperText={ errors.country?.message }
-                                >
-                                    {
-                                        countries.map( country => (
-                                            <MenuItem
-                                            key={ country.code }
-                                            value={ country.code }
-                                            >{ country.name }
-                                            </MenuItem>
-                                        ))
-                                    }
-                                </TextField>
-                            </FormControl>
-                        </Grid>
+                        
+                        <Grid item xs={12} sm={ 6 }>
+                    {/* <FormControl fullWidth> */}
+                        <TextField
+                            // select
+                            variant="filled"
+                            label="País"
+                            fullWidth
+                            // defaultValue={ Cookies.get('country') || countries[0].code }
+                            { ...register('country', {
+                                required: 'Este campo es requerido'
+                            })}
+                            error={ !!errors.country }
+                            helperText={ errors.country?.message }
+                        />
+                            {/* {
+                                countries.map( country => (
+                                    <MenuItem 
+                                        key={ country.code }
+                                        value={ country.code }
+                                    >{ country.name }</MenuItem>
+                                ))
+                            }
+                        </TextField> */}
+                    {/* </FormControl> */}
+                    </Grid>
+                
                         <Grid item xs={12} sm={6}>
                             <TextField 
                             label='Provincia/Región' 
@@ -193,15 +194,15 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Prefijo' 
+                            label='Zip' 
                             variant="filled"
                             fullWidth
-                            {...register('prefix',{
+                            {...register('zip',{
                                 required: 'Este campo es requerido',
                             })
                             }
-                            error={ !!errors.prefix }
-                            helperText={ errors.prefix?.message }
+                            error={ !!errors.zip }
+                            helperText={ errors.zip?.message }
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>

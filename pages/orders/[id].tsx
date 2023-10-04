@@ -51,11 +51,11 @@ const OrderPage = () => {
                             </NextLink>
                         </Box>
 
-                        {/* <Typography>Frank Romero</Typography>
+                        <Typography>Frank Romero</Typography>
                         <Typography>Primer Presidente</Typography>
                         <Typography>Asuncion</Typography>
                         <Typography>Paraguay</Typography>
-                        <Typography>+5953939484</Typography> */}
+                        <Typography>+5953939484</Typography>
 
                         <Divider sx={{ my:1 }} />
 

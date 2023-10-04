@@ -1,12 +1,24 @@
+import { useContext } from 'react';
 import NextLink from 'next/link';
 
 import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from "@mui/material";
 
-import { CartList, OrderSummary } from "@/components/cart";
+import { CartContext } from '@/context';
 import { ShopLayout } from "@/components/layouts";
+import { CartList, OrderSummary } from "@/components/cart";
+import { countries } from '../../utils';
 
 
 const SummaryPage = () => {
+
+    const { shippingAddress, numberOfItems } = useContext( CartContext );
+
+    if ( !shippingAddress ) {
+        return<></>;
+    }
+
+    const { firstName, lastName, documentType, documentNumber, address, address2 = '', city, zip, country, phone, email } = shippingAddress;
+
     return (
         <ShopLayout title='Tu pedido' pageDescription={'Revisar pedido y confirmar la orden de pedido'}>
             <Typography variant='subtitle1' component='h1'>
@@ -21,7 +33,7 @@ const SummaryPage = () => {
             <Grid item xs={12} sm={ 5 } > 
                 <Card className='summary-card'>
                     <CardContent>
-                        <Typography variant='h2'>Tu pedido(3 productos)</Typography>
+                        <Typography variant='h2'>Tu pedido({numberOfItems}{ numberOfItems === 1 ? 'producto' : 'productos'})</Typography>
                         <Divider sx={{ my:1 }} />
 
                         <Box display='flex' justifyContent='space-between'>
@@ -33,11 +45,14 @@ const SummaryPage = () => {
                             </NextLink>
                         </Box>
 
-                        <Typography>Frank Romero</Typography>
-                        <Typography>Primer Presidente</Typography>
-                        <Typography>Asuncion</Typography>
-                        <Typography>Paraguay</Typography>
-                        <Typography>+5953939484</Typography>
+                        <Typography>{ firstName } { lastName }</Typography>
+                        <Typography>{ documentType ? `${ documentType }:` : ''} { documentNumber }</Typography>
+                        <Typography>{ address }{ address2 ? `, ${ address2 }` : ''}</Typography>
+                        <Typography>{ city } { zip }</Typography>
+                        <Typography>{ country }</Typography>
+                        {/* <Typography>{ countries.find( c => c.code === country )?.name }</Typography> */}
+                        <Typography>{ email }</Typography>
+                        <Typography>{ phone }</Typography>
 
                         <Divider sx={{ my:1 }} />
 
