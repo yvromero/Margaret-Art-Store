@@ -1,6 +1,9 @@
 import { useState, useContext } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter  } from 'next/router';
+import { signIn, getSession } from 'next-auth/react';
+import { GetServerSideProps } from 'next';
 import NextLink from 'next/link';
+
 import { Box, Button, Chip, Grid, Link, TextField, Typography } from '@mui/material';
 import { ErrorOutline } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
@@ -41,8 +44,9 @@ const RegisterPage = () => {
         }
         
     // Todo: navegar a la ultima pantalla antes del register
-    const destination = router.query.p?.toString() || '/';
-    router.replace(destination);
+    // const destination = router.query.p?.toString() || '/';
+    // router.replace(destination);
+    await signIn('credentials',{ email, password })
 
     }
 
@@ -143,6 +147,24 @@ const RegisterPage = () => {
             </form>
         </AuthLayout>
     )
+}
+export const getServerSideProps: GetServerSideProps = async ({ req, query  }) => {
+    const session = await getSession({ req });
+
+    const { p = '/' } = query;
+
+    if ( session ) {
+        return {
+            redirect: {
+                destination: p.toString(),
+                permanent: false
+            }
+        }
+    }
+
+    return {
+        props: { }
+    }
 }
 
 export default RegisterPage

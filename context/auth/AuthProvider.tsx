@@ -1,5 +1,7 @@
 import { FC, ReactNode, useReducer, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useSession, signOut } from 'next-auth/react';
+
 
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -28,11 +30,23 @@ const Auth_INITIAL_STATE: AuthState = {
 export const AuthProvider:FC<AuthProviderProps> = ({ children }) => {
 
     const [state, dispatch] = useReducer( authReducer , Auth_INITIAL_STATE);
+    const { data, status } = useSession();
     const router = useRouter();
 
     useEffect(() => {
-        okToken();
-    }, [])
+        if ( status === 'authenticated' ) {
+            console.log({user:data?.user});
+            dispatch({ type: '[Auth] - Login', payload: data?.user as IUser})
+        }
+
+    
+    }, [ status, data ])
+    
+
+
+    // useEffect(() => {
+    //     okToken();
+    // }, [])
 
     const okToken = async() => {
 
@@ -91,7 +105,7 @@ export const AuthProvider:FC<AuthProviderProps> = ({ children }) => {
     }
 
     const logoutUser = () => {
-        Cookies.remove('token');
+
         Cookies.remove('cart');
         Cookies.remove('firstName');
         Cookies.remove('lastName');
@@ -105,7 +119,11 @@ export const AuthProvider:FC<AuthProviderProps> = ({ children }) => {
         Cookies.remove('zip');
         Cookies.remove('phone');
         Cookies.remove('email');
-        router.reload();
+
+        signOut();
+
+        // Cookies.remove('token');
+        // router.reload();
     }
 
 
