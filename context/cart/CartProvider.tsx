@@ -1,6 +1,6 @@
 import { FC, useEffect, useState, useReducer, ReactNode } from 'react';
 import { CartContext, cartReducer } from './';
-import { ICartProduct } from '@/interfaces';
+import { ICartProduct, ShippingAddress } from '@/interfaces';
 import Cookie from 'js-cookie';
 
 export interface CartState {
@@ -14,20 +14,6 @@ export interface CartState {
     shippingAddress?: ShippingAddress;
 }
 
-export interface ShippingAddress {
-    firstName     : string;
-    lastName      : string;
-    documentType  : string;
-    documentNumber: string;
-    country       : string;
-    region        : string;
-    city          : string;
-    address       : string;
-    address2?     : string;
-    zip           : string;
-    phone         : string;
-    email         : string;
-}
 
 interface UiProviderProps {
     children: ReactNode; 
