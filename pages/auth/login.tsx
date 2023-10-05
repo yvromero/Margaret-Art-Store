@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { signIn, getSession, getProviders } from 'next-auth/react';
-import NextLink from 'next/link';
 import { GetServerSideProps } from 'next';
+import NextLink from 'next/link';
+import { signIn, getSession, getProviders } from 'next-auth/react';
 
 import { Box, Button, Chip, Divider, Grid, Link, TextField, Typography } from '@mui/material';
 import { ErrorOutline } from '@mui/icons-material';
@@ -129,7 +129,7 @@ const LoginPage = () => {
                         </Grid>
                     </Grid>
                     <Chip
-                            label="No se encuentran datos de usuario "
+                            label="No se encuentran datos de usuario"
                             color="error"
                             icon={ <ErrorOutline /> }
                             className="fadeIn"
@@ -137,29 +137,29 @@ const LoginPage = () => {
                     />
 
                     <Grid item xs={12} display='flex' flexDirection='column' justifyContent='end'>
-                        <Divider sx={{ width: '100%', mb: 2 }} />
-                        {
-                            Object.values( providers ).map(( provider: any ) => {
-                                    
-                                if ( provider.id === 'credentials' ) return (<div key="credentials"></div>);
+                            <Divider sx={{ width: '100%', mb: 2 }} />
+                            {
+                                Object.values( providers ).map(( provider: any ) => {
+                                    // console.log({providers});
+                                    if ( provider.id === 'credentials' ) return (<div key="credentials"></div>);
 
-                                return (
-                                    <Button
-                                        key={ provider.id }
-                                        variant="outlined"
-                                        fullWidth
-                                        color="primary"
-                                        sx={{ mb: 1 }}
-                                        onClick={ () => signIn( provider.id ) }
-                                    >
-                                        { provider.name }
-                                    </Button>
-                                )
+                                    return (
+                                        <Button
+                                            key={ provider.id }
+                                            variant="outlined"
+                                            fullWidth
+                                            color="primary"
+                                            sx={{ mb: 1 }}
+                                            onClick={ () => signIn( provider.id ) }
+                                        >
+                                            { provider.name }
+                                        </Button>
+                                    )
 
-                            })
-                        }
+                                })
+                            }
 
-                    </Grid>
+                        </Grid>
                 </Box>
             </form>
         </AuthLayout>
@@ -172,6 +172,7 @@ const LoginPage = () => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, query  }) => {
     const session = await getSession({ req });
+      // console.log({session});
 
     const { p = '/' } = query;
 

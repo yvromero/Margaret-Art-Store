@@ -1,5 +1,7 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from "@mui/material";
 
@@ -9,9 +11,17 @@ import { CartList, OrderSummary } from "@/components/cart";
 import { countries } from '../../utils';
 
 
+
 const SummaryPage = () => {
 
     const { shippingAddress, numberOfItems } = useContext( CartContext );
+    const router = useRouter();
+
+    useEffect(() => {
+        if ( !Cookies.get('firstName') ) {
+            router.push('/checkout/address');
+        }
+    }, [ router ]);
 
     if ( !shippingAddress ) {
         return<></>;
@@ -77,7 +87,7 @@ const SummaryPage = () => {
             </Grid>
         </Grid>
         </ShopLayout >
-  )
+    )
 }
 
 export default SummaryPage;

@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Button, FormControl, Grid, MenuItem, Select, TextField, Typography } from "@mui/material";
 import Cookies from "js-cookie";
 import { useForm } from 'react-hook-form';
 import { ShopLayout } from "@/components/layouts";
 import { CartContext } from '@/context';
+import { countries } from '@/utils';
 
 
 
@@ -47,9 +48,29 @@ const AddressPage = () => {
     const router = useRouter();
     const { updateAddress } = useContext( CartContext )
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-        defaultValues: getAddressFromCookies()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
+        defaultValues: //getAddressFromCookies()
+        {
+            firstName     : '',
+            lastName      : '',
+            documentType  : '',
+            documentNumber: '',
+            country       : countries[17].code,
+            region        : '',
+            city          : '',
+            address       : '',
+            address2      : '',
+            zip           : '',
+            phone         : '',
+            email         : '',
+        }
     });
+
+    useEffect(() => { 
+        
+        reset(getAddressFromCookies() );
+    
+    }, [reset])
 
     const onSubmitAddress = ( data: FormData ) => {
 
@@ -68,6 +89,7 @@ const AddressPage = () => {
                                 label='Nombre' 
                                 variant="filled" 
                                 fullWidth
+                                InputLabelProps={{ shrink: true }} 
                                 {...register('firstName',{
                                     required: 'Este campo es requerido',
                                 })
@@ -81,6 +103,7 @@ const AddressPage = () => {
                                 label='Apellido' 
                                 variant="filled" 
                                 fullWidth
+                                InputLabelProps={{ shrink: true }}
                                 {...register('lastName',{
                                     required: 'Este campo es requerido',
                                 })
@@ -94,6 +117,7 @@ const AddressPage = () => {
                             label='Tipo de documento' 
                             variant="filled" 
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             {...register('documentType',{
                                 required: 'Este campo es requerido',
                             })
@@ -107,6 +131,7 @@ const AddressPage = () => {
                             label='Numero de documento' 
                             variant="filled" 
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             {...register('documentNumber',{
                                 required: 'Este campo es requerido',
                             })
@@ -123,6 +148,7 @@ const AddressPage = () => {
                             variant="filled"
                             label="País"
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             // defaultValue={ Cookies.get('country') || countries[0].code }
                             { ...register('country', {
                                 required: 'Este campo es requerido'
@@ -147,6 +173,7 @@ const AddressPage = () => {
                             label='Provincia/Región' 
                             variant="filled" 
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             {...register('region',{
                                 required: 'Este campo es requerido',
                             })
@@ -160,6 +187,7 @@ const AddressPage = () => {
                             label='Ciudad' 
                             variant="filled" 
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             {...register('city',{
                                 required: 'Este campo es requerido',
                             })
@@ -173,6 +201,7 @@ const AddressPage = () => {
                             label='Dirección' 
                             variant="filled" 
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             {...register('address',{
                                 required: 'Este campo es requerido',
                             })
@@ -186,6 +215,7 @@ const AddressPage = () => {
                             label='Dirección 2' 
                             variant="filled" 
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             {...register('address2')}
                             />
                         </Grid>
@@ -194,6 +224,7 @@ const AddressPage = () => {
                             label='Zip' 
                             variant="filled"
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             {...register('zip',{
                                 required: 'Este campo es requerido',
                             })
@@ -207,6 +238,7 @@ const AddressPage = () => {
                             label='Móvil' 
                             variant="filled" 
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             {...register('phone',{
                                 required: 'Este campo es requerido',
                             })
@@ -220,6 +252,7 @@ const AddressPage = () => {
                             label='Email' 
                             variant="filled" 
                             fullWidth
+                            InputLabelProps={{ shrink: true }}
                             {...register('email',{
                                 required: 'Este campo es requerido',
                             })
