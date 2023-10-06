@@ -49,7 +49,7 @@ const SummaryPage = () => {
             <Grid item xs={12} sm={ 5 } > 
                 <Card className='summary-card'>
                     <CardContent>
-                        <Typography variant='h2'>Tu pedido({numberOfItems}{ numberOfItems === 1 ? 'producto' : 'productos'})</Typography>
+                        <Typography variant='h2'>Tu pedido ({numberOfItems} { numberOfItems === 1 ? 'producto' : 'productos'})</Typography>
                         <Divider sx={{ my:1 }} />
 
                         <Box display='flex' justifyContent='space-between'>
