@@ -36,23 +36,6 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
     const [state, dispatch] = useReducer( cartReducer , CART_INITIAL_STATE);
     const [isMounted, setIsMounted] = useState(false);
 
-
-    // const isReloading = useRef( true );
-
-    // useEffect( () => {
-
-    //     if ( isReloading.current ) {
-    
-    //         isReloading.current = false;
-    
-    //     } else {
-    
-    //         Cookies.set( 'cart', JSON.stringify( state.cart ) );
-    
-    //     }
-    
-    // }, [ state.cart ] );
-
     // Para resolver el problema del Strict Mode en React
     // Para leer de las cookies
 
@@ -222,6 +205,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
             console.log(error);
         }
     }
+
 
 
     return (
