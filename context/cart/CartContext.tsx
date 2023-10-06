@@ -19,7 +19,7 @@ interface ContextProps {
     updateAddress: (address: ShippingAddress) => void;
 
     // Orders: Promesa que resuelve un void
-    createOrder: () => Promise<void>;
+    createOrder: () => Promise<{ hasError: boolean; message: string; }>;
 }
 
 

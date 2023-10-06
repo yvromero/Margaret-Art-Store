@@ -3,6 +3,7 @@ import { CartContext, cartReducer } from './';
 import { ICartProduct, IOrder, ShippingAddress } from '@/interfaces';
 import Cookie from 'js-cookie';
 import { margaretApi } from '@/api';
+import axios from 'axios';
 
 export interface CartState {
     isLoaded: boolean;
@@ -177,7 +178,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
     }
 
     // Crear endpoint para order
-    const createOrder = async() => {
+    const createOrder = async():Promise<{ hasError: boolean; message: string; }> => {
 
 
         if ( !state.shippingAddress ) {
@@ -197,12 +198,27 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
         
         try {
             
-            const { data } = await margaretApi.post('/orders', body);
-            console.log({data});
+            const { data } = await margaretApi.post<IOrder>('/orders', body);
+            
+            // TODO: dispatch vaciar el carrito
+
+            return {
+                hasError: false,
+                message: data._id!
+            }
 
 
         } catch (error) {
-            console.log(error);
+            if ( axios.isAxiosError( error ) ) {
+                return {
+                    hasError: true,
+                    message: error.response?.data.message
+                }
+            }
+            return {
+                hasError: true,
+                message: 'Ha ocurrido un inconveniente, favor contacte con el administrador'
+            }
         }
     }
 

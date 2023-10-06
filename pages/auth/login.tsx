@@ -73,6 +73,7 @@ const LoginPage = () => {
                                 fullWidth
                                 {...register('email', {
                                     required: 'Este campo es requerido',
+                                    // validate: validations.isEmail
                                     validate: (val) => validations.isEmail(val)
                                 })
                                 }
@@ -129,11 +130,11 @@ const LoginPage = () => {
                         </Grid>
                     </Grid>
                     <Chip
-                            label="No se encuentran datos de usuario"
-                            color="error"
-                            icon={ <ErrorOutline /> }
-                            className="fadeIn"
-                            sx={{ display: showError ? 'flex': 'none' }}
+                        label="No se encuentran datos de usuario"
+                        color="error"
+                        icon={ <ErrorOutline/> }
+                        className="fadeIn"
+                        sx={{ display: showError ? 'flex': 'none' }}
                     />
 
                     <Grid item xs={12} display='flex' flexDirection='column' justifyContent='end'>
