@@ -139,7 +139,8 @@ const LoginPage = () => {
                     <Grid item xs={12} display='flex' flexDirection='column' justifyContent='end'>
                             <Divider sx={{ width: '100%', mb: 2 }} />
                             {
-                                Object.values( providers ).map(( provider: any ) => {
+                                // Object.values( providers ).map(( provider: any ) => {
+                                    providers && Object.values(providers).map((provider: any) => {
                                     // console.log({providers});
                                     if ( provider.id === 'credentials' ) return (<div key="credentials"></div>);
 

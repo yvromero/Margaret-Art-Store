@@ -14,7 +14,7 @@ import { countries } from '../../utils';
 
 const SummaryPage = () => {
 
-    const { shippingAddress, numberOfItems } = useContext( CartContext );
+    const { shippingAddress, numberOfItems, createOrder } = useContext( CartContext );
     const router = useRouter();
 
     useEffect(() => {
@@ -22,6 +22,12 @@ const SummaryPage = () => {
             router.push('/checkout/address');
         }
     }, [ router ]);
+
+    // Crear funcion para llamar al createOrder
+
+    const onCreateOrder = () => {
+        createOrder();
+    }
 
     if ( !shippingAddress ) {
         return<></>;
@@ -77,8 +83,13 @@ const SummaryPage = () => {
                         <OrderSummary/>
 
                         <Box sx={{ mt: 2 }}>
-                            <Button color="secondary" className='circular-btn' fullWidth>
-                                COMPRAR
+                            <Button 
+                                color="secondary" 
+                                className='circular-btn' 
+                                fullWidth
+                                onClick={ onCreateOrder }
+                            >
+                                CONFIRMAR ORDEN
                             </Button>
                         </Box>
 

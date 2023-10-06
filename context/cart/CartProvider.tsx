@@ -2,6 +2,7 @@ import { FC, useEffect, useState, useReducer, ReactNode } from 'react';
 import { CartContext, cartReducer } from './';
 import { ICartProduct, ShippingAddress } from '@/interfaces';
 import Cookie from 'js-cookie';
+import { margaretApi } from '@/api';
 
 export interface CartState {
     isLoaded: boolean;
@@ -191,6 +192,22 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
         Cookie.set('email',address.email);
         dispatch({ type: '[Cart] - UpdateAddress from Cookies', payload: address });
     }
+
+    // Crear endpoint para order
+    const createOrder = async() => {
+        
+        try {
+            
+            const { data } = await margaretApi.post('/orders');
+            console.log({data});
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <CartContext.Provider value={{
             ...state,
@@ -200,6 +217,9 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
             removeCartProduct,
             updateCartQuantity,
             updateAddress,
+
+            // Orders
+            createOrder,
         }}>
             { children }
         </CartContext.Provider>
