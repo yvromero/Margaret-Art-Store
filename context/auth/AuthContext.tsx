@@ -9,7 +9,7 @@ interface ContextProps {
 
     registerUser: (name: string, email: string, password: string) => Promise<{
         hasError: boolean;
-        message?: string | undefined;
+        message?: string;
     }>;
 
     logoutUser: () => void;

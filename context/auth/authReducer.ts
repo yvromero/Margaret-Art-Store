@@ -3,7 +3,7 @@ import { IUser } from '../../interfaces';
 
 
 type AuthActionType = 
-| { type: '[Auth] - Login',payload: IUser }
+| { type: '[Auth] - Login', payload: IUser }
 | { type: '[Auth] - Logout' }
 
 

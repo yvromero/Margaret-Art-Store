@@ -200,7 +200,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
             
             const { data } = await margaretApi.post<IOrder>('/orders', body);
             
-            // TODO: dispatch vaciar el carrito
+            dispatch({ type: '[Cart] - Order complete'});
 
             return {
                 hasError: false,

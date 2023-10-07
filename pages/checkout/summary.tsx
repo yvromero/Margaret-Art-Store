@@ -8,6 +8,7 @@ import { Box, Button, Card, CardContent, Chip, Divider, Grid, Link, Typography }
 import { CartContext } from '@/context';
 import { ShopLayout } from "@/components/layouts";
 import { CartList, OrderSummary } from "@/components/cart";
+import { ErrorOutline } from '@mui/icons-material';
 
 
 
@@ -106,14 +107,15 @@ const SummaryPage = () => {
                                 onClick={ onCreateOrder }
                                 disabled={ isPosting }
                             >
+                                CONFIRMAR ORDEN
+                            </Button>
                             <Chip
+                                icon={ <ErrorOutline/> }
+                                className="fadeIn"
                                 color="error"
                                 label={ errorMessage }
                                 sx={{ display: errorMessage ? 'flex':'none', mt: 2}}
                             />
-                                CONFIRMAR ORDEN
-                            </Button>
-
 
                         </Box>
 

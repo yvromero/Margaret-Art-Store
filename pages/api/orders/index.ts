@@ -47,7 +47,7 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         const subTotal = orderItems.reduce( ( prev, current ) => {
             const currentPrice = dbProducts.find( prod => prod.id === current._id )?.price;
             if ( !currentPrice ) {
-                throw new Error('Verifique el carrito de nuevo, producto no existe');
+                throw new Error('Verifique el carrito de nuevo, el producto no existe');
             }
 
             return (currentPrice * current.quantity) + prev
