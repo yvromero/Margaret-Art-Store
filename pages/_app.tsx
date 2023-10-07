@@ -16,7 +16,7 @@ import { AuthProvider, CartProvider, UiProvider } from '../context';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider>
-      <PayPalScriptProvider options={{clientId: 'process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID' || ''}}>
+      <PayPalScriptProvider options={{clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || ''}}>
         <SWRConfig
           value={{
             fetcher: (resource, init) => fetch(resource, init).then(res => res.json())
