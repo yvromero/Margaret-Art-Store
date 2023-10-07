@@ -50,7 +50,9 @@ const checkToken = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     await db.disconnect();
 
     if ( !user ) {
-        return res.status(400).json({ message: 'Usuario no existe' })
+        return res.status(400).json({ 
+            message: 'Usuario no existe' 
+        })
     }
 
     const { _id, email, name, role } = user;

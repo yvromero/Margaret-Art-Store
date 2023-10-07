@@ -17,8 +17,6 @@ interface Props {
 
 const OrderPage: NextPage<Props> = ({ order }) => {
 
-    console.log({ order });
-
     const { shippingAddress } = order;
 
     return (
@@ -69,7 +67,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
 
 
 
-            <Grid container sx={{ mt: 3}}>
+            <Grid container sx={{ mt: 3}} className='fadeIn'>
             <Grid item xs={12} sm={ 7 }>
 
                 <CartList products={ order.orderItems }/>
@@ -80,7 +78,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
             <Grid item xs={12} sm={ 5 } > 
                 <Card className='summary-card'>
                     <CardContent>
-                        <Typography variant='h2'>Tu pedido ( {order.numberOfItems} {order.numberOfItems > 1 ? 'productos' : 'producto'}) </Typography>
+                        <Typography variant='h2'>Tu pedido ({order.numberOfItems} {order.numberOfItems > 1 ? 'productos' : 'producto'}) </Typography>
                         <Divider sx={{ my:1 }} />
 
                         <Box display='flex' justifyContent='space-between'>
