@@ -3,14 +3,15 @@ import NextLink from 'next/link';
 import { CardActionArea, CardMedia, Link, Grid, Box, Typography, Button } from "@mui/material";
 import { ItemCounter } from '../ui';
 import { CartContext } from '@/context';
-import { ICartProduct } from '@/interfaces';
+import { ICartProduct, IOrderItem } from '@/interfaces';
 
 
 interface Props {
   editable?: boolean;
+  products?: IOrderItem[];
 }
 
-export const CartList:FC<Props> = ({editable = false}) => {
+export const CartList:FC<Props> = ({editable = false, products }) => {
 
   // const { numberOfItems, subTotal, total, tax } = useContext( CartContext );
 
@@ -21,14 +22,17 @@ export const CartList:FC<Props> = ({editable = false}) => {
     updateCartQuantity ( product );
   }
 
+
+const productsToShow = products ? products : cart;
+
   return (
     <>
         {
-            cart.map( product => (
+            productsToShow.map( product => (
               <Grid container spacing={1} key={ product.slug } sx={{ mb: 3}}>
                 
                 <Grid item xs={3}>
-                  {/* Todo llevar a la page del producto de forma dinamica*/}
+                  {/* Redireccionar a la page del producto de forma dinamica*/}
                   <NextLink legacyBehavior href={`/product/${ product.slug }`} passHref>
                     <Link>
                       <CardActionArea>
@@ -52,7 +56,7 @@ export const CartList:FC<Props> = ({editable = false}) => {
                         <ItemCounter 
                         currentValue={ product.quantity}
                         maxValue={ 2 } // Regla de negocio Pantalla Carrito
-                        updateQuantity={( newValue ) => onNewCartQuantityValue( product, newValue )}
+                        updateQuantity={( newValue ) => onNewCartQuantityValue( product as ICartProduct, newValue )}
                         />
                       )
                     : (
@@ -76,7 +80,7 @@ export const CartList:FC<Props> = ({editable = false}) => {
                     <Button 
                       variant='text' 
                       color='secondary'
-                      onClick={ () => removeCartProduct( product )}
+                      onClick={ () => removeCartProduct( product as ICartProduct )}
                     >
                     Remover
                   </Button>

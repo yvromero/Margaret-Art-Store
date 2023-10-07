@@ -1,82 +1,88 @@
 import NextLink from 'next/link';
 import { GetServerSideProps, NextPage } from 'next';
+import { getSession } from 'next-auth/react';
 
 import { Box, Button, Card, CardContent, Chip, Divider, Grid, Link, Typography } from "@mui/material";
-
-import { CartList, OrderSummary } from "@/components/cart";
-import { ShopLayout } from "@/components/layouts";
 import { CreditCardOffOutlined, CreditScoreOutlined } from '@mui/icons-material';
-import { getSession } from 'next-auth/react';
+
+import { ShopLayout } from "@/components/layouts";
+import { CartList, OrderSummary } from "@/components/cart";
 import { dbOrders } from '@/database';
+import { IOrder } from '@/interfaces';
 
 
 interface Props {
     order: IOrder;
 }
 
-const OrderPage: NextPage = ({ order }) => {
+const OrderPage: NextPage<Props> = ({ order }) => {
 
     console.log({ order });
 
-    return (
-        <ShopLayout title='Resumen de la orden 12314384234' pageDescription={'Resumen de la orden'}>
-            <Typography variant='subtitle1' component='h1'
-            >
-                ORDEN DE COMPRA: AASDASD
-            </Typography>
-{/* 
-            <Chip
-                sx={{ my: 2}}
-                label="Orden pendiente de pago"
-                variant='outlined'
-                color='error'
-                icon={<CreditCardOffOutlined/>}
-            /> */}
+    const { shippingAddress } = order;
 
-            <Chip
-                sx={{ my: 2}}
-                label="Pagado"
-                variant='outlined'
-                color='success'
-                icon={<CreditScoreOutlined/>}
-            />
+    return (
+        <ShopLayout title='Resumen de la orden' pageDescription={'Resumen de la orden'}>
+            <Typography 
+                variant='subtitle1' 
+                component='h1'
+            >
+                ORDEN DE COMPRA: { order._id }
+            </Typography>
+                {
+                    order.isPaid
+                    ? (
+                        <Chip
+                            sx={{ my: 2 }}
+                            label="Pagado"
+                            variant='outlined'
+                            color='success'
+                            icon={<CreditScoreOutlined/>}
+
+                        />
+                    ):
+                    (
+                        <Chip
+                            sx={{ my: 2 }}
+                            label="Orden pendiente de pago"
+                            variant='outlined'
+                            color='error'
+                            icon={<CreditCardOffOutlined/>}
+
+                        />
+                    )
+                }
+
+
 
 
             <Grid container sx={{ mt: 3}}>
             <Grid item xs={12} sm={ 7 }>
-                <CartList/>
+
+                <CartList products={ order.orderItems }/>
+
+
             </Grid>
 
             <Grid item xs={12} sm={ 5 } > 
                 <Card className='summary-card'>
                     <CardContent>
-                        <Typography variant='h2'>Tu pedido( 3 productos) </Typography>
+                        <Typography variant='h2'>Tu pedido ( {order.numberOfItems} {order.numberOfItems > 1 ? 'productos' : 'producto'}) </Typography>
                         <Divider sx={{ my:1 }} />
 
                         <Box display='flex' justifyContent='space-between'>
                         <Typography variant='subtitle1'>Dirección de entrega</Typography>
-                            <NextLink legacyBehavior href='/checkout/address' passHref>
-                                <Link sx={{ mt: 0.5}} underline='always'>
-                                    Modificar datos de envío
-                                </Link>
-                            </NextLink>
                         </Box>
 
-                        <Typography>Frank Romero</Typography>
-                        <Typography>Primer Presidente</Typography>
-                        <Typography>Asuncion</Typography>
-                        <Typography>Paraguay</Typography>
-                        <Typography>+5953939484</Typography>
+                        <Typography>{ shippingAddress.firstName } { shippingAddress.lastName }</Typography>
+                        <Typography>{ shippingAddress.documentType ? `${ shippingAddress.documentType }:` : ''} { shippingAddress.documentNumber }</Typography>
+                        <Typography>{ shippingAddress.address }{ shippingAddress.address2 ? `, ${ shippingAddress.address2 }` : ''}</Typography>
+                        <Typography>{ shippingAddress.city } { shippingAddress.zip }</Typography>
+                        <Typography>{ shippingAddress. country }</Typography>
+                        <Typography>{ shippingAddress.email }</Typography>
+                        <Typography>{ shippingAddress.phone }</Typography>
 
                         <Divider sx={{ my:1 }} />
-
-                        <Box display='flex' justifyContent='end'>
-                            <NextLink legacyBehavior href='/cart' passHref>
-                                <Link underline='always'>
-                                    Modificar carrito
-                                </Link>
-                            </NextLink>
-                        </Box>
 
                         <OrderSummary/>
 
