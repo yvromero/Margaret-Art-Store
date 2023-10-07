@@ -20,7 +20,7 @@ const columns: GridColDef[] = [
             return (
                 params.row.paid
                     ? <Chip color="success" label="Orden pagada" variant='outlined'/>
-                    : <Chip color="error" label="Orden no pagada" variant='outlined'/>
+                    : <Chip color="error" label="Orden pendiente de pago" variant='outlined'/>
             )
         }
     },

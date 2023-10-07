@@ -29,12 +29,25 @@ const OrderPage: NextPage<Props> = ({ order }) => {
             >
                 ORDEN DE COMPRA: { order._id }
             </Typography>
-                {
+
+            {
+                !order.isPaid && (
+                <Chip
+                    sx={{ my: 2 }}
+                    label="Orden pendiente de pago"
+                    variant='outlined'
+                    color='error'
+                    icon={<CreditCardOffOutlined/>}
+                />
+                )
+            }
+
+                {/* {
                     order.isPaid
                     ? (
                         <Chip
                             sx={{ my: 2 }}
-                            label="Pagado"
+                            label="Orden pagada"
                             variant='outlined'
                             color='success'
                             icon={<CreditScoreOutlined/>}
@@ -51,7 +64,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
 
                         />
                     )
-                }
+                } */}
 
 
 
@@ -94,22 +107,29 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                             }}
                         />
 
-                        <Box sx={{ mt: 2 }}>
-                            {/* TODO */}
-                            <Button color="secondary" className='circular-btn' fullWidth>
-                                PAGAR
-                            </Button>
-                            <Chip
-                                sx={{ my: 2, '& .MuiChip-label': 
-                                    {   
-                                        fontWeight: "bold"
-                                    }
-                                }}
-                                label="Orden pagada"
-                                variant='outlined'
-                                color='success'
-                                icon={<CreditScoreOutlined/>}
-                            />
+                        <Box sx={{ mt: 2 }} display='flex' flexDirection='column'>
+                            {
+                                order.isPaid
+                                ? (
+                                    <Chip
+                                    sx={{ my: 2, '& .MuiChip-label': 
+                                        {   
+                                            fontWeight: "bold"
+                                        }
+                                    }}
+                                    label="Orden pagada"
+                                    variant='outlined'
+                                    color='success'
+                                    icon={<CreditScoreOutlined/>}
+                                />
+                                ): (
+                                    <Button color="secondary" className='circular-btn' fullWidth>
+                                    PAGAR
+                                </Button>
+                                )
+                            }
+
+
                         </Box>
 
                     </CardContent>
