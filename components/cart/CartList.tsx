@@ -78,9 +78,10 @@ const productsToShow = products ? products : cart;
 
                 {
                   editable && (
+                    
                     <Button 
                       variant='text' 
-                      color='secondary'
+                      color='primary'
                       onClick={ () => removeCartProduct( product as ICartProduct )}
                     >
                     Remover
