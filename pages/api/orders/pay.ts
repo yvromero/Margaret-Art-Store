@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios';
-import { IPaypal } from '../../../interfaces';
-import { db } from '../../../database';
-import { Order } from '../../../models';
+// import { IPaypal } from '../../../interfaces';
+// import { db } from '../../../database';
+// import { Order } from '../../../models';
 
 
 type Data = {
@@ -57,5 +57,19 @@ const payOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     if ( !paypalBearerToken ) {
         return res.status(400).json({ message: 'No se pudo generar el token de transacción'})
     }
+
+    // Realizar la peticion con el token para confirmar con Paypal el estado de la operacion
+    const { transactionId = '', orderId = '' } = req.body;
+
+    const { data } = await axios.get (`${ process.env.PAYPAL_ORDERS_URL }/${ transactionId }`, {
+        headers: {
+            'Authorization': `Bearer ${ paypalBearerToken }`, 
+        }
+    });
+
+
+
+
+
     return res.status(200).json({ message: paypalBearerToken })
 }
