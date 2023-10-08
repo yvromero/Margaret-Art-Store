@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { PayPalButtons } from '@paypal/react-paypal-js';
@@ -8,7 +10,18 @@ import { ShopLayout } from "@/components/layouts";
 import { CartList, OrderSummary } from "@/components/cart";
 import { dbOrders } from '@/database';
 import { IOrder } from '@/interfaces';
+import { margaretApi } from '@/api';
 
+export type OrderResponseBody = {
+    id: string;
+    status:
+        | "CREATED"
+        | "SAVED"
+        | "APPROVED"
+        | "VOIDED"
+        | "COMPLETED"
+        | "PAYER_ACTION_REQUIRED";
+};
 
 interface Props {
     order: IOrder;
@@ -16,7 +29,33 @@ interface Props {
 
 const OrderPage: NextPage<Props> = ({ order }) => {
 
+    const router = useRouter();
     const { shippingAddress } = order;
+    const [isPaying, setIsPaying] = useState(false);
+
+    const onOrderCompleted = async ( details: OrderResponseBody) => {
+
+        if ( details.status !== 'COMPLETED') {
+            return alert('No se encuentra transaccion en Paypal')
+        }
+
+        setIsPaying(true);
+        try {
+            
+            const { data } = await margaretApi.post(`/orders/pay`, {
+                transactionId: details.id,
+                orderId: order._id
+            });
+
+            router.reload();
+
+        } catch (error) {
+            setIsPaying(false);
+            console.log(error);
+            alert('Error');
+        }
+
+    }
 
     return (
         <ShopLayout title='Resumen de la orden' pageDescription={'Resumen de la orden'}>
@@ -134,14 +173,16 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                                     }}
                                     onApprove={(data, actions) => {
                                         return actions.order!.capture().then((details) => {
-                                            console.log({details});
-                                            // onOrderCompleted( details );
-                                            const name = details.payer.name?.given_name;
-                                            if (name) {
-                                                alert(`Transaction completed by ${name}`);
-                                            } else {
-                                                alert(`Transaction completed, but payer name not available`);
-                                            }
+
+                                            onOrderCompleted( details )
+
+                                            // console.log({details});
+                                            // const name = details.payer.name?.given_name;
+                                            // if (name) {
+                                            //     alert(`Transaction completed by ${name}`);
+                                            // } else {
+                                            //     alert(`Transaction completed, but payer name not available`);
+                                            // }
                                         });
                                     }}
                                 />
