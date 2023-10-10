@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import { Box, Divider, Drawer, IconButton, Input, InputAdornment, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
 
-import { AccountCircleOutlined, AdminPanelSettings, ConfirmationNumberOutlined, LoginOutlined, SearchOutlined, VpnKeyOutlined } from "@mui/icons-material";
+import { AccountCircleOutlined, AdminPanelSettings, ConfirmationNumberOutlined, DashboardOutlined, LoginOutlined, SearchOutlined, VpnKeyOutlined } from "@mui/icons-material";
 import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
 import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
@@ -179,6 +179,16 @@ export const SideMenu = () => {
                                             <AdminPanelSettings/>
                                         </ListItemIcon>
                                         <ListItemText primary={'Usuarios'} />
+                                    </ListItem>
+
+                                    <ListItem 
+                                        button
+                                        onClick={ () => navigateTo('/admin/') }
+                                    >
+                                        <ListItemIcon>
+                                            <DashboardOutlined/>
+                                        </ListItemIcon>
+                                        <ListItemText primary={'Dashboard'} />
                                     </ListItem>
                             </>
                         )
