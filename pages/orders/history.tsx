@@ -3,7 +3,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 
 import { Chip, Grid, Link, Typography } from "@mui/material";
-import { DataGrid, GridColDef, GridRenderCellParams, gridClasses } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { grey } from '@mui/material/colors';
 
 import { ShopLayout } from "@/components/layouts";
@@ -87,9 +87,8 @@ const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
                         bottom: params.isLastVisible ? 0 : 5,
                     })}
                     sx={{
-                        [`& .${gridClasses.row}`]: {
-                        bgcolor: (theme) =>
-                            theme.palette.mode === 'light' ? grey[200] : grey[900],
+                        '& .MuiDataGrid-row': {
+                        bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[200] : grey[900]),
                         },
                     }}
                 />

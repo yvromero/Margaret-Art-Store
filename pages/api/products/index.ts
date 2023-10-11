@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { DataGrid, GridColDef, GridRenderCellParams, gridClasses } from "@mui/x-data-grid";
 import { db, SHOP_CONSTANTS } from '../../../database';
 import { Product } from '../../../models';
 import { IProduct } from '../../../interfaces/products';

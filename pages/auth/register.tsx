@@ -78,7 +78,7 @@ const RegisterPage = () => {
                             <Typography>Correo electrónico</Typography>
                             <TextField 
                                 type="email"
-                                label="Ejemplo: juan@gmail.com" 
+                                label="Ejemplo: margaret-art@gmail.com" 
                                 variant="filled" 
                                 fullWidth 
                                 {...register('email', {

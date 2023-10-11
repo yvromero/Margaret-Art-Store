@@ -34,7 +34,9 @@ export const AdminLayout: FC <Props> = ({ children , title, subTitle, icon }) =>
                         { icon }
                         { title }
                     </Typography>
-                    <Typography variant='h2' sx={{ mb: 2 }}>
+                    <Typography 
+                        variant='h1'
+                        sx={{ textAlign: 'center', mt: 3, mb: 3 }}>
                         { subTitle }
                     </Typography>
 
