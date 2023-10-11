@@ -515,7 +515,56 @@ export const initialData: SeedData = {
             theme: 'Urbano',
             category: 'retrato-figuras'
         },
-
+        {
+            description: "En 'El fondo azul', con pintura al óleo agrietada sobre yeso.",
+            images: [
+                'vistoso-4.jpg'
+            ],
+            inStock: 1,
+            price: 820,
+            framed: 'NO',
+            dimensions: '45x45cm',
+            weight: '0.645g',
+            slug: "el-fondo-azul",
+            tags: ['color-electrico','azul','grietas'],
+            title: "El Fondo Azul",
+            materials: 'Lienzo',
+            theme: 'Vistoso',
+            category: 'abstracto-contemporaneo'
+        },
+        {
+            description: "En 'Manchas Divertidas', un toque artístico.",
+            images: [
+                'vistoso-5.jpg'
+            ],
+            inStock: 1,
+            price: 810,
+            framed: 'NO',
+            dimensions: '45x45cm',
+            weight: '0.620g',
+            slug: "manchas-divertidas",
+            tags: ['colorido','manchas','lila','abstracto'],
+            title: "Manchas Divertidas",
+            materials: 'Lienzo',
+            theme: 'Vistoso',
+            category: 'abstracto-contemporaneo'
+        },
+        {
+            description: "En 'Textura Colorida', pintada a mano abstracta.",
+            images: [
+                'vistoso-6.jpg'
+            ],
+            inStock: 1,
+            price: 860,
+            framed: 'NO',
+            dimensions: '45x45cm',
+            weight: '0.650g',
+            slug: "textura-colorida",
+            tags: ['colorida','azulado','violeta'],
+            title: "Textura Colorida",
+            materials: 'Lienzo',
+            theme: 'Vistoso',
+            category: 'abstracto-contemporaneo'
+        },
     ]
-
 };

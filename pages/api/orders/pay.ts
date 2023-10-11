@@ -9,7 +9,7 @@ type Data = {
     message: string
 }
 
-export default function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
+function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
     
     switch ( req.method ) {
         case 'POST':
@@ -99,3 +99,5 @@ const payOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     return res.status(200).json({ message: 'Transacción completada' })
 }
+
+export default handler;

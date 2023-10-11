@@ -69,7 +69,7 @@ const LoginPage = () => {
                             <TextField
                                 type="email"
                                 label="Correo electrónico" 
-                                variant="filled" 
+                                variant="filled"
                                 fullWidth
                                 {...register('email', {
                                     required: 'Este campo es requerido',
