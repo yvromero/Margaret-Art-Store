@@ -1,14 +1,20 @@
 import { useState } from 'react';
+
 import { useRouter } from 'next/router';
 import { GetServerSideProps, NextPage } from 'next';
+
 import { getSession } from 'next-auth/react';
+
+import { dbOrders } from '@/database';
+
 import { PayPalButtons } from '@paypal/react-paypal-js';
+
 import { Box, Card, CardContent, Chip, CircularProgress, Divider, Grid, Typography } from "@mui/material";
 import { CreditCardOffOutlined, CreditScoreOutlined } from '@mui/icons-material';
 
 import { ShopLayout } from "@/components/layouts";
 import { CartList, OrderSummary } from "@/components/cart";
-import { dbOrders } from '@/database';
+
 import { IOrder } from '@/interfaces';
 import { margaretApi } from '@/api';
 

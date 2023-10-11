@@ -61,7 +61,7 @@ export const authOptions:NextAuthOptions = {
       // console.log({ token, account, user});
 
       if ( account ) {
-        token.accessToken = account.access_token;
+        token.accessToken = account.access_token || '';
 
         switch( account.type ) {
 
