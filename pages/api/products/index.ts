@@ -43,5 +43,14 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     return res.status(200).json( products );
 }
 
+// const updatedProducts = products.map(product => {
+//     // procesamiento de imagenes cuando la subamos al server
+//     product.images = product.images.map(image => {
+//       return image.includes('http') ? image : `${process.env.HOST_NAME}/products/${image}`;
+//     });
+
+//     return product;
+//   });
+
 
 export default handler;
