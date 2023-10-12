@@ -118,7 +118,7 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
     }, [state.cart]);
 
 
-
+    // LOGICA DE AGREGAR AL CARRITO
     const addProductToCart = ( product: ICartProduct ) => {
 
         const productsInCart = state.cart.filter( p => p._id !== product._id );

@@ -13,7 +13,7 @@ interface Props {
 
 export const ItemCounter: FC<Props> = ({ currentValue, updateQuantity, maxValue }) => {
 
-  const addOnRemove = ( value: number ) => {
+  const addOrRemove = ( value: number ) => {
     if ( value === -1 ) {
       if ( currentValue === 1 ) return; // Si el valor es 1, sale de la condicion
 
@@ -22,14 +22,13 @@ export const ItemCounter: FC<Props> = ({ currentValue, updateQuantity, maxValue 
 
       if ( currentValue >= maxValue ) return;
 
-    updateQuantity( currentValue + 1)
+    updateQuantity( currentValue + 1);
   }
-
 
   return (
     <Box display='flex' alignItems='center'>
 
-      <IconButton onClick={ () => addOnRemove(-1) }>
+      <IconButton onClick={ () => addOrRemove(-1) }>
           <RemoveCircleOutline />
       </IconButton>
 
@@ -37,7 +36,7 @@ export const ItemCounter: FC<Props> = ({ currentValue, updateQuantity, maxValue 
         { currentValue }
       </Typography>
 
-      <IconButton onClick={ () => addOnRemove(+1) }>
+      <IconButton onClick={ () => addOrRemove(+1) }>
           <AddCircleOutline />
       </IconButton>
 

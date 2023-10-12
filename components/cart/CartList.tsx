@@ -3,12 +3,13 @@ import NextLink from 'next/link';
 import { CardActionArea, CardMedia, Link, Grid, Box, Typography, Button } from "@mui/material";
 import { ItemCounter } from '../ui';
 import { CartContext } from '@/context';
-import { ICartProduct, IOrderItem } from '@/interfaces';
+import { ICartProduct, IOrderItem, IProduct } from '@/interfaces';
 
 
 interface Props {
   editable?: boolean;
   products?: IOrderItem[];
+
 }
 
 export const CartList:FC<Props> = ({editable = false, products }) => {
@@ -56,7 +57,7 @@ const productsToShow = products ? products : cart;
                     ? (
                         <ItemCounter 
                         currentValue={ product.quantity}
-                        maxValue={ 2 } // Regla de negocio Pantalla Carrito
+                        maxValue={ 1 } // Regla de negocio Pantalla Carrito
                         updateQuantity={( newValue ) => onNewCartQuantityValue( product as ICartProduct, newValue )}
                         />
                       )

@@ -160,7 +160,20 @@ export const SideMenu = () => {
                                 <Divider />
                                     <ListSubheader>Panel de Administrador</ListSubheader>
 
-                                    <ListItem button>
+                                    <ListItem 
+                                        button
+                                        onClick={ () => navigateTo('/admin/') }
+                                    >
+                                        <ListItemIcon>
+                                            <DashboardOutlined/>
+                                        </ListItemIcon>
+                                        <ListItemText primary={'Dashboard'} />
+                                    </ListItem>
+
+                                    <ListItem 
+                                        button
+                                        onClick={ () => navigateTo('/admin/products') }
+                                    >
                                         <ListItemIcon>
                                             <YardOutlinedIcon/>
                                         </ListItemIcon>
@@ -187,15 +200,6 @@ export const SideMenu = () => {
                                         <ListItemText primary={'Usuarios'} />
                                     </ListItem>
 
-                                    <ListItem 
-                                        button
-                                        onClick={ () => navigateTo('/admin/') }
-                                    >
-                                        <ListItemIcon>
-                                            <DashboardOutlined/>
-                                        </ListItemIcon>
-                                        <ListItemText primary={'Dashboard'} />
-                                    </ListItem>
                             </>
                         )
                     }

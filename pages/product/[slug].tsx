@@ -48,6 +48,18 @@ const ProductPage:NextPage<Props> = ({product}) => {
     addProductToCart( tempCartProduct );
     // console.log({ tempCartProduct });
     router.push('/cart');
+    // if (tempCartProduct.quantity >= product.inStock) {
+    //   // No permitir agregar al carrito si la cantidad es mayor que el stock
+    //   // Puedes mostrar un mensaje de error o tomar la acción adecuada aquí
+    //   console.log("No se puede agregar al carrito: cantidad supera el stock");
+
+    // } else {
+    //   // Llamar a la acción del contexto para agregar al carrito
+    //   addProductToCart(tempCartProduct);
+    //   router.push('/cart');
+    // }
+
+
   }
 
   
@@ -88,7 +100,8 @@ const ProductPage:NextPage<Props> = ({product}) => {
               <ItemCounter 
                 currentValue={ tempCartProduct.quantity }
                 updateQuantity={ onUpdateQuantity }
-                maxValue={ product.inStock > 2 ? 2: product.inStock }
+                maxValue={ product.inStock }
+                // maxValue={ product.inStock > 2 ? 2: product.inStock }
               />
             </Box>
 
