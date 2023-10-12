@@ -14,13 +14,13 @@ const columns: GridColDef[] = [
     { field: 'total', headerName: 'Monto total', width: 200 },
 
     {
-        field: 'paid',
+        field: 'isPaid',
         headerName: 'Estado',
             description: 'Estado de la orden generada',
             width: 250,
-            renderCell: (params: GridRenderCellParams) => {
+            renderCell: ({row}: GridRenderCellParams) => {
                 return (
-                    params.row.paid
+                    row.isPaid
                         ? <Chip color="success" label="Pagado" variant='outlined'/>
                         : <Chip color="error" label="Pendiente de pago" variant='outlined'/>
                 )
@@ -29,7 +29,7 @@ const columns: GridColDef[] = [
     {
         field: 'check',
         headerName: 'Orden de Compra',
-            description: 'Estado de la orden generada',
+            description: 'Verificar detalle de la orden',
             width: 250,
             renderCell: ({ row }: GridRenderCellParams) => {
                 return (
@@ -56,7 +56,7 @@ const OrdersPage = () => {
         id         : order._id,
         nroProducts: order.numberOfItems,
         total      : order.total,
-        paid       : order.isPaid,
+        isPaid     : order.isPaid,
         name       : (order.user as IUser).name,
         email      : (order.user as IUser).email,
         createdAt  : order.createdAt,
@@ -69,7 +69,7 @@ const OrdersPage = () => {
 
         <AdminLayout
             title={'Ordenes'}
-            subTitle={'Mantenimiento de órdenes'}
+            subTitle={'Seguimiento de órdenes'}
             icon={ <ConfirmationNumberOutlined/> }
         >
 

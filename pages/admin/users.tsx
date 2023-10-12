@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { PeopleAltOutlined } from "@mui/icons-material";
+import { AdminPanelSettings } from "@mui/icons-material";
 import useSWR from 'swr';
 
 import { Grid, MenuItem, Select } from "@mui/material";
@@ -94,7 +94,7 @@ const UsersPage = () => {
         <AdminLayout 
             title={'Usuarios'} 
             subTitle={'Mantenimiento de usuarios'}
-            icon={ <PeopleAltOutlined />}
+            icon={ <AdminPanelSettings/>}
         >
 
             <Grid container sx={{ mt: 3}} className='fadeIn'>
