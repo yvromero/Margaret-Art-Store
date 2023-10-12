@@ -40,10 +40,10 @@ const columns: GridColDef[] = [
             },
     },
 
-
-    { field: 'createdAt', headerName: 'Creada en', width: 250 },
     { field: 'name', headerName: 'Nombre completo', width: 250 },
     { field: 'email', headerName: 'Correo electrónico', width: 250 },
+    { field: 'createdAt', headerName: 'Creada', width: 250 },
+    { field: 'updatedAt', headerName: 'Actualizada', width: 250 },
 ]
 
 const OrdersPage = () => {
@@ -54,12 +54,13 @@ const OrdersPage = () => {
 
     const rows = data!.map( order  => ({
         id         : order._id,
-        email      : (order.user as IUser).email,
-        name       : (order.user as IUser).name,
+        nroProducts: order.numberOfItems,
         total      : order.total,
         paid       : order.isPaid,
-        nroProducts: order.numberOfItems,
+        name       : (order.user as IUser).name,
+        email      : (order.user as IUser).email,
         createdAt  : order.createdAt,
+        updatedAt  : order.updatedAt,
 
     }))
 

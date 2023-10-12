@@ -5,6 +5,6 @@ export interface IUser {
     password?: string;
     role     : string;
 
-    createAt?: string;
-    updateAt?: string;
+    createdAt?: string;
+    updatedAt?: string;
 }

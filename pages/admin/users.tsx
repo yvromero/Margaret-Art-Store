@@ -16,9 +16,9 @@ const UsersPage = () => {
     const [users, setUsers] = useState<IUser[]>([]);
 
     useEffect(() => {
-      if (data) {
-        setUsers(data);
-      }
+        if (data) {
+            setUsers(data);
+        }
     }, [data])
     
 
@@ -75,13 +75,18 @@ const UsersPage = () => {
                 )
             }
         },
+        { field: 'createdAt', headerName: 'Creada', width: 250 },
+        { field: 'updatedAt', headerName: 'Actualizada', width: 250 },
     ];
 
     const rows = users.map( user => ({
-        id: user._id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
+        id         : user._id,
+        email      : user.email,
+        name       : user.name,
+        role       : user.role,
+        createdAt  : user.createdAt,
+        updatedAt  : user.updatedAt,
+
     }))
 
 
