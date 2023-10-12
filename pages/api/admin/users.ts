@@ -8,7 +8,7 @@ type Data =
 | {message: string}
 | IUser[]
 
-export default function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
+function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
     
     switch( req.method ) {
         case 'GET':
@@ -65,3 +65,5 @@ const updateUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     return res.status(200).json({ message: 'Usuario actualizado' });
 
 }
+
+export default handler

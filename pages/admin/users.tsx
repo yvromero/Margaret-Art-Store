@@ -12,7 +12,7 @@ import { margaretApi } from "@/api";
 
 const UsersPage = () => {
 
-    const { data, error } = useSWR<IUser[]>('/api/admin/users')
+    const { data, error } = useSWR<IUser[]>('/api/admin/users');
     const [users, setUsers] = useState<IUser[]>([]);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const UsersPage = () => {
     
 
 
-    if ( !data && !error ) return (<></>)
+    if ( !data && !error ) return (<></>);
 
     const onRoleUpdated = async (userId: string, newRole: string) => {
 
