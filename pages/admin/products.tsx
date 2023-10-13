@@ -1,5 +1,6 @@
+import NextLink from 'next/link';
 import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
-import { CardMedia, Grid } from "@mui/material";
+import { CardMedia, Grid, Link } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 
@@ -27,7 +28,20 @@ const columns: GridColDef[] = [
             )
         }
     },
-    { field: 'title', headerName: 'Título', width: 250 },
+    {  
+        field: 'title', 
+        headerName: 'Título', 
+        width: 250,
+        renderCell: ({row}: GridRenderCellParams) => {
+            return (
+                <NextLink href={`/admin/products/${ row.slug }`} passHref>
+                    <Link underline='always'> 
+                        { row.title }
+                    </Link>
+                </NextLink>
+            )
+        }
+    },
     { field: 'category', headerName: 'Categoría',  width: 250},
     { field: 'theme', headerName: 'Tema', width: 150},
     { field: 'price', headerName: 'Precio', width: 150 },

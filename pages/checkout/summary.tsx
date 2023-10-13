@@ -58,7 +58,7 @@ const SummaryPage = () => {
                 RESUMEN DE LA ORDEN
             </Typography>
 
-            <Grid container sx={{ mt: 3}}>
+            <Grid  container sx={{ mt: 3}}>
             <Grid item xs={12} sm={ 7 }>
                 <CartList/>
             </Grid>
