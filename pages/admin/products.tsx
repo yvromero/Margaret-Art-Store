@@ -1,5 +1,5 @@
 import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
-import { Grid } from "@mui/material";
+import { CardMedia, Grid } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 
@@ -10,15 +10,31 @@ import { IProduct } from "@/interfaces";
 
 
 const columns: GridColDef[] = [
-    { field: 'img', headerName: 'Imagen' },
-    { field: 'title', headerName: 'Titulo', width: 250 },
-    { field: 'category', headerName: 'Categoria',  width: 250},
+    { 
+        field: 'img', 
+        headerName: 'Imagen',
+        renderCell: ({ row }: GridRenderCellParams ) => {
+
+            return (
+                <a href={`/product/${ row.slug}` } target="_blank">
+                    <CardMedia
+                        component={'img'}
+                        alt={ row.title }
+                        className= 'fadeIn'
+                        image={`/products/${ row.img }`}
+                    />
+                </a>
+            )
+        }
+    },
+    { field: 'title', headerName: 'Título', width: 250 },
+    { field: 'category', headerName: 'Categoría',  width: 250},
     { field: 'theme', headerName: 'Tema', width: 150},
     { field: 'price', headerName: 'Precio', width: 150 },
     { field: 'dimensions', headerName: 'Medidas', width: 150 },
     { field: 'weight', headerName: 'Peso', width: 150 },
     { field: 'inStock', headerName: 'Inventario', width: 150 },
-    { field: 'materials', headerName: 'Materiales', width: 150 },
+    { field: 'materials', headerName: 'Material', width: 150 },
     { field: 'framed', headerName: 'Encuadrado' },
 ]
 
@@ -41,6 +57,7 @@ const ProductsPage = () => {
         inStock     : product.inStock,
         materials   : product.materials,
         framed      : product.framed,
+        slug        : product.slug,
 
     }))
 
@@ -48,7 +65,7 @@ const ProductsPage = () => {
     return (
 
         <AdminLayout
-            title={`Productos (${ data?.length })`}
+            title={`Cuadros (${ data?.length })`}
             subTitle={'Mantenimiento de Productos'}
             icon={ <YardOutlinedIcon/> }
         >
