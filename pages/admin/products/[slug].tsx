@@ -1,11 +1,14 @@
-import React, { FC } from 'react'
-import { GetServerSideProps } from 'next'
-import { AdminLayout } from '../../../components/layouts'
+import { FC } from 'react';
+import { GetServerSideProps } from 'next';
+import { useForm } from 'react-hook-form';
+
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
-import { dbProducts } from '../../../database';
 import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField } from '@mui/material';
+
+import { AdminLayout } from '../../../components/layouts';
 import { IProduct } from '../../../interfaces';
+import { dbProducts } from '../../../database';
 
 
 const validTheme  = [
@@ -24,14 +27,41 @@ const validCategory = [
     'abstracto-contemporaneo'
 ]
 
+interface FormData {
+    _id?        : string;
+    description : string;
+    images      : string[];
+    inStock     : number;
+    price       : number;
+    framed      : string;
+    dimensions  : string;
+    weight      : string;
+    slug        : string;
+    tags        : string[];
+    title       : string;
+    materials   : string;
+    theme       : string;
+    category    : string;
+}
+
+
+
 interface Props {
     product: IProduct;
 }
 
 const ProductAdminPage:FC<Props> = ({ product }) => {
 
+    const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm<FormData>({
+        defaultValues: product
+    })
+
     const onDeleteTag = ( tag: string ) => {
 
+    }
+
+    const onSubmit = ( form: FormData ) => {
+        console.log(form);
     }
 
     return (
@@ -40,7 +70,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
             subTitle={`Editar: ${ product.title }`}
             icon={ <DriveFileRenameOutline /> }
         >
-            <form>
+            <form onSubmit={ handleSubmit( onSubmit ) }>
                 <Box display='flex' justifyContent='end' sx={{ mb: 3 }}>
                     <Button 
                         color="secondary"
@@ -61,12 +91,12 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             variant="filled"
                             fullWidth 
                             sx={{ mb: 1 }}
-                            // { ...register('name', {
-                            //     required: 'Este campo es requerido',
-                            //     minLength: { value: 2, message: 'Mínimo 2 caracteres' }
-                            // })}
-                            // error={ !!errors.name }
-                            // helperText={ errors.name?.message }
+                            { ...register('title', {
+                                required: 'Este campo es requerido',
+                                minLength: { value: 2, message: 'Mínimo 2 caracteres' }
+                            })}
+                            error={ !!errors.title }
+                            helperText={ errors.title?.message }
                         />
 
                         <TextField
@@ -74,7 +104,13 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             variant="filled"
                             fullWidth 
                             multiline
+                            rows={5} // Solución al problema de re-renders, si vuelve a salir agregar mas rows (6 ó 7)
                             sx={{ mb: 1 }}
+                            { ...register('description', {
+                                required: 'Este campo es requerido',
+                            })}
+                            error={ !!errors.description }
+                            helperText={ errors.description?.message }
                         />
 
                         <TextField
@@ -83,6 +119,12 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             variant="filled"
                             fullWidth 
                             sx={{ mb: 1 }}
+                            { ...register('inStock', {
+                                required: 'Este campo es requerido',
+                                min: { value: 0, message: 'No disponible' }
+                            })}
+                            error={ !!errors.inStock }
+                            helperText={ errors.inStock?.message }
                         />
                         
                         <TextField
@@ -91,6 +133,12 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             variant="filled"
                             fullWidth 
                             sx={{ mb: 1 }}
+                            { ...register('price', {
+                                required: 'Este campo es requerido',
+                                min: { value: 0, message: 'Valor del producto según disponibilidad' }
+                            })}
+                            error={ !!errors.price }
+                            helperText={ errors.price?.message }
                         />
 
                         <TextField
@@ -99,6 +147,12 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             variant="filled"
                             fullWidth 
                             sx={{ mb: 1 }}
+                            { ...register('dimensions', {
+                                required: 'Este campo es requerido',
+                                min: { value: 0, message: 'Example:12x30cm' }
+                            })}
+                            error={ !!errors.dimensions }
+                            helperText={ errors.dimensions?.message }
                         />
 
                         <TextField
@@ -107,6 +161,12 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             variant="filled"
                             fullWidth 
                             sx={{ mb: 1 }}
+                            { ...register('weight', {
+                                required: 'Este campo es requerido',
+                                min: { value: 0, message: 'Example:0.800g' }
+                            })}
+                            error={ !!errors.weight }
+                            helperText={ errors.weight?.message }
                         />
 
                         <TextField
@@ -115,6 +175,12 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             variant="filled"
                             fullWidth 
                             sx={{ mb: 1 }}
+                            { ...register('materials', {
+                                required: 'Este campo es requerido',
+                                min: { value: 0, message: 'Example:0.800g' }
+                            })}
+                            error={ !!errors.materials }
+                            helperText={ errors.materials?.message }
                         />
 
                         <TextField
@@ -123,6 +189,11 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             variant="filled"
                             fullWidth 
                             sx={{ mb: 1 }}
+                            { ...register('framed', {
+                                required: 'Este campo es requerido'
+                            })}
+                            error={ !!errors.framed }
+                            helperText={ errors.framed?.message }
                         />
 
                         <Divider sx={{ my: 3 }} />
@@ -131,8 +202,8 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             <FormLabel>Categoría</FormLabel>
                             <RadioGroup
                                 row
-                                // value={ status }
-                                // onChange={ onStatusChanged }
+                                value={ getValues('category') }
+                                onChange={ ({ target })=> setValue('category', target.value, {shouldValidate: true}) }
                             >
                                 {
                                     validCategory.map( option => (
@@ -151,8 +222,8 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             <FormLabel>Tema</FormLabel>
                             <RadioGroup
                                 row
-                                // value={ status }
-                                // onChange={ onStatusChanged }
+                                value={ getValues('theme') }
+                                onChange={ ({ target })=> setValue('theme', target.value, {shouldValidate: true}) }
                             >
                                 {
                                     validTheme.map( option => (
@@ -167,15 +238,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             </RadioGroup>
                         </FormControl>
 
-                        {/* <FormGroup>
-                            <FormLabel>Tallas</FormLabel>
-                            {
-                                validSizes.map(size => (
-                                    <FormControlLabel key={size} control={<Checkbox />} label={ size } />
-                                ))
-                            }
-                        </FormGroup> */}
-
                     </Grid>
 
                     {/* Tags e imagenes */}
@@ -185,6 +247,12 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             variant="filled"
                             fullWidth
                             sx={{ mb: 1 }}
+                            { ...register('slug', {
+                                required: 'Este campo es requerido',
+                                validate: (val) => val.trim().includes(' ') ? 'No puede contener espacios en blanco':undefined 
+                            })}
+                            error={ !!errors.slug }
+                            helperText={ errors.slug?.message }
                         />
 
                         <TextField
@@ -233,7 +301,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             </Button>
 
                             <Chip 
-                                label="Es necesario la carga de una imagen"
+                                label="Se requiere la carga de una imagen"
                                 color='error'
                                 variant='outlined'
                                 icon={ <InsertPhotoIcon/> }
@@ -243,7 +311,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                 container 
                                 spacing={1}
                             >
-
                                 {
                                     product.images.map( img => (
                                         <Grid item xs={4} sm={3} key={img}>
@@ -254,8 +321,8 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                                     image={ `/products/${ img }` }
                                                     alt={ img }
                                                 />
-                                                <CardActions>
 
+                                                <CardActions>
                                                     <Button fullWidth color="error">
                                                         Eliminar
                                                     </Button>

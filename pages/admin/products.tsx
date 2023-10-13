@@ -17,14 +17,16 @@ const columns: GridColDef[] = [
         renderCell: ({ row }: GridRenderCellParams ) => {
 
             return (
-                <a href={`/product/${ row.slug}` } target="_blank">
-                    <CardMedia
-                        component={'img'}
-                        alt={ row.title }
-                        className= 'fadeIn'
-                        image={`/products/${ row.img }`}
-                    />
-                </a>
+                <NextLink legacyBehavior href={`/product/${ row.slug}` } passHref>
+                    <Link underline='always'> 
+                        <CardMedia
+                            component={'img'}
+                            alt={ row.title }
+                            className= 'fadeIn'
+                            image={`/products/${ row.img }`}
+                        />
+                    </Link>
+                </NextLink>
             )
         }
     },
@@ -34,7 +36,7 @@ const columns: GridColDef[] = [
         width: 250,
         renderCell: ({row}: GridRenderCellParams) => {
             return (
-                <NextLink href={`/admin/products/${ row.slug }`} passHref>
+                <NextLink legacyBehavior href={`/admin/products/${ row.slug }`} passHref>
                     <Link underline='always'> 
                         { row.title }
                     </Link>
