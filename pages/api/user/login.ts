@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import { db } from '@/database';
 import { User } from '@/models';
 import { jwt } from '@/utils';
+import { IUser } from '@/interfaces';
 
 
 type Data = 
@@ -33,7 +34,7 @@ function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 
 const loginUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
-    const { email = '', password = '' } = req.body;
+    const { email = '', password = '' } = req.body as IUser;//prueba
 
     await db.connect();
     const user = await User.findOne({ email });

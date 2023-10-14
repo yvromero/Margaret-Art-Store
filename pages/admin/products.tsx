@@ -1,12 +1,13 @@
 import NextLink from 'next/link';
 import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
-import { CardMedia, Grid, Link } from "@mui/material";
+import { Box, Button, CardMedia, Grid, Link } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 
 import useSWR from 'swr';
 import { AdminLayout } from "@/components/layouts";
 import { IProduct } from "@/interfaces";
+import { AddOutlined } from '@mui/icons-material';
 
 
 
@@ -85,7 +86,16 @@ const ProductsPage = () => {
             subTitle={'Mantenimiento de Productos'}
             icon={ <YardOutlinedIcon/> }
         >
+            <Box display='flex' justifyContent='end' sx={ { mb: 2} }>
+                <Button
+                    startIcon={ <AddOutlined /> }
+                    color='secondary'
+                    href="/admin/products/new"
+                >
+                    Crear producto
+                </Button>
 
+            </Box>
             <Grid container sx={{ mt: 3}} className='fadeIn'>
                     <Grid item xs={12} sx={{ height:650, width:'100%'}}>
                         <DataGrid 

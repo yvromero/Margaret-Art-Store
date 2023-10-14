@@ -9,6 +9,8 @@ import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, 
 import { AdminLayout } from '../../../components/layouts';
 import { IProduct } from '../../../interfaces';
 import { dbProducts } from '../../../database';
+import { margaretApi } from '../../../api';
+import { Product } from '../../../models';
 
 
 const validTheme  = [
@@ -52,7 +54,10 @@ interface Props {
 
 const ProductAdminPage:FC<Props> = ({ product }) => {
 
+    
+
     const [newTagValue, setNewTagValue] = useState('');
+    const [isSaving, setIsSaving] = useState(false)
 
     const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<FormData>({
         defaultValues: product
@@ -92,8 +97,29 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
         setValue('tags', updateTags, { shouldValidate: true })
     }
 
-    const onSubmit = ( form: FormData ) => {
-        console.log(form);
+    const onSubmit = async ( form: FormData ) => {
+        
+        if ( form.images.length < 1 ) return alert('Minimo 1 imagen');
+        setIsSaving(true);
+
+        try {
+            const { data } = await margaretApi({
+                url: '/admin/products',
+                method: form._id ? 'PUT': 'POST', // si tenemos un _id, actualizar sino crear
+                data: form
+            });
+
+            console.log({data});
+            if ( !form._id ) {
+                //recargar navegador
+            } else {
+                setIsSaving(false)
+            }
+        } catch (error) {
+            console.log(error);
+            setIsSaving(false);
+        }
+
     }
 
     return (
@@ -109,6 +135,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                         startIcon={ <SaveOutlined /> }
                         sx={{ width: '150px' }}
                         type="submit"
+                        disabled={ isSaving }
                         >
                         Guardar
                     </Button>
@@ -181,7 +208,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             sx={{ mb: 1 }}
                             { ...register('dimensions', {
                                 required: 'Este campo es requerido',
-                                min: { value: 0, message: 'Example:12x30cm' }
                             })}
                             error={ !!errors.dimensions }
                             helperText={ errors.dimensions?.message }
@@ -195,7 +221,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             sx={{ mb: 1 }}
                             { ...register('weight', {
                                 required: 'Este campo es requerido',
-                                min: { value: 0, message: 'Example:0.800g' }
                             })}
                             error={ !!errors.weight }
                             helperText={ errors.weight?.message }
@@ -209,7 +234,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             sx={{ mb: 1 }}
                             { ...register('materials', {
                                 required: 'Este campo es requerido',
-                                min: { value: 0, message: 'Example:0.800g' }
                             })}
                             error={ !!errors.materials }
                             helperText={ errors.materials?.message }
@@ -217,7 +241,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
 
                         <TextField
                             label="Enmarcado"
-                            type='boolean'
+                            type='string'
                             variant="filled"
                             fullWidth 
                             sx={{ mb: 1 }}
@@ -386,8 +410,21 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     
     const { slug = ''} = query;
+
+    let product: IProduct | null;
+
+    if ( slug === 'new' ) {
+        // Crear un producto
+
+        const tempProduct = JSON.parse( JSON.stringify( new Product() ) )
+        delete tempProduct._id;
+        tempProduct.images = ['img1.jpg'];
+        product = tempProduct;
+
+    } else {
+        product = await dbProducts.getProductBySlug(slug.toString());
+    }
     
-    const product = await dbProducts.getProductBySlug(slug.toString());
 
     if ( !product ) {
         return {
