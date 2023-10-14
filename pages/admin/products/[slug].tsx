@@ -76,20 +76,20 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
     
 
     const onNewTag = () => {
-        const newTag = newTagValue.trim().toLocaleLowerCase();
+        const newTag = newTagValue.trim().toLowerCase();
         setNewTagValue('');
         const currentTags = getValues('tags');
 
         if ( currentTags.includes(newTag) ) {
             return; 
         }
-
         currentTags.push(newTag);
-        // setValue('tags');
+
     }
 
     const onDeleteTag = ( tag: string ) => {
-
+        const updateTags = getValues('tags').filter( t => t !== tag );
+        setValue('tags', updateTags, { shouldValidate: true })
     }
 
     const onSubmit = ( form: FormData ) => {
