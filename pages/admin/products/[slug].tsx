@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
@@ -54,7 +55,7 @@ interface Props {
 
 const ProductAdminPage:FC<Props> = ({ product }) => {
 
-    
+    const router = useRouter();
 
     const [newTagValue, setNewTagValue] = useState('');
     const [isSaving, setIsSaving] = useState(false)
@@ -112,6 +113,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
             console.log({data});
             if ( !form._id ) {
                 //recargar navegador
+                router.replace(`/admin/products/${ form.slug }`);
             } else {
                 setIsSaving(false)
             }
