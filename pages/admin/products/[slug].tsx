@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useForm } from 'react-hook-form';
 
@@ -52,13 +52,15 @@ interface Props {
 
 const ProductAdminPage:FC<Props> = ({ product }) => {
 
+    const [newTagValue, setNewTagValue] = useState('');
+
     const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<FormData>({
         defaultValues: product
     })
 
     useEffect(() => {
         const subscription = watch(( value, { name, type }) => {
-            console.log({value, name, type});
+
             if ( name === 'title') {
                 const newSLug = value.title?.trim()
                     .replaceAll(' ', '_')
@@ -72,6 +74,19 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
         return () => subscription.unsubscribe()
     }, [watch, setValue])
     
+
+    const onNewTag = () => {
+        const newTag = newTagValue.trim().toLocaleLowerCase();
+        setNewTagValue('');
+        const currentTags = getValues('tags');
+
+        if ( currentTags.includes(newTag) ) {
+            return; 
+        }
+
+        currentTags.push(newTag);
+        // setValue('tags');
+    }
 
     const onDeleteTag = ( tag: string ) => {
 
@@ -278,6 +293,9 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             fullWidth 
                             sx={{ mb: 1 }}
                             helperText="Presiona [spacebar] para agregar"
+                            value={ newTagValue }
+                            onChange={ ({ target }) => setNewTagValue(target.value) }
+                            onKeyUp={({ code })=> code === 'Space' ? onNewTag() : undefined }
                         />
                         
                         <Box sx={{
@@ -289,7 +307,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                         }}
                         component="ul">
                             {
-                                product.tags.map((tag) => {
+                                getValues('tags').map((tag) => {
 
                                 return (
                                     <Chip
