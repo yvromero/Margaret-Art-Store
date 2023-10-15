@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
-import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField } from '@mui/material';
+import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material';
 
 import { AdminLayout } from '../../../components/layouts';
 import { IProduct } from '../../../interfaces';
@@ -107,7 +107,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
         try {
             
             for ( const file of target.files ){
-
+                
                 const formData = new FormData();
                 formData.append('file', file);
                 const { data } = await margaretApi.post<{ message: string }>('/admin/upload', formData);
@@ -383,20 +383,28 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                         
                         <Box display='flex' flexDirection="column">
                             <FormLabel sx={{ mb:2}}>Imágenes</FormLabel>
+                            
                             <Button
                                 color="secondary"
                                 fullWidth
                                 startIcon={ <UploadOutlined /> }
                                 sx={{ mb: 3 }}
+                                
                                 onClick={ () => fileInputRef.current?.click() }
                             >
                                 Cargar imagen
                             </Button>
+
+                            <Typography variant="body2" sx={{ mb: 2 }}>
+                            Nota: Asegúrese de que las imágenes sean en formato JPG, PNG, GIF o JPEG.
+                            </Typography>
+
                             <input
                                 ref={ fileInputRef}
                                 type="file"
                                 multiple
                                 accept="image/jpg, image/png, image/gif, image/jpeg"
+                                data-max-size="20971520" // 20 MB
                                 style={{ display: 'none'}}
                                 onChange={ onFilesSelected }
                             />
@@ -415,7 +423,8 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             >
                                 {
                                     getValues('images').map( img => (
-                                        <Grid item xs={4} sm={3} key={img}>
+                                        <Grid item xs={12} key={img}
+                                        >
                                             <Card>
                                                 <CardMedia 
                                                     component='img'
@@ -465,7 +474,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
         const tempProduct = JSON.parse( JSON.stringify( new Product() ) )
         delete tempProduct._id;
-        tempProduct.images = ['img1.jpg','img2.jpg'];
+        tempProduct.images = ['example.jpg'];
         product = tempProduct;
 
     } else {

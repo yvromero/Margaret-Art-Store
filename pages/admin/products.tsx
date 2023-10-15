@@ -11,6 +11,7 @@ import { AddOutlined } from '@mui/icons-material';
 
 
 
+
 const columns: GridColDef[] = [
     { 
         field: 'img', 
@@ -45,6 +46,20 @@ const columns: GridColDef[] = [
             )
         }
     },
+    // {
+    //     field: 'actions',
+    //     headerName: 'Acciones',
+    //     width: 150,
+    //     renderCell: ({ row }: GridRenderCellParams) => (
+    //         <Button
+    //             variant="outlined"
+    //             color="error"
+    //             onClick={() => handleDeleteProduct(row.id)}
+    //         >
+    //             Eliminar
+    //         </Button>
+    //         ),
+    // },
     { field: 'category', headerName: 'Categoría',  width: 250},
     { field: 'theme', headerName: 'Tema', width: 150},
     { field: 'price', headerName: 'Precio', width: 150 },
@@ -53,6 +68,8 @@ const columns: GridColDef[] = [
     { field: 'inStock', headerName: 'Inventario', width: 150 },
     { field: 'materials', headerName: 'Material', width: 150 },
     { field: 'framed', headerName: 'Encuadrado' },
+
+
 ]
 
 const ProductsPage = () => {
@@ -88,7 +105,7 @@ const ProductsPage = () => {
         >
             <Box display='flex' justifyContent='end' sx={ { mb: 2} }>
                 <Button
-                    startIcon={ <AddOutlined /> }
+                    startIcon={ <AddOutlined/> }
                     color='secondary'
                     href="/admin/products/new"
                 >
@@ -96,6 +113,8 @@ const ProductsPage = () => {
                 </Button>
 
             </Box>
+
+
             <Grid container sx={{ mt: 3}} className='fadeIn'>
                     <Grid item xs={12} sx={{ height:650, width:'100%'}}>
                         <DataGrid 

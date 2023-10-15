@@ -24,6 +24,9 @@ function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
 
         case 'POST':
             return createProduct( req, res )
+
+        // case 'DELETE':
+        //     return deleteProduct( req, res )
         
             default:
                 res.status(400).json({ message: 'Bad request' });
@@ -142,5 +145,45 @@ const createProduct = async(req: NextApiRequest, res: NextApiResponse<Data>) => 
 
 }
 
+
+// const deleteProduct = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+//     if (req.method === 'DELETE') {
+//         const { id } = req.query;
+        
+//             if (!isValidObjectId(id)) {
+//             return res.status(400).json({ message: 'ID de producto no válido' });
+//             }
+        
+//             try {
+//             await db.connect();
+        
+//             const product = await Product.findById(id);
+        
+//             if (!product) {
+//                 await db.disconnect();
+//                 return res.status(404).json({ message: 'Producto no encontrado' });
+//             }
+        
+//             // TODO: Eliminar fotos de Cloudinary
+//             product.images.forEach(async (image) => {
+//                 // Eliminar de Cloudinary
+//                 const [fileId, extension] = image.substring(image.lastIndexOf('/') + 1).split('.');
+//                 console.log({ image, fileId, extension });
+//                 await cloudinary.uploader.destroy(fileId);
+//             });
+        
+//             await Product.findByIdAndDelete(id);
+//             await db.disconnect();
+        
+//             res.status(204).end(); // 204 No Content (éxito en la eliminación)
+//             } catch (error) {
+//             console.error(error);
+//             await db.disconnect();
+//             res.status(500).json({ message: 'Error en el servidor' });
+//             }
+//         } else {
+//             res.status(400).json({ message: 'Método no válido' });
+//         }
+//         }
 
 export default handler
