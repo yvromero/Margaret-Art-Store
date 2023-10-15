@@ -12,7 +12,7 @@ export const ProductMagnify: FC<Props> = ({ images }) => {
     return (
         <div className="fluid">
             {images.map((image) => {
-                const url = `/products/${image}`;
+                // const url = `/products/${image}`;
                 return (
                     <div className="fluid__image-container" key={image}>
                         <ReactImageMagnify
@@ -20,10 +20,10 @@ export const ProductMagnify: FC<Props> = ({ images }) => {
                                 smallImage: {
                                     alt: `Product ${image}`,
                                     isFluidWidth: true,
-                                    src: url
+                                    src: image
                                 },
                                 largeImage: {
-                                    src: url,
+                                    src: image,
                                     width: 1200,
                                     height: 1800,
                                 },

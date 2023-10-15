@@ -420,7 +420,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                                 <CardMedia 
                                                     component='img'
                                                     className='fadeIn'
-                                                    image={ `/products/${ img }` }
+                                                    image={ img }
                                                     alt={ img }
                                                 />
 
@@ -465,7 +465,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
         const tempProduct = JSON.parse( JSON.stringify( new Product() ) )
         delete tempProduct._id;
-        tempProduct.images = ['img1.jpg'];
+        tempProduct.images = ['img1.jpg','img2.jpg'];
         product = tempProduct;
 
     } else {
