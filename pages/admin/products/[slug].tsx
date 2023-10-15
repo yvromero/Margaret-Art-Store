@@ -406,6 +406,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                 color='error'
                                 variant='outlined'
                                 icon={ <InsertPhotoIcon/> }
+                                sx={{ display: getValues('images').length < 1 ? 'flex': 'none'}}
                             />
 
                             <Grid 

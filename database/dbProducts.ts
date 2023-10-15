@@ -14,6 +14,9 @@ export const getProductBySlug = async( slug: string ): Promise<IProduct | null> 
     }
 
     // TODO: Proceso de imagenes al subir al server
+    product.images = product.images.map( image => {
+        return image.includes('http') ? image : `/products/${ image }`
+    })
 
     return JSON.parse( JSON.stringify( product ) );
 }
