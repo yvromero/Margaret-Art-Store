@@ -4,6 +4,7 @@ import { isValidObjectId } from 'mongoose';
 import { db } from '../../../database';
 import { IProduct } from '../../../interfaces';
 import { Product } from '../../../models';
+import { v2 as cloudinary } from 'cloudinary';
 
 
 type Data = 
@@ -73,16 +74,16 @@ const updateProduct = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
         }
 
 
-    //         // TODO: eliminar fotos en Cloudinary
-    // // https://res.cloudinary.com/cursos-udemy/image/upload/v1645914028/nct31gbly4kde6cncc6i.jpg
-    // product.images.forEach( async(image) => {
-    //     if ( !images.includes(image) ){
-    //         // Borrar de cloudinary
-    //         const [ fileId, extension ] = image.substring( image.lastIndexOf('/') + 1 ).split('.')
-    //         console.log({ image, fileId, extension });
-    //         await cloudinary.uploader.destroy( fileId );
-    //     }
-    // });
+     // TODO: eliminar fotos en Cloudinary
+    // https://res.cloudinary.com/cursos-udemy/image/upload/v1645914028/nct31gbly4kde6cncc6i.jpg
+    product.images.forEach( async(image) => {
+        if ( !images.includes(image) ){
+             // Borrar de cloudinary
+            const [ fileId, extension ] = image.substring( image.lastIndexOf('/') + 1 ).split('.')
+            console.log({ image, fileId, extension });
+            await cloudinary.uploader.destroy( fileId );
+        }
+    });
 
         const updatedProduct = await Product.findOneAndUpdate({ _id: product._id}, 
             req.body, { new: true });

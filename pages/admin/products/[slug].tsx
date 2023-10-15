@@ -111,13 +111,23 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                 const formData = new FormData();
                 formData.append('file', file);
                 const { data } = await margaretApi.post<{ message: string }>('/admin/upload', formData);
-                console.log(data);
+                setValue('images', [...getValues('images'), data.message], { shouldValidate: true });
             }
         } catch (error) {
             console.log({error});
             
         }
     }
+
+    const onDeleteImage = ( image: string ) => {
+        setValue(
+            'images', 
+            getValues('images').filter( img => img !== image ),
+        { shouldValidate: true }
+        );
+    }
+
+
 
     const onSubmit = async ( form: FormData ) => {
         
@@ -403,7 +413,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                 spacing={1}
                             >
                                 {
-                                    product.images.map( img => (
+                                    getValues('images').map( img => (
                                         <Grid item xs={4} sm={3} key={img}>
                                             <Card>
                                                 <CardMedia 
@@ -414,7 +424,11 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                                 />
 
                                                 <CardActions>
-                                                    <Button fullWidth color="error">
+                                                    <Button 
+                                                        fullWidth 
+                                                        color="error"
+                                                        onClick={()=> onDeleteImage(img)}
+                                                    >
                                                         Eliminar
                                                     </Button>
 
