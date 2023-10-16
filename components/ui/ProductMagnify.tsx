@@ -18,7 +18,7 @@ export const ProductMagnify: FC<Props> = ({ images }) => {
                         <ReactImageMagnify
                             {...{
                                 smallImage: {
-                                    alt: `Product ${image}`,
+                                    alt: image,
                                     isFluidWidth: true,
                                     src: image
                                 },

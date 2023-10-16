@@ -71,7 +71,9 @@ export const SideMenu = () => {
                     {
                         isLoggedIn && (
                             <>
-                                <ListItem button>
+                                <ListItem button
+                                    onClick={() => navigateTo('/checkout/address') }
+                                >
                                     <ListItemIcon>
                                         <AccountCircleOutlined/>
                                     </ListItemIcon>

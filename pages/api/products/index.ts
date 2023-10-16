@@ -41,9 +41,6 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
                                 .lean();
     await db.disconnect();
 
-
-
-
 //     // procesamiento de imagenes cuando la subamos al server
 
 
@@ -56,6 +53,7 @@ const updatedProducts = products.map( product => {
 })
 
 return res.status(200).json( updatedProducts );
+
 }
 
 

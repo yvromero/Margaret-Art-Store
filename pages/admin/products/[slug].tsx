@@ -5,13 +5,15 @@ import { useForm } from 'react-hook-form';
 
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
-import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material';
+import { Box, Button, capitalize, Card, CardActions, CardMedia, Chip, Divider, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import { AdminLayout } from '../../../components/layouts';
 import { IProduct } from '../../../interfaces';
 import { dbProducts } from '../../../database';
 import { margaretApi } from '../../../api';
 import { Product } from '../../../models';
+import { Confirm } from 'semantic-ui-react';
 
 
 const validTheme  = [
@@ -59,7 +61,22 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const [newTagValue, setNewTagValue] = useState('');
-    const [isSaving, setIsSaving] = useState(false)
+    const [isSaving, setIsSaving] = useState(false);
+
+    // const query = useRouter();
+    // const [confirm, setconfirm] = useState(false);
+
+    // const [isDeleting, setIsDeleting]  = useState(false);
+
+    // methods
+    // const open = () => setconfirm(true);
+    // const close = () => setconfirm(false);
+
+    // const handleDelete = () => {
+    //     onDelete();
+    //     close();
+    // }
+
 
     const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<FormData>({
         defaultValues: product
@@ -127,8 +144,32 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
         );
     }
 
+    // //Eliminar producto
+    // const onDelete = async () => {
 
+    //     setIsDeleting(true);
+        
+            
+    //         try {
 
+    //             const response = await margaretApi.delete(`/admin/products/${slug}`
+    //             )
+
+    //             if (response.status === 204) {
+    //                 // Eliminación exitosa, realiza acciones adicionales si es necesario
+    //                 router.push('/admin/products'); // Redirige a la lista de productos u otra página
+    //             } else {
+    //                 // Maneja errores en caso de que la eliminación falle
+    //                 console.error('Error al eliminar el producto');
+    //             }
+    //         } catch (error) {
+    //             console.error('Error en la solicitud de eliminación:', error);
+    //         } finally {
+    //             setIsDeleting(false);
+    //         }
+    // }
+    
+    // Guardar producto
     const onSubmit = async ( form: FormData ) => {
         
         if ( form.images.length < 1 ) return alert('Minimo 1 imagen');
@@ -152,7 +193,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
             console.log(error);
             setIsSaving(false);
         }
-
     }
 
     return (
@@ -166,11 +206,11 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                     <Button 
                         color="secondary"
                         startIcon={ <SaveOutlined /> }
-                        sx={{ width: '150px' }}
+                        sx={{ width: '200px' }}
                         type="submit"
                         disabled={ isSaving }
                         >
-                        Guardar
+                        Guardar producto
                     </Button>
                 </Box>
 
@@ -439,7 +479,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                                         color="error"
                                                         onClick={()=> onDeleteImage(img)}
                                                     >
-                                                        Eliminar
+                                                        Eliminar imagen
                                                     </Button>
 
                                                 </CardActions>
@@ -455,9 +495,29 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
 
                 </Grid>
             </form>
+
+
+{/* 
+    <Box display='flex' justifyContent='center' sx={{ mb: 1 }}>
+            <Button
+                color="error"
+                variant="contained"
+                startIcon={<DeleteForeverIcon />}
+                sx={{ width: '200px', mb: 2 }}
+                // onClick={()=> {
+                //     console.log(product._id);
+                // }
+            >
+                Eliminar Producto
+            </Button>
+        </Box> */}
+        {/* <Confirm open={confirm} onConfirm={handleDelete} onCancel={close} /> */}
         </AdminLayout>
+        
     )
+    
 }
+
 
 // You should use getServerSideProps when:
 // - Only if you need to pre-render a page whose data must be fetched at request time
@@ -491,6 +551,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         }
     }
     
+
 
     return {
         props: {
