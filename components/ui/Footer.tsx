@@ -35,13 +35,15 @@ const Footer = () => {
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
 				Contáctenos
 				</li>
-				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
+				<li>
 				<NextLink legacyBehavior href='/auth/login?p=/' passHref>
-					<Link>Tu cuenta</Link>
+					<Link  className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
+						Tu cuenta
+					</Link>
 				</NextLink>
 				</li>
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Política de Cookies
+				Política de cookies
 				</li>
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
 				Términos y condiciones
@@ -55,13 +57,13 @@ const Footer = () => {
 				Servicio al cliente
 				</p>
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Seguimiento de mi Pedido
+				Seguimiento de mi pedido
 				</li>
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Plazo de Entrega
+				Plazo de entrega
 				</li>
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Gastos de Envío
+				Gastos de envío
 				</li>
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
 				Devoluciones

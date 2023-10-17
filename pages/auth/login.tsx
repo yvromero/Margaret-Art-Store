@@ -102,8 +102,9 @@ const LoginPage = () => {
 
                         <Grid item xs={12}> 
                             <Button 
+                                variant='outlined'
                                 type="submit"
-                                color="secondary" 
+                                color="primary" 
                                 className="circular-btn" 
                                 size="large" 
                                 fullWidth

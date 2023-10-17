@@ -109,10 +109,11 @@ const RegisterPage = () => {
 
                         <Grid item xs={12}>
                             <Button 
+                                variant='outlined'
                                 type="submit"
-                                color="secondary" 
-                                className='circular-btn' 
-                                size='large' 
+                                color="primary" 
+                                className="circular-btn" 
+                                size="large" 
                                 fullWidth
                             >
                                 Crear cuenta
