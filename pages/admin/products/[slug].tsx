@@ -6,15 +6,13 @@ import { useForm } from 'react-hook-form';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 import { Box, Button, capitalize, Card, CardActions, CardMedia, Chip, Divider, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 
 import { AdminLayout } from '../../../components/layouts';
 import { IProduct } from '../../../interfaces';
 import { dbProducts } from '../../../database';
 import { margaretApi } from '../../../api';
 import { Product } from '../../../models';
-import { Confirm } from 'semantic-ui-react';
-
 
 const validTheme  = [
     'Natura',
@@ -63,19 +61,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
     const [newTagValue, setNewTagValue] = useState('');
     const [isSaving, setIsSaving] = useState(false);
 
-    // const query = useRouter();
-    // const [confirm, setconfirm] = useState(false);
-
-    // const [isDeleting, setIsDeleting]  = useState(false);
-
-    // methods
-    // const open = () => setconfirm(true);
-    // const close = () => setconfirm(false);
-
-    // const handleDelete = () => {
-    //     onDelete();
-    //     close();
-    // }
 
 
     const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<FormData>({
@@ -144,30 +129,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
         );
     }
 
-    // //Eliminar producto
-    // const onDelete = async () => {
-
-    //     setIsDeleting(true);
-        
-            
-    //         try {
-
-    //             const response = await margaretApi.delete(`/admin/products/${slug}`
-    //             )
-
-    //             if (response.status === 204) {
-    //                 // Eliminación exitosa, realiza acciones adicionales si es necesario
-    //                 router.push('/admin/products'); // Redirige a la lista de productos u otra página
-    //             } else {
-    //                 // Maneja errores en caso de que la eliminación falle
-    //                 console.error('Error al eliminar el producto');
-    //             }
-    //         } catch (error) {
-    //             console.error('Error en la solicitud de eliminación:', error);
-    //         } finally {
-    //             setIsDeleting(false);
-    //         }
-    // }
     
     // Guardar producto
     const onSubmit = async ( form: FormData ) => {
@@ -497,21 +458,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
             </form>
 
 
-{/* 
-    <Box display='flex' justifyContent='center' sx={{ mb: 1 }}>
-            <Button
-                color="error"
-                variant="contained"
-                startIcon={<DeleteForeverIcon />}
-                sx={{ width: '200px', mb: 2 }}
-                // onClick={()=> {
-                //     console.log(product._id);
-                // }
-            >
-                Eliminar Producto
-            </Button>
-        </Box> */}
-        {/* <Confirm open={confirm} onConfirm={handleDelete} onCancel={close} /> */}
         </AdminLayout>
         
     )

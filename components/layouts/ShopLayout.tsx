@@ -4,6 +4,9 @@ import Head from "next/head"
 
 import { Navbar } from '../ui/';
 import { SideMenu } from '../ui';
+import Footer from "../ui/Footer";
+
+
 
 interface Props {
     title: string;
@@ -60,10 +63,10 @@ export const ShopLayout: FC <Props> = ({ children , title, pageDescription, imag
             { children }
         </main>
 
-        {/* {Footer} */}
+
 
         <footer>
-            {/* {CustomFooter} */}
+            <Footer/>
         </footer>
 
     </>
