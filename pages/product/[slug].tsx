@@ -56,13 +56,13 @@ const ProductPage:NextPage<Props> = ({product}) => {
   return (
     
     <ShopLayout title={product.title} pageDescription={product.description}>
-        <Box
+        {/* <Box
             display='flex'
             justifyContent='center'
             alignItems='center'
-            // height='calc(100vh - 100px)'
+            height='calc(100vh - 100px)'
             sx={{ flexDirection: { xs: 'column', sm: 'row' } }}
-        ></Box>
+        ></Box> */}
       <Grid container spacing={3}>
         <Grid item xs={12} sm={7}>
           {/* ImageZoom */}
