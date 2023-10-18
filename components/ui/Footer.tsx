@@ -1,6 +1,3 @@
-import NextLink from 'next/link';
-import { Link } from '@mui/material';
-
 import { FaInstagram } from 'react-icons/fa';
 import { FaLinkedin } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa6";
@@ -29,21 +26,17 @@ const Footer = () => {
 			<div className='p-5'>
 			<ul>
 				<p className='text-gray-800 font-bold text-2xl pb-4'>Tienda</p>
+
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
 				Acerca de
 				</li>
+
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Contáctenos
+					Contáctenos
 				</li>
-				<li>
-				<NextLink legacyBehavior href='/auth/login?p=/' passHref>
-					<Link  className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-						Tu cuenta
-					</Link>
-				</NextLink>
-				</li>
+
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Política de cookies
+					Tu cuenta
 				</li>
 				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
 				Términos y condiciones

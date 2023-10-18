@@ -48,23 +48,21 @@ const ProductPage:NextPage<Props> = ({product}) => {
     addProductToCart( tempCartProduct );
     // console.log({ tempCartProduct });
     router.push('/cart');
-    // if (tempCartProduct.quantity >= product.inStock) {
-    //   // No permitir agregar al carrito si la cantidad es mayor que el stock
-    //   // Puedes mostrar un mensaje de error o tomar la acción adecuada aquí
-    //   console.log("No se puede agregar al carrito: cantidad supera el stock");
-
-    // } else {
-    //   // Llamar a la acción del contexto para agregar al carrito
-    //   addProductToCart(tempCartProduct);
-    //   router.push('/cart');
-    // }
 
 
   }
 
   
   return (
+    
     <ShopLayout title={product.title} pageDescription={product.description}>
+        <Box
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            // height='calc(100vh - 100px)'
+            sx={{ flexDirection: { xs: 'column', sm: 'row' } }}
+        ></Box>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={7}>
           {/* ImageZoom */}
@@ -72,7 +70,7 @@ const ProductPage:NextPage<Props> = ({product}) => {
         </Grid>
 
         <Grid item xs={12} sm={5}>
-          <Box display='flex' flexDirection='column'>
+          <Box sx={{ mt: 1 }} display='flex' flexDirection='column'>
             {/* titulos */}
             <Typography variant='h1' component='h1'>
               {product.title}
@@ -83,7 +81,7 @@ const ProductPage:NextPage<Props> = ({product}) => {
             >{`$${product.price}`}</Typography>
 
             {/* Descripcion */}
-            <Box sx={{ mt: 2 }}>
+            <Box sx={{ my: 3, mt: 1 }}>
               <Typography variant='subtitle2'>
                 Descripción de la obra
               </Typography>
@@ -91,31 +89,33 @@ const ProductPage:NextPage<Props> = ({product}) => {
             </Box>
 
             {/* Cantidad */}
-            <Box sx={{ my: 3 }}>
-              <Typography variant='subtitle2'>Cantidad</Typography>
+            {/* <Box sx={{ my: 3 }}>
+              <Typography variant='subtitle2'>Cantidad</Typography> */}
 
               {/* <h1>{product.inStock}</h1> */}
 
               {/* ItemCounter */}
-              <ItemCounter 
+              {/* <ItemCounter 
                 currentValue={ tempCartProduct.quantity }
                 updateQuantity={ onUpdateQuantity }
                 maxValue={ product.inStock }
                 // maxValue={ product.inStock > 2 ? 2: product.inStock }
-              />
-            </Box>
+              /> */}
+            {/* </Box> */}
 
             {/* Agregar al carrito */}
             {
               (product.inStock > 0 )
               ?(
                 <Button 
-                  color='secondary' 
+                  variant='outlined'
+                  color='primary' 
                   className='circular-btn'
                   onClick={ onAddProduct }
                 >
                   Agregar al carrito
                 </Button>
+
               )
               :(
                 <Chip label="No disponible" color="error" variant="outlined"/>
@@ -147,35 +147,6 @@ const ProductPage:NextPage<Props> = ({product}) => {
     </ShopLayout>
   );
 }
-
-
-//getServerSideProps
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
-// NO USAR SSR
-// export const getServerSideProps: GetServerSideProps = async ({params}) => {
-
-//   const { slug = '' } = params as { slug: string };
-//   const product = await dbProducts.getProductBySlug( slug );
-
-//   if ( !product ) {
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false
-//       }
-//     }
-//   }
-
-//   return {
-//     props: {
-//       product
-//     }
-//   }
-// }
-
-
-// getStaticPaths...
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
   const productSlugs = await dbProducts.getAllProductSlugs();

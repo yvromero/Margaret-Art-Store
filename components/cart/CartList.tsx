@@ -52,7 +52,7 @@ const productsToShow = products ? products : cart;
                   <Box display='flex' flexDirection='column'>
                     <Typography variant='body1'>{ product.title }</Typography>
                     <Typography variant='body2'>{`${ product.dimensions}`}</Typography>
-                  {
+                  {/* {
                     editable
                     ? (
                         <ItemCounter 
@@ -64,7 +64,7 @@ const productsToShow = products ? products : cart;
                     : (
                         <Typography variant='body2'>{ product.quantity }
                           { product.quantity > 1 ? ' cuadros':' cuadro' }</Typography>)
-                  }
+                  } */}
                   </Box>
                 </Grid>
                 

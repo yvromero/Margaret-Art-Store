@@ -101,7 +101,8 @@ const SummaryPage = () => {
 
                         <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
                             <Button 
-                                color="secondary" 
+                                variant='outlined'
+                                color="primary" 
                                 className='circular-btn' 
                                 fullWidth
                                 onClick={ onCreateOrder }

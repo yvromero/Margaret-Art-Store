@@ -165,7 +165,8 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
             <form onSubmit={ handleSubmit( onSubmit ) }>
                 <Box display='flex' justifyContent='end' sx={{ mb: 3 }}>
                     <Button 
-                        color="secondary"
+                        variant='outlined'
+                        color="primary"
                         startIcon={ <SaveOutlined /> }
                         sx={{ width: '200px' }}
                         type="submit"
@@ -386,7 +387,8 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             <FormLabel sx={{ mb:2}}>Imágenes</FormLabel>
                             
                             <Button
-                                color="secondary"
+                                variant='outlined'
+                                color="primary"
                                 fullWidth
                                 startIcon={ <UploadOutlined /> }
                                 sx={{ mb: 3 }}
@@ -435,7 +437,8 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                                 />
 
                                                 <CardActions>
-                                                    <Button 
+                                                    <Button
+                                                        variant='outlined'
                                                         fullWidth 
                                                         color="error"
                                                         onClick={()=> onDeleteImage(img)}

@@ -16,7 +16,9 @@ interface Props {
 }
 
 export const ShopLayout: FC <Props> = ({ children , title, pageDescription, imageFullUrl }) => {
-  return (
+  
+    return (
+        
     <>
         <Head>
             <title>{ title }</title>
@@ -65,7 +67,7 @@ export const ShopLayout: FC <Props> = ({ children , title, pageDescription, imag
 
 
 
-        <footer>
+        <footer >
             <Footer/>
         </footer>
 
