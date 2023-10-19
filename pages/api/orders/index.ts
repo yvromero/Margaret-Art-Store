@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth/next';
 import { db } from '@/database';
 import { IOrder } from '@/interfaces';
 import { Order, Product } from '../../../models';
-import { authOptions } from '@/app/api/auth/[...nextauth]';
+import { authOptions } from '../auth/[...nextauth]';
 
 type Data = 
 | { message: string }
