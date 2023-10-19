@@ -34,7 +34,7 @@
     "formidable": "^2.0.1",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.6.2",
+    "mongoose": "^7.0.0",
     "next": "^13.5.4",
     "next-auth": "^4.23.2",
     "react": "18.2.0",
