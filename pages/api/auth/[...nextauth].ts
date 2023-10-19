@@ -10,12 +10,12 @@ export const authOptions:NextAuthOptions = {
   providers: [
 
     Credentials({
-      name: 'Custom Login',
+      name: 'Credentials',
       credentials: {
         email: { label: 'Correo:', type: 'email', placeholder: 'margaret@gmail.com' },
-        password: { label: 'Contraseña:', type: 'password', placeholder: 'Contraseña' },
+        password: { label: 'Contraseña:', type: 'password' },
       },
-      async authorize( credentials ) {
+      async authorize( credentials, req ) {
         // console.log({credentials});
 
         return await dbUsers.checkUserEmailPassword( credentials!.email, credentials!.password ) as any;
