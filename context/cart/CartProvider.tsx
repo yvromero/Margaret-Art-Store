@@ -2,7 +2,7 @@ import { FC, useEffect, useState, useReducer, ReactNode } from 'react';
 import { CartContext, cartReducer } from './';
 import { ICartProduct, IOrder, ShippingAddress } from '@/interfaces';
 import Cookie from 'js-cookie';
-import { margaretApi } from '@/api';
+import { margaretApi } from '@/fetching';
 import axios from 'axios';
 
 export interface CartState {

@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import { AuthContext, authReducer } from './';
 
-import { margaretApi } from '@/api';
+import { margaretApi } from '@/fetching';
 import { IUser } from '@/interfaces';
 
 

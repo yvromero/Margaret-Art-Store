@@ -7,7 +7,7 @@ import { grey } from "@mui/material/colors";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { AdminLayout } from "@/components/layouts";
 import { IUser } from "@/interfaces";
-import { margaretApi } from "@/api";
+import { margaretApi } from "@/fetching";
 
 
 const UsersPage = () => {

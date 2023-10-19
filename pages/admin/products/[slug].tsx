@@ -11,7 +11,7 @@ import { Box, Button, capitalize, Card, CardActions, CardMedia, Chip, Divider, F
 import { AdminLayout } from '../../../components/layouts';
 import { IProduct } from '../../../interfaces';
 import { dbProducts } from '../../../database';
-import { margaretApi } from '../../../api';
+import { margaretApi } from '../../../fetching';
 import { Product } from '../../../models';
 
 const validTheme  = [

@@ -16,7 +16,7 @@ import { ShopLayout } from "@/components/layouts";
 import { CartList, OrderSummary } from "@/components/cart";
 
 import { IOrder } from '@/interfaces';
-import { margaretApi } from '@/api';
+import { margaretApi } from '@/fetching';
 
 export type OrderResponseBody = {
     id: string;
