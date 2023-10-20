@@ -32,6 +32,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
 const saveFile = async( file: formidable.File ): Promise<string> => {
 
+    const maxSizeInBytes = 10 * 1024 * 1024;
+    if (file.size > maxSizeInBytes) {
+        throw new Error('La imagen es demasiado grande. Por favor, sube una imagen no mayor a 10MB.');
+    }
+
     const { secure_url } = await cloudinary.uploader.upload( file.filepath );
     return secure_url;
 

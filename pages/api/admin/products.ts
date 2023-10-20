@@ -5,6 +5,7 @@ import { db } from '../../../database';
 import { IProduct } from '../../../interfaces';
 import { Product } from '../../../models';
 import { v2 as cloudinary } from 'cloudinary';
+cloudinary.config( process.env.CLOUDINARY_URL || '' );
 
 
 type Data = 
@@ -71,7 +72,7 @@ const updateProduct = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
         return res.status(400).json({ message: 'Se requiere la carga mínima de una imagen'});
     }
 
-    // TODO: posiblemente tendemos un localhost: 3000/products/asdsad.jpg
+
 
     try {
         
@@ -85,8 +86,8 @@ const updateProduct = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
         }
 
 
-     // TODO: eliminar fotos en Cloudinary
-    // https://res.cloudinary.com/cursos-udemy/image/upload/v1645914028/nct31gbly4kde6cncc6i.jpg
+     // Eliminar fotos en Cloudinary
+    
     product.images.forEach( async(image) => {
         if ( !images.includes(image) ){
              // Borrar de cloudinary
