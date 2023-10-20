@@ -399,7 +399,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             </Button>
 
                             <Typography variant="body2" sx={{ mb: 2 }}>
-                            Nota: Asegúrese de que las imágenes sean en formato JPG, PNG, GIF o JPEG.
+                            Nota: Asegúrese de que las imágenes no superen el tamaño máximo de 10 MB y sean en formato JPG, PNG, GIF o JPEG.
                             </Typography>
 
                             <input
@@ -407,7 +407,6 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                 type="file"
                                 multiple
                                 accept="image/jpg, image/png, image/gif, image/jpeg"
-                                data-max-size="20971520" // 20 MB
                                 style={{ display: 'none'}}
                                 onChange={ onFilesSelected }
                             />
