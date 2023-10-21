@@ -121,10 +121,10 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
     // LOGICA DE AGREGAR AL CARRITO
     const addProductToCart = ( product: ICartProduct ) => {
 
-        const productsInCart = state.cart.filter( p => p._id !== product._id );
-        dispatch({ 
-            type: '[Cart] - Update products in cart', 
-            payload: [ ...productsInCart, product ]})
+        // const productsInCart = state.cart.filter( p => p._id !== product._id );
+        // dispatch({ 
+        //     type: '[Cart] - Update products in cart', 
+        //     payload: [ ...productsInCart, product ]})
 
 
         const productInCart = state.cart.some( p => p._id === product._id)
@@ -138,11 +138,10 @@ export const CartProvider:FC<UiProviderProps> = ({ children }) => {
 
         // Acumular
         const updateProducts = state.cart.map( p => {
-            if ( p._id !== product._id )
-            return p;
-        
+            if ( p._id !== product._id ) return p;
+
         // Actualizar cantidad
-        p.quantity += product.quantity;
+        p.quantity 
             return p;
         });
 

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 
@@ -7,10 +7,11 @@ import { Grid, Typography, Box, Button, Chip } from '@mui/material';
 import { CartContext } from '@/context';
 
 import { ShopLayout } from "@/components/layouts";
-import { ItemCounter, ProductMagnify } from "@/components/ui";
+import {  ProductMagnify } from "@/components/ui";
 
 import { dbProducts } from "@/database";
 import { ICartProduct, IProduct } from "@/interfaces";
+
 
 
 interface Props {
@@ -20,7 +21,9 @@ interface Props {
 const ProductPage:NextPage<Props> = ({product}) => {
 
   const router = useRouter();
-  const { addProductToCart } = useContext( CartContext )
+
+  const { addProductToCart, cart } = useContext(CartContext); 
+  const [isProductInCart, setIsProductInCart] = useState(false);
 
   const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
     _id: product._id,
@@ -32,37 +35,27 @@ const ProductPage:NextPage<Props> = ({product}) => {
     title: product.title,
     category: product.category,
     quantity: 1,
-  })
+  });
 
-  // 
-  const onUpdateQuantity = ( quantity: number ) => {
-    setTempCartProduct( currentProduct => ({
-      ...currentProduct,
-      quantity
-    }));
-  }
+  useEffect(() => {
+    // Verificar si el producto ya existe en el carrito
+    const isProductInCart = cart.some((item) => item._id === tempCartProduct._id);
+    setIsProductInCart(isProductInCart);
+  }, [cart, tempCartProduct]);
 
   const onAddProduct = () => {
 
     // Llamar a la accion del context para add al carrito
-    addProductToCart( tempCartProduct );
+    addProductToCart( tempCartProduct )
     // console.log({ tempCartProduct });
     router.push('/cart');
-
-
   }
 
   
   return (
     
     <ShopLayout title={product.title} pageDescription={product.description}>
-        {/* <Box
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            height='calc(100vh - 100px)'
-            sx={{ flexDirection: { xs: 'column', sm: 'row' } }}
-        ></Box> */}
+
       <Grid container spacing={3}>
         <Grid item xs={12} sm={7}>
           {/* ImageZoom */}
@@ -88,21 +81,6 @@ const ProductPage:NextPage<Props> = ({product}) => {
               <Typography variant='body2'>{product.description}</Typography>
             </Box>
 
-            {/* Cantidad */}
-            {/* <Box sx={{ my: 3 }}>
-              <Typography variant='subtitle2'>Cantidad</Typography> */}
-
-              {/* <h1>{product.inStock}</h1> */}
-
-              {/* ItemCounter */}
-              {/* <ItemCounter 
-                currentValue={ tempCartProduct.quantity }
-                updateQuantity={ onUpdateQuantity }
-                maxValue={ product.inStock }
-                // maxValue={ product.inStock > 2 ? 2: product.inStock }
-              /> */}
-            {/* </Box> */}
-
             {/* Agregar al carrito */}
             {
               (product.inStock > 0 )
@@ -111,6 +89,7 @@ const ProductPage:NextPage<Props> = ({product}) => {
                   variant='contained'
                   color='secondary' 
                   className='circular-btn'
+                  disabled={isProductInCart}
                   onClick={ onAddProduct }
                 >
                   Agregar al carrito
