@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Box, Button, Card, CardContent, Divider, Grid, Typography } from "@mui/material";
-
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { CartContext } from "@/context";
 import { ShopLayout } from "@/components/layouts";
 import { CartList, OrderSummary } from "@/components/cart";
@@ -44,6 +44,7 @@ const CartPage = () => {
 
                         <Box sx={{ mt: 2 }}>
                             <Button 
+                                startIcon={ <ShoppingCartCheckoutIcon/> }
                                 variant='contained'
                                 color="secondary" 
                                 className='circular-btn' 

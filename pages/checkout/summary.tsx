@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 
 import { Box, Button, Card, CardContent, Chip, Divider, Grid, Link, Typography } from "@mui/material";
-
+import GradingIcon from '@mui/icons-material/Grading';
 import { CartContext } from '@/context';
 import { ShopLayout } from "@/components/layouts";
 import { CartList, OrderSummary } from "@/components/cart";
@@ -100,6 +100,7 @@ const SummaryPage = () => {
 
                         <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
                             <Button 
+                                startIcon={ <GradingIcon/> }
                                 variant='contained'
                                 color="secondary" 
                                 className='circular-btn' 

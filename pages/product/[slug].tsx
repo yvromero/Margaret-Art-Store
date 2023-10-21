@@ -3,6 +3,8 @@ import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 
 import { Grid, Typography, Box, Button, Chip } from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import BlockIcon from '@mui/icons-material/Block';
 
 import { CartContext } from '@/context';
 
@@ -85,7 +87,8 @@ const ProductPage:NextPage<Props> = ({product}) => {
             {
               (product.inStock > 0 )
               ?(
-                <Button 
+                <Button
+                  startIcon={ <AddShoppingCartIcon/> }
                   variant='contained'
                   color='secondary' 
                   className='circular-btn'
@@ -97,7 +100,12 @@ const ProductPage:NextPage<Props> = ({product}) => {
 
               )
               :(
-                <Chip label="No disponible" color="error" variant="outlined"/>
+                <Chip 
+                  label="No disponible" 
+                  color="error" 
+                  variant="outlined"
+                  icon={ <BlockIcon /> }
+                />
               )
             }
 

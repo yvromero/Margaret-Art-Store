@@ -1,9 +1,10 @@
 import { FC, useContext } from 'react';
 import NextLink from 'next/link';
 import { CardActionArea, CardMedia, Link, Grid, Box, Typography, Button } from "@mui/material";
-import { ItemCounter } from '../ui';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+
 import { CartContext } from '@/context';
-import { ICartProduct, IOrderItem, IProduct } from '@/interfaces';
+import { ICartProduct, IOrderItem } from '@/interfaces';
 
 
 interface Props {
@@ -14,14 +15,7 @@ interface Props {
 
 export const CartList:FC<Props> = ({editable = false, products }) => {
 
-  // const { numberOfItems, subTotal, total, tax } = useContext( CartContext );
-
-  const { cart, updateCartQuantity, removeCartProduct } = useContext(CartContext);
-
-  const onNewCartQuantityValue = ( product: ICartProduct, newQuantityValue: number) => {
-    product.quantity = newQuantityValue;
-    updateCartQuantity ( product );
-  }
+  const { cart, removeCartProduct } = useContext(CartContext);
 
 
 const productsToShow = products ? products : cart;
@@ -52,19 +46,7 @@ const productsToShow = products ? products : cart;
                   <Box display='flex' flexDirection='column'>
                     <Typography variant='body1'>{ product.title }</Typography>
                     <Typography variant='body2'>{`${ product.dimensions}`}</Typography>
-                  {/* {
-                    editable
-                    ? (
-                        <ItemCounter 
-                        currentValue={ product.quantity}
-                        maxValue={ 1 } // Regla de negocio Pantalla Carrito
-                        updateQuantity={( newValue ) => onNewCartQuantityValue( product as ICartProduct, newValue )}
-                        />
-                      )
-                    : (
-                        <Typography variant='body2'>{ product.quantity }
-                          { product.quantity > 1 ? ' cuadros':' cuadro' }</Typography>)
-                  } */}
+
                   </Box>
                 </Grid>
                 
@@ -81,8 +63,10 @@ const productsToShow = products ? products : cart;
                   editable && (
                     
                     <Button 
-                      variant='text' 
-                      color='primary'
+                      variant='text'
+                      startIcon={ <RemoveShoppingCartIcon/> }
+                      color='primary' 
+                      className='circular-btn'
                       onClick={ () => removeCartProduct( product as ICartProduct )}
                     >
                     Remover
