@@ -109,9 +109,9 @@ const RegisterPage = () => {
 
                         <Grid item xs={12}>
                             <Button 
-                                variant='outlined'
+                                variant='contained'
                                 type="submit"
-                                color="primary" 
+                                color="secondary" 
                                 className="circular-btn" 
                                 size="large" 
                                 fullWidth

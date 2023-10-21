@@ -30,7 +30,7 @@ const CartPage = () => {
                 CARRITO DE COMPRA
             </Typography>
 
-            <Grid container sx={{ mt: 3}}>
+            <Grid container sx={{ mt: 5 }}>
             <Grid item xs={12} sm={ 7 }>
                 <CartList editable/>
             </Grid>
@@ -44,6 +44,7 @@ const CartPage = () => {
 
                         <Box sx={{ mt: 2 }}>
                             <Button 
+                                variant='contained'
                                 color="secondary" 
                                 className='circular-btn' 
                                 fullWidth

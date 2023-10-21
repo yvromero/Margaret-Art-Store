@@ -108,8 +108,8 @@ const ProductPage:NextPage<Props> = ({product}) => {
               (product.inStock > 0 )
               ?(
                 <Button 
-                  variant='outlined'
-                  color='primary' 
+                  variant='contained'
+                  color='secondary' 
                   className='circular-btn'
                   onClick={ onAddProduct }
                 >
@@ -127,10 +127,10 @@ const ProductPage:NextPage<Props> = ({product}) => {
               <Typography variant='body2'>{product.dimensions}</Typography>
             </Box>
 
-            <Box sx={{ mt: 2 }}>
+            {/* <Box sx={{ mt: 2 }}>
               <Typography variant='subtitle2'>Peso</Typography>
               <Typography variant='body2'>{product.weight}</Typography>
-            </Box>
+            </Box> */}
 
             <Box sx={{ mt: 2 }}>
               <Typography variant='subtitle2'>Material</Typography>

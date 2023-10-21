@@ -9,7 +9,8 @@ import { grey } from '@mui/material/colors';
 import { ShopLayout } from "@/components/layouts";
 import { dbOrders } from '@/database';
 import { IOrder } from '@/interfaces';
-
+import moment from 'moment';
+import { useState } from 'react';
 
 
 
@@ -44,29 +45,40 @@ const columns: GridColDef[] = [
                 </NextLink>
             )
         }
-    }
-
+    },
+    { field: 'createdAt', headerName: 'Creada', width: 220,
+        renderCell: (params) =>
+            moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+},
+    { field: 'updatedAt', headerName: 'Actualizada', width: 220,
+        renderCell: (params) =>
+            moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+},
 ];
-
 
 interface Props {
     orders: IOrder[],
+
 }
 
 const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
 
+    const [pageSize, setPageSize] = useState(5);
 
     const rows = orders.map(( order, indice ) => ({
         id: indice + 1,
         paid: order.isPaid,
         fullname: `${ order.shippingAddress.firstName } ${ order.shippingAddress.lastName }`,
-        orderId: order._id
-    }))
+        orderId: order._id,
+        createdAt  : order.createdAt,
+        updatedAt  : order.updatedAt,
+        
+    }));
 
     return (
 
     <ShopLayout title={'Historial de órdenes'} pageDescription="Historial de órdenes del cliente">
-        
+
         <Typography
             variant="h1"
             component="h1"
@@ -80,8 +92,9 @@ const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
                 <DataGrid 
                     rows={ rows }
                     columns={ columns }
-                    // pageSize = {10}
-                    // rowsPerPageOptions={[10]}
+                    // pageSize={pageSize}
+                    // rowsPerPageOptions={[5, 10, 20] as number[]}
+                    // onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
                     getRowSpacing={(params) => ({
                         top: params.isFirstVisible ? 0 : 5,
                         bottom: params.isLastVisible ? 0 : 5,
@@ -90,7 +103,7 @@ const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
                         '& .MuiDataGrid-row': {
                         bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[200] : grey[900]),
                         },
-                    }}
+                    }} 
                 />
             </Grid>
         </Grid>

@@ -1,81 +1,103 @@
-import { FaInstagram } from 'react-icons/fa';
-import { FaLinkedin } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
+import * as React from "react";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import { Facebook, Instagram, Twitter } from "@mui/icons-material";
+import { Box } from "@mui/material";
 
 
-const Footer = () => {
+export default function Footer() {
+    return (
+        <Box
+        component="footer"
+        sx={{
+        backgroundColor: (theme) =>
+            theme.palette.mode === "light"
+            ? theme.palette.grey[200]
+            : theme.palette.grey[800],
+        }}
 
-	return (
-		<>
-		<div className='bg-gray-50 h-1/2 w-full flex md:flex-row flex-col justify-around items-start p-20'>
-			<div className='p-5 '>
-			<ul>
-				<p className='text-gray-800 font-bold text-3xl pb-6'>
-				Margarita<span className='text-pink-600'>Ruiz</span>
-				</p>
-				<div className='flex gap-6 pb-5'>
-				<FaFacebook className='text-2xl cursor-pointer hover:text-blue-600' />
-				<FaInstagram className='text-2xl cursor-pointer hover:text-yellow-600'/>
-				<FaLinkedin className='text-2xl cursor-pointer hover:text-blue-600' />
-				<FaXTwitter className='text-2xl cursor-pointer hover:text-gray-600' />
-				</div>
-			</ul>
-			</div>
+    >
 
-			<div className='p-5'>
-			<ul>
-				<p className='text-gray-800 font-bold text-2xl pb-4'>Tienda</p>
-
-				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Acerca de
-				</li>
-
-				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-					Contáctenos
-				</li>
-
-				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-					Tu cuenta
-				</li>
-				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Términos y condiciones
-				</li>
-			</ul>
-			</div>
-
-			<div className='p-5'>
-			<ul>
-				<p className='text-gray-800 font-bold text-2xl pb-4'>
-				Servicio al cliente
-				</p>
-				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Seguimiento de mi pedido
-				</li>
-				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Plazo de entrega
-				</li>
-				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Gastos de envío
-				</li>
-				<li className='text-gray-500 text-md pb-2 font-semibold hover:text-pink-600 cursor-pointer'>
-				Devoluciones
-				</li>
-			</ul>
-			</div>
-
-		</div>
-		
-		<div className='flex flex-col justify-center items-center text-center  p-5 bg-gray-50'>
-			<h1 className=' text-gray-800 font-semibold'>
-			© 2023 All rights reserved | Build with ❤ by{' '}
-			<span className='hover:text-blue-600 font-semibold cursor-pointer'>
-				The Romers{' '}
-			</span>
-			</h1>
-		</div>
-    </>
-	);
-}
-
-export default Footer;
+        <Container 
+        maxWidth="lg"
+        sx={{
+            minHeight: '65.5vh',
+            padding: '5em',
+            marginBottom: '1em'
+        }}>
+            <Grid container spacing={5}
+            >
+            <Grid item xs={12} sm={4}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                Margarita <span style={{ color: 'rgb(255, 95, 162)', fontWeight: 'bold' }}>Ruiz</span>
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                Llevando arte en cada rincón del mundo
+                </Typography>
+                <Grid item xs={12} sm={7}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                </Typography>
+                <Link href="https://www.facebook.com/" color="inherit">
+                <Facebook />
+                </Link>
+                <Link
+                href="https://www.instagram.com/"
+                color="inherit"
+                sx={{ pl: 1, pr: 1 }}
+                >
+                <Instagram />
+                </Link>
+                <Link href="https://www.twitter.com/" color="inherit">
+                <Twitter />
+                </Link>
+            </Grid>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                Contáctenos
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                Primer Presidente, Asunción, Paraguay
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                Email: info@margaret-art.com
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                Phone: +54 595 991 262626
+                </Typography>
+                
+            </Grid>
+            <Grid item xs={12} sm={4}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                Servicio al cliente
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                Seguimiento de mi pedido
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                Plazo de entrega
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                Términos y condiciones
+                </Typography>
+            </Grid>
+            </Grid>
+            <Box mt={5} >
+            <Typography 
+                variant="body1" 
+                color="text.primary" 
+                align="center"
+                sx={{
+                    marginBottom: 0,
+                }}
+            >    
+            ©  {new Date().getFullYear()} All rights reserved | Build with <span style={{ color: 'rgb(255, 95, 162)' }}>❤</span> by{' '} <span style={{ color: 'rgb(0, 0, 0)', fontWeight: 'bold' }}>The Romers</span>
+            </Typography>
+            </Box>
+        </Container>
+        </Box>
+        
+    );
+    }

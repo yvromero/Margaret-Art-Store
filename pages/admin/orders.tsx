@@ -6,18 +6,19 @@ import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import useSWR from 'swr';
 import { AdminLayout } from "@/components/layouts";
 import { IOrder, IUser } from "@/interfaces";
+import moment from "moment";
 
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'Orden ID', width: 300 },
+    { field: 'id', headerName: 'Orden ID', width: 220 },
     { field: 'nroProducts', headerName: 'Nro. Productos', align: 'center', width: 150 },
-    { field: 'total', headerName: 'Monto total', width: 200 },
+    { field: 'total', headerName: 'Monto total', width: 150 },
 
     {
         field: 'isPaid',
         headerName: 'Estado',
             description: 'Estado de la orden generada',
-            width: 250,
+            width: 200,
             renderCell: ({row}: GridRenderCellParams) => {
                 return (
                     row.isPaid
@@ -30,7 +31,7 @@ const columns: GridColDef[] = [
         field: 'check',
         headerName: 'Orden de Compra',
             description: 'Verificar detalle de la orden',
-            width: 250,
+            width: 200,
             renderCell: ({ row }: GridRenderCellParams) => {
                 return (
                     <a href={`/admin/orders/${ row.id }` } target="_blank"  rel="noreferrer">
@@ -40,10 +41,16 @@ const columns: GridColDef[] = [
             },
     },
 
-    { field: 'name', headerName: 'Nombre completo', width: 250 },
-    { field: 'email', headerName: 'Correo electrónico', width: 250 },
-    { field: 'createdAt', headerName: 'Creada', width: 250 },
-    { field: 'updatedAt', headerName: 'Actualizada', width: 250 },
+    { field: 'name', headerName: 'Nombre completo', width: 200 },
+    { field: 'email', headerName: 'Correo electrónico', width: 200 },
+    { field: 'createdAt', headerName: 'Creada', width: 200,
+        renderCell: (params) =>
+        moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+    },
+    { field: 'updatedAt', headerName: 'Actualizada', width: 200,
+    renderCell: (params) =>
+    moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+    },
 ]
 
 const OrdersPage = () => {

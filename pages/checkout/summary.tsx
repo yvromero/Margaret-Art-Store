@@ -83,7 +83,6 @@ const SummaryPage = () => {
                         <Typography>{ address }{ address2 ? `, ${ address2 }` : ''}</Typography>
                         <Typography>{ city } { zip }</Typography>
                         <Typography>{ country }</Typography>
-                        {/* <Typography>{ countries.find( c => c.code === country )?.name }</Typography> */}
                         <Typography>{ email }</Typography>
                         <Typography>{ phone }</Typography>
 
@@ -101,8 +100,8 @@ const SummaryPage = () => {
 
                         <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
                             <Button 
-                                variant='outlined'
-                                color="primary" 
+                                variant='contained'
+                                color="secondary" 
                                 className='circular-btn' 
                                 fullWidth
                                 onClick={ onCreateOrder }

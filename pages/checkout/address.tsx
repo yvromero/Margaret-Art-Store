@@ -5,7 +5,6 @@ import Cookies from "js-cookie";
 import { useForm } from 'react-hook-form';
 import { ShopLayout } from "@/components/layouts";
 import { CartContext } from '@/context';
-import { countries } from '@/utils';
 
 
 type FormData = {
@@ -55,7 +54,7 @@ const AddressPage = () => {
             lastName      : '',
             documentType  : '',
             documentNumber: '',
-            country       : countries[17].code,
+            country       : '',
             region        : '',
             city          : '',
             address       : '',
@@ -142,30 +141,20 @@ const AddressPage = () => {
                         </Grid>
                         
                         <Grid item xs={12} sm={ 6 }>
-                    {/* <FormControl fullWidth> */}
+
                         <TextField
-                            // select
                             variant="filled"
                             label="País"
                             fullWidth
                             InputLabelProps={{ shrink: true }}
-                            // defaultValue={ Cookies.get('country') || countries[0].code }
+    
                             { ...register('country', {
                                 required: 'Este campo es requerido'
                             })}
                             error={ !!errors.country }
                             helperText={ errors.country?.message }
                         />
-                            {/* {
-                                countries.map( country => (
-                                    <MenuItem 
-                                        key={ country.code }
-                                        value={ country.code }
-                                    >{ country.name }</MenuItem>
-                                ))
-                            }
-                        </TextField> */}
-                    {/* </FormControl> */}
+
                     </Grid>
                 
                         <Grid item xs={12} sm={6}>
@@ -221,7 +210,7 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Zip' 
+                            label='Código Postal' 
                             variant="filled"
                             fullWidth
                             InputLabelProps={{ shrink: true }}
@@ -269,9 +258,9 @@ const AddressPage = () => {
                     </Grid>
                     <Box sx={{mt: 5 }} display='flex' justifyContent='center'>
                             <Button
-                            variant='outlined'
+                            variant='contained'
                             type="submit" 
-                            color="primary" 
+                            color="secondary" 
                             className="circular-btn" 
                             size="large">
                                 Revisar Pedido

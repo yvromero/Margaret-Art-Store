@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AdminPanelSettings } from "@mui/icons-material";
 import useSWR from 'swr';
+import moment from 'moment';
 
 import { Grid, MenuItem, Select } from "@mui/material";
 import { grey } from "@mui/material/colors";
@@ -52,8 +53,8 @@ const UsersPage = () => {
 
 
     const columns: GridColDef[] = [
-        { field: 'email', headerName: 'Correo electrónico', width: 300 },
-        { field: 'name', headerName: 'Nombre completo', width: 300 },
+        { field: 'email', headerName: 'Correo electrónico', width: 250 },
+        { field: 'name', headerName: 'Nombre completo', width: 250 },
         { 
             field: 'role', 
             headerName: 'Rol', 
@@ -75,8 +76,15 @@ const UsersPage = () => {
                 )
             }
         },
-        { field: 'createdAt', headerName: 'Creada', width: 250 },
-        { field: 'updatedAt', headerName: 'Actualizada', width: 250 },
+        { field: 'createdAt', headerName: 'Creada', width: 200,
+            renderCell: (params) =>
+                moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+    },
+        { field: 'updatedAt', headerName: 'Actualizada', width: 200,
+                renderCell: (params) =>
+                    moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
+    },
+
     ];
 
     const rows = users.map( user => ({
