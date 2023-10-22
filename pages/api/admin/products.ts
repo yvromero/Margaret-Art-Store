@@ -121,7 +121,7 @@ const createProduct = async(req: NextApiRequest, res: NextApiResponse<Data>) => 
         return res.status(400).json({ message: 'El producto requiere la carga de 1 imagen' });
     }
     
-    // TODO: posiblemente tendremos un localhost:3000/products/asdasd.jpg
+
     
     try {
         await db.connect();

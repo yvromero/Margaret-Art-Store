@@ -2,7 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios';
 import { IPaypal } from '@/interfaces';
 import { db } from '../../../database';
-import { Order } from '../../../models';
+import { Order, Product } from '../../../models';
+
 
 
 type Data = {
@@ -52,7 +53,7 @@ const getPaypalBearerToken = async():Promise<string|null>=> {
 
 const payOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
-   //  TODO: Validar que la sesion corresponda al usuario que genero la orden
+   // Validar que la sesion corresponda al usuario que genero la orden
 
     const paypalBearerToken = await getPaypalBearerToken();
 
@@ -90,11 +91,27 @@ const payOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     }
 
-    dbOrder.transactionId = transactionId;
-    dbOrder.isPaid = true;
-    await dbOrder.save(); //Actualizar a true
+     // Validar stock para cada producto en el pedido y restar la cantidad llevada del stock
+     for (const orderItem of dbOrder.orderItems) {
+        const dbProduct = await Product.findById(orderItem._id);
 
-    await db.disconnect();
+    // Verificar que el id del producto exista y el stock mayor a la cantidad llevada
+        if (!dbProduct || dbProduct.inStock < orderItem.quantity) {
+            await db.disconnect();
+            return res.status(400).json({ message: 'No hay suficiente stock disponible para uno o más productos en el pedido' });
+        }
+
+    // Restar la cantidad del stock de cada producto
+        dbProduct.inStock -= orderItem.quantity;
+        await dbProduct.save();
+    }
+
+            
+        dbOrder.transactionId = transactionId;
+        dbOrder.isPaid = true;//Actualizar a true
+        await dbOrder.save(); 
+
+        await db.disconnect();
 
 
     return res.status(200).json({ message: 'Transacción completada' })
