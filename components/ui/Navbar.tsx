@@ -6,7 +6,7 @@ import NextLink from 'next/link';
 import { AppBar, Badge, Box, Button, IconButton, Input, Link, Toolbar, Typography, InputAdornment } from '@mui/material';
 import { ClearOutlined, SearchOutlined, ShoppingCart  } from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 export const Navbar = () => {
 
@@ -40,7 +40,9 @@ export const Navbar = () => {
                 <NextLink legacyBehavior href='/category/paisajes-naturaleza'>
                         <Link>
                             <Button color={ asPath === '/category/paisajes-naturaleza' ? 'secondary': 'info'}>
+                            <Typography variant="button">
                             Paisajes y Naturaleza 
+                            </Typography>
                             </Button>
                         </Link>
                     </NextLink>
@@ -48,7 +50,9 @@ export const Navbar = () => {
                     <NextLink legacyBehavior href='/category/retrato-figuras'>
                         <Link>
                             <Button color={ asPath === '/category/retrato-figuras' ? 'secondary': 'info'}>
-                            Retrato y Figuras 
+                                <Typography variant="button">
+                                    Retrato y Figuras
+                                </Typography>
                             </Button>
                         </Link>
                     </NextLink>
@@ -56,7 +60,9 @@ export const Navbar = () => {
                     <NextLink legacyBehavior href='/category/abstracto-contemporaneo'>
                         <Link>
                             <Button color={ asPath === '/category/abstracto-contemporaneo' ? 'secondary': 'info'}>
-                            Abstracto y Contemporáneo 
+                            <Typography variant="button">
+                            Abstracto y Contemporáneo
+                            </Typography>
                             </Button>
                         </Link>
                     </NextLink>
@@ -118,7 +124,7 @@ export const Navbar = () => {
             <Link>
                 <Badge 
                 badgeContent={ numberOfItems > 9 ? '+9': numberOfItems } color="secondary">
-                    <ShoppingCart/>
+                    <ShoppingCartOutlinedIcon />
                 </Badge>
             </Link>
         </NextLink>

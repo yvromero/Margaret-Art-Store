@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
-import { Box, Button, capitalize, Card, CardActions, CardMedia, Chip, Divider, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material';
-
+import { Box, Button, capitalize, Card, CardActions, CardMedia, Chip, Divider, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography, IconButton } from '@mui/material';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 import { AdminLayout } from '../../../components/layouts';
 import { IProduct } from '../../../interfaces';
@@ -436,6 +436,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
 
                                                 <CardActions>
                                                     <Button
+                                                        startIcon={ <DeleteForeverOutlinedIcon /> }
                                                         variant='contained'
                                                         fullWidth 
                                                         color="error"
