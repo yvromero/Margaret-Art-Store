@@ -2,12 +2,13 @@ import NextLink from 'next/link';
 import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
 import { Box, Button, CardMedia, Grid, Link } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 
 import useSWR from 'swr';
 import { AdminLayout } from "@/components/layouts";
 import { IProduct } from "@/interfaces";
 import { AddOutlined } from '@mui/icons-material';
+import { useState } from 'react';
 
 
 
@@ -74,6 +75,8 @@ const columns: GridColDef[] = [
 
 const ProductsPage = () => {
 
+    const [pageSize, setPageSize] = useState(10)
+
     const { data, error } = useSWR<IProduct[]>('/api/admin/products');
 
     if ( !data && !error ) return (<></>);
@@ -120,8 +123,11 @@ const ProductsPage = () => {
                         <DataGrid 
                             rows={ rows }
                             columns={ columns }
-                            // pageSize = {10}
-                            // rowsPerPageOptions={[10]}
+                            pagination={true}
+                            // @ts-ignore
+                            pageSize = {pageSize}
+                            onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
+                            rowsPerPageOptions={[10,15,20]}
                                 getRowSpacing={(params) => ({
                                     top: params.isFirstVisible ? 0 : 5,
                                     bottom: params.isLastVisible ? 0 : 5,
@@ -130,6 +136,18 @@ const ProductsPage = () => {
                                     '& .MuiDataGrid-row': {
                                         bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[200] : grey[900]),
                                         },
+                                    }}
+                                    components={{
+                                        Toolbar: () => {
+                                            return <GridToolbarContainer 
+                                                sx={{justifyContent: 'flex-end'}}>
+                                                <GridToolbarExport
+                                                    csvOptions={{
+                                                        fileName: 'Productos Margaret Art',
+                                                        utf8WithBom: true,
+                                                }}/>
+                                            </GridToolbarContainer>
+                                        }
                                     }}
                         />
                     </Grid>

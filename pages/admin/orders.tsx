@@ -1,12 +1,13 @@
 import { ConfirmationNumberOutlined } from "@mui/icons-material";
 import { Chip, Grid } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 
 import useSWR from 'swr';
 import { AdminLayout } from "@/components/layouts";
 import { IOrder, IUser } from "@/interfaces";
 import moment from "moment";
+import { useState } from "react";
 
 
 const columns: GridColDef[] = [
@@ -56,6 +57,7 @@ const columns: GridColDef[] = [
 const OrdersPage = () => {
 
     const { data, error } = useSWR<IOrder[]>('/api/admin/orders');
+    const [pageSize, setPageSize] = useState(10)
 
     if ( !data && !error ) return (<></>);
 
@@ -85,8 +87,11 @@ const OrdersPage = () => {
                         <DataGrid 
                             rows={ rows }
                             columns={ columns }
-                            // pageSize = {10}
-                            // rowsPerPageOptions={[10]}
+                            pagination={true}
+                            // @ts-ignore
+                            pageSize = {pageSize}
+                            onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
+                            rowsPerPageOptions={[10,15,20]}
                                 getRowSpacing={(params) => ({
                                     top: params.isFirstVisible ? 0 : 5,
                                     bottom: params.isLastVisible ? 0 : 5,
@@ -95,6 +100,18 @@ const OrdersPage = () => {
                                     '& .MuiDataGrid-row': {
                                         bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[200] : grey[900]),
                                         },
+                                    }}
+                                    components={{
+                                        Toolbar: () => {
+                                            return <GridToolbarContainer
+                                                sx={{justifyContent: 'flex-end'}}>
+                                                <GridToolbarExport
+                                                csvOptions={{
+                                                    fileName: 'Ordenes Margaret Art',
+                                                    utf8WithBom: true,
+                                            }}/>
+                                            </GridToolbarContainer>
+                                        }
                                     }}
                         />
                     </Grid>

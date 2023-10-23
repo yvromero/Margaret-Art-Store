@@ -63,7 +63,7 @@ interface Props {
 
 const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
 
-    const [pageSize, setPageSize] = useState(5);
+    const [pageSize, setPageSize] = useState(5)
 
     const rows = orders.map(( order, indice ) => ({
         id: indice + 1,
@@ -92,9 +92,11 @@ const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
                 <DataGrid 
                     rows={ rows }
                     columns={ columns }
-                    // pageSize={pageSize}
-                    // rowsPerPageOptions={[5, 10, 20] as number[]}
-                    // onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
+                    pagination={true}
+                    // @ts-ignore
+                    pageSize = {pageSize}
+                    rowsPerPageOptions={[10,15,20]}
+                    onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
                     getRowSpacing={(params) => ({
                         top: params.isFirstVisible ? 0 : 5,
                         bottom: params.isLastVisible ? 0 : 5,

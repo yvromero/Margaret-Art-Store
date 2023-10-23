@@ -5,16 +5,20 @@ import moment from 'moment';
 
 import { Grid, MenuItem, Select } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
+
 import { AdminLayout } from "@/components/layouts";
 import { IUser } from "@/interfaces";
 import { margaretApi } from "@/fetching";
+
 
 
 const UsersPage = () => {
 
     const { data, error } = useSWR<IUser[]>('/api/admin/users');
     const [users, setUsers] = useState<IUser[]>([]);
+    const [pageSize, setPageSize] = useState(10)
+
 
     useEffect(() => {
         if (data) {
@@ -48,7 +52,6 @@ const UsersPage = () => {
 
         }
     };
-
 
 
 
@@ -110,8 +113,11 @@ const UsersPage = () => {
                     <DataGrid 
                         rows={ rows }
                         columns={ columns }
-                        // pageSize = {10}
-                        // rowsPerPageOptions={[10]}
+                        pagination={true}
+                        // @ts-ignore
+                        pageSize = {pageSize}
+                        onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
+                        rowsPerPageOptions={[10,15,20]}
                         getRowSpacing={(params) => ({
                             top: params.isFirstVisible ? 0 : 5,
                             bottom: params.isLastVisible ? 0 : 5,
@@ -121,7 +127,20 @@ const UsersPage = () => {
                             bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[200] : grey[900]),
                             },
                         }}
+                        components={{
+                            Toolbar: () => {
+                                return <GridToolbarContainer 
+                                    sx={{justifyContent: 'flex-end'}}>
+                                    <GridToolbarExport
+                                    csvOptions={{
+                                        fileName: 'Usuarios Margaret Art',
+                                        utf8WithBom: true,
+                                }}/>
+                                </GridToolbarContainer>
+                            }
+                        }}
                     />
+                    
                 </Grid>
             </Grid>
         </AdminLayout>

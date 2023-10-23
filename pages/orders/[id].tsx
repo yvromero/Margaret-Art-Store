@@ -152,6 +152,10 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                                         />
                                     ): (
                                         <PayPalButtons 
+                                            style={{
+                                                color:"blue",
+                                                label:"pay"
+                                            }}
                                             createOrder={(data, actions) => {
                                                 return actions.order.create({
                                                     purchase_units: [
