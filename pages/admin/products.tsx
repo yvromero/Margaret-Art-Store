@@ -75,7 +75,7 @@ const columns: GridColDef[] = [
 
 const ProductsPage = () => {
 
-    const [pageSize, setPageSize] = useState(10)
+    const [pageSize, setPageSize] = useState(15)
 
     const { data, error } = useSWR<IProduct[]>('/api/admin/products');
 
@@ -127,7 +127,7 @@ const ProductsPage = () => {
                             // @ts-ignore
                             pageSize = {pageSize}
                             onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
-                            rowsPerPageOptions={[10,15,20]}
+                            rowsPerPageOptions={[15,30,60]}
                                 getRowSpacing={(params) => ({
                                     top: params.isFirstVisible ? 0 : 5,
                                     bottom: params.isLastVisible ? 0 : 5,
