@@ -16,7 +16,7 @@ import { useState } from 'react';
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 100},
-    { field: 'fullname', headerName: 'Nombre Completo', width: 220},
+    { field: 'fullname', headerName: 'Nombre Completo', width: 230},
 
     {
         field: 'paid',
@@ -63,7 +63,7 @@ interface Props {
 
 const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
 
-    const [pageSize, setPageSize] = useState(5)
+    const [pageSize, setPageSize] = useState(10)
 
     const rows = orders.map(( order, indice ) => ({
         id: indice + 1,

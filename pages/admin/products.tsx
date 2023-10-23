@@ -61,13 +61,13 @@ const columns: GridColDef[] = [
     //         </Button>
     //         ),
     // },
-    { field: 'category', headerName: 'Categoría',  width: 250},
-    { field: 'theme', headerName: 'Tema', width: 150},
-    { field: 'price', headerName: 'Precio', width: 150 },
-    { field: 'dimensions', headerName: 'Medidas', width: 150 },
-    { field: 'weight', headerName: 'Peso', width: 150 },
-    { field: 'inStock', headerName: 'Inventario', width: 150 },
-    { field: 'materials', headerName: 'Material', width: 150 },
+    { field: 'price', headerName: 'Precio', width: 100 },
+    { field: 'inStock', headerName: 'Inventario', width: 100 },
+    { field: 'category', headerName: 'Categoría',  width: 200},
+    { field: 'theme', headerName: 'Tema', width: 100},
+    { field: 'dimensions', headerName: 'Medidas', width: 100 },
+    { field: 'weight', headerName: 'Peso', width: 100 },
+    { field: 'materials', headerName: 'Material', width: 100 },
     { field: 'framed', headerName: 'Encuadrado' },
 
 
@@ -75,7 +75,7 @@ const columns: GridColDef[] = [
 
 const ProductsPage = () => {
 
-    const [pageSize, setPageSize] = useState(15)
+    const [pageSize, setPageSize] = useState(10)
 
     const { data, error } = useSWR<IProduct[]>('/api/admin/products');
 
@@ -127,7 +127,7 @@ const ProductsPage = () => {
                             // @ts-ignore
                             pageSize = {pageSize}
                             onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
-                            rowsPerPageOptions={[15,30,60]}
+                            rowsPerPageOptions={[10,30,60]}
                                 getRowSpacing={(params) => ({
                                     top: params.isFirstVisible ? 0 : 5,
                                     bottom: params.isLastVisible ? 0 : 5,
