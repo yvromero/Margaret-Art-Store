@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { NextPage, GetStaticPaths, GetStaticProps } from "next";
+import { NextPage, GetStaticPaths, GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 
 import { Grid, Typography, Box, Button, Chip } from '@mui/material';
@@ -148,7 +148,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 }
 
 // getStaticsProps...
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps  = async ({ params }) => {
 
   const { slug = ''} = params as { slug: string };
   const product =  await dbProducts.getProductBySlug(slug);
@@ -166,9 +166,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       product
-    },
-    revalidate: 60
-  }
+    }
+  };
 }
 
 export default ProductPage;
