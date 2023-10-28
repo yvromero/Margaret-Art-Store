@@ -59,28 +59,29 @@ const ProductPage:NextPage<Props> = ({product}) => {
     <ShopLayout title={product.title} pageDescription={product.description}>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} sm={7} style={{ marginTop: '20px' }}>
           {/* ImageZoom */}
           <ProductMagnify images={product.images} />
         </Grid>
 
         <Grid item xs={12} sm={5}>
-          <Box sx={{ mt: 1 }} display='flex' flexDirection='column'>
+          <Box sx={{ mt: 2.5 }} display='flex' flexDirection='column'>
             {/* titulos */}
-            <Typography variant='h1' component='h1'>
+            <Typography variant='h1' component='h1' sx={{ ml:1}}>
               {product.title}
             </Typography>
             <Typography
               variant='subtitle1'
               component='h2'
+              sx={{ ml:1}}
             >{`$${product.price}`}</Typography>
 
             {/* Descripcion */}
-            <Box sx={{ my: 3, mt: 1 }}>
-              <Typography variant='subtitle2'>
+            <Box sx={{ my: 3, mt: 2 }}>
+              <Typography variant='subtitle2' sx={{ ml:1, fontWeight: 'bold' }}>
                 Descripción de la obra
               </Typography>
-              <Typography variant='body2'>{product.description}</Typography>
+              <Typography variant='body2' sx={{ ml:1 }}>{product.description}</Typography>
             </Box>
 
             {/* Agregar al carrito */}
@@ -90,6 +91,7 @@ const ProductPage:NextPage<Props> = ({product}) => {
                 <Button
                   startIcon={ <AddShoppingCartIcon/> }
                   variant='contained'
+                  sx={{ ml:1, fontWeight: 'bold' }}
                   color='secondary' 
                   className='circular-btn'
                   disabled={isProductInCart}
@@ -110,8 +112,8 @@ const ProductPage:NextPage<Props> = ({product}) => {
             }
 
             <Box sx={{ mt: 2 }}>
-              <Typography variant='subtitle2'>Medidas</Typography>
-              <Typography variant='body2'>{product.dimensions}</Typography>
+              <Typography variant='subtitle2' sx={{ ml:1, fontWeight: 'bold' }}>Medidas</Typography>
+              <Typography variant='body2' sx={{ ml:1 }}>{product.dimensions}</Typography>
             </Box>
 
             {/* <Box sx={{ mt: 2 }}>
@@ -120,13 +122,13 @@ const ProductPage:NextPage<Props> = ({product}) => {
             </Box> */}
 
             <Box sx={{ mt: 2 }}>
-              <Typography variant='subtitle2'>Material</Typography>
-              <Typography variant='body2'>{product.materials}</Typography>
+              <Typography variant='subtitle2' sx={{ ml:1, fontWeight: 'bold' }}>Material</Typography>
+              <Typography variant='body2' sx={{ ml:1 }}>{product.materials}</Typography>
             </Box>
 
             <Box sx={{ mt: 2 }}>
-              <Typography variant='subtitle2'>Enmarcado</Typography>
-              <Typography variant='body2'>{product.framed}</Typography>
+              <Typography variant='subtitle2' sx={{ ml:1, fontWeight: 'bold' }}>Enmarcado</Typography>
+              <Typography variant='body2' sx={{ ml:1 }}>{product.framed}</Typography>
             </Box>
           </Box>
         </Grid>

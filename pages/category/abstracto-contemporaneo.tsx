@@ -18,8 +18,8 @@ const AbstractoContemporaneoPage: NextPage = () => {
           title={'Abstracto y Contemporáneo'} 
           pageDescription={'Pinturas al óleo sobre Abstracto y Contemporáneo.'}
       >
-        <Typography variant='h1' component='h1'>Pinturas al óleo</Typography>
-        <Typography variant='h2' sx={{ mb:2 }}>Abstracto y Contemporáneo</Typography>
+        <Typography variant='h1' component='h1' sx={{ mb: 1 }}>Pinturas al óleo</Typography>
+        <Typography variant='h5' sx={{ mb: 3 }}>Abstracto y Contemporáneo</Typography>
 
 
         {

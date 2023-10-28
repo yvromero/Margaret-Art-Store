@@ -17,8 +17,8 @@ const PaisajesNaturalezaPage: NextPage = () => {
           title={'Paisajes y Naturaleza'} 
           pageDescription={'Pinturas al óleo sobre Paisajes y Naturaleza.'}
       >
-        <Typography variant='h1' component='h1'>Pinturas al óleo</Typography>
-        <Typography variant='h2' sx={{ mb:2 }}>Paisajes y Naturaleza</Typography>
+        <Typography variant='h1' component='h1' sx={{ mb: 1 }}>Pinturas al óleo</Typography>
+        <Typography variant='h5' sx={{ mb: 3 }}>Paisajes y Naturaleza</Typography>
 
 
         {

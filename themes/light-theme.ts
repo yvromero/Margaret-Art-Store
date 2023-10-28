@@ -27,7 +27,7 @@ export const lightTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          backgroundColor: 'white',
+          backgroundColor: 'black',
           height: 60
         },
       }
@@ -52,10 +52,10 @@ export const lightTheme = createTheme({
 
     MuiButton: {
       defaultProps: {
-        variant: 'contained',
+        variant: 'outlined',
         size: 'small',
         disableElevation: true,
-        color: 'info'
+        color: 'primary'
       },
       styleOverrides: {
         root: {
@@ -63,13 +63,9 @@ export const lightTheme = createTheme({
           // color:'black',
           textTransform: 'none',
           boxShadow: 'none',
-          borderRadius: 20,
+          borderRadius: 8,
           ":hover": {
-           //background: 'linear-gradient(pink, 80%, purple)',
-          //background: 'radial-gradient(pink, blue)',
-          // background: 'linear-gradient(70deg, pink, purple)',
           background: 'linear-gradient(104.9deg, rgb(255, 95, 162) 2.3%, rgb(254, 201, 154) 92.7%)',
-          
           transition: 'all 0.1s ease-in-out'
           }
         }
@@ -83,10 +79,16 @@ export const lightTheme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: '0px 5px 5px rgba(0,0,0,0.05)',
-          borderRadius: '10px',
+          borderRadius: '20px',
         }
       }
-    }
-    
-  }
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          color: 'white', // Establece el color blanco para los iconos en el NavBar
+        },
+      },
+    },
+  },
 });

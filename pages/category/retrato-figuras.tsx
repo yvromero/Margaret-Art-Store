@@ -18,8 +18,8 @@ const RetratoFigurasPage: NextPage = () => {
           title={'Retrato y Figuras'} 
           pageDescription={'Pinturas al óleo sobre Retrato y Figuras.'}
       >
-        <Typography variant='h1' component='h1'>Pinturas al óleo</Typography>
-        <Typography variant='h2' sx={{ mb:2 }}>Retrato y Figuras</Typography>
+        <Typography variant='h1' component='h1' sx={{ mb: 1 }}>Pinturas al óleo</Typography>
+        <Typography variant='h5' sx={{ mb: 3 }}>Retrato y Figuras</Typography>
 
 
         {

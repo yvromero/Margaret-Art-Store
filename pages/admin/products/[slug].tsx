@@ -387,6 +387,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             <FormLabel sx={{ mb:2}}>Imágenes</FormLabel>
                             
                             <Button
+                                variant='contained'
                                 color="secondary"
                                 fullWidth
                                 startIcon={ <UploadOutlined /> }
@@ -398,7 +399,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             </Button>
 
                             <Typography variant="body2" sx={{ mb: 2 }}>
-                            Nota: Asegúrese de que las imágenes no superen el tamaño máximo de 10 MB y sean en formato JPG, PNG, GIF o JPEG.
+                            Nota: Asegúrese de que las imágenes no superen el tamaño máximo de 5 MB y sean en formato JPG, PNG, GIF, JPEG o WEBP.
                             </Typography>
 
                             <input

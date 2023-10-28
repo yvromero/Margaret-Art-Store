@@ -3,8 +3,9 @@ import { AdminPanelSettings } from "@mui/icons-material";
 import useSWR from 'swr';
 import moment from 'moment';
 
-import { Grid, MenuItem, Select } from "@mui/material";
+import { Button, Grid, MenuItem, Select } from "@mui/material";
 import { grey } from "@mui/material/colors";
+
 import { DataGrid, GridColDef, GridRenderCellParams, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
 
 import { AdminLayout } from "@/components/layouts";
@@ -107,7 +108,6 @@ const UsersPage = () => {
             subTitle={'Mantenimiento de usuarios'}
             icon={ <AdminPanelSettings/>}
         >
-
             <Grid container sx={{ mt: 3}} className='fadeIn'>
                 <Grid item xs={12} sx={{ height:650, width:'100%'}}>
                     <DataGrid 
@@ -122,25 +122,24 @@ const UsersPage = () => {
                             top: params.isFirstVisible ? 0 : 5,
                             bottom: params.isLastVisible ? 0 : 5,
                         })}
-                        sx={{
-                        '& .MuiDataGrid-row': {
-                            bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[200] : grey[900]),
-                            },
-                        }}
-                        components={{
-                            Toolbar: () => {
-                                return <GridToolbarContainer 
-                                    sx={{justifyContent: 'flex-end'}}>
-                                    <GridToolbarExport
-                                    csvOptions={{
-                                        fileName: 'Usuarios Margaret Art',
-                                        utf8WithBom: true,
-                                }}/>
-                                </GridToolbarContainer>
-                            }
-                        }}
+                            sx={{
+                            '& .MuiDataGrid-row': {
+                                bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[300] : grey[900]),
+                                },
+                            }}
+                            components={{
+                                Toolbar: () => {
+                                    return<GridToolbarContainer 
+                                        sx={{justifyContent: 'flex-end'}}>
+                                        <GridToolbarExport
+                                            csvOptions={{
+                                                fileName: 'Productos Margaret Art',
+                                                utf8WithBom: true,
+                                        }}/>
+                                    </GridToolbarContainer>
+                                }
+                            }}
                     />
-                    
                 </Grid>
             </Grid>
         </AdminLayout>

@@ -20,14 +20,14 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
             title={'Margaret Art Store - Search'} 
             pageDescription={'Encuentra preciosos cuadros al óleo en Margaret Art Store'}
         >
-            <Typography variant='h1' component='h1'>Buscar cuadros</Typography>
+            <Typography variant='h1' component='h1' sx={{ mb: 2 }}>Buscar cuadros</Typography>
             
             {
                 foundProducts
                 ?
                 <Box display='flex'>
-                    <Typography variant='h2' sx={{ mb:1 }}>Búsqueda:</Typography>
-                    <Typography variant='h2' sx={{ ml:1 }} color="secondary" textTransform="capitalize">{ query }</Typography>
+                    <Typography variant='h2' sx={{ mb:2 }}>Búsqueda:</Typography>
+                    <Typography variant='h2' sx={{ ml:1, fontWeight: 'bold' }} color="primary" textTransform="capitalize">{ query }</Typography>
                 </Box>
                 : 
                 (
@@ -36,7 +36,7 @@ const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
                 flexDirection={{ xs: 'column', sm: 'row' }}
                 >
                     <Typography variant='h2' sx={{ mb:2 }}>No encontramos ningún cuadro con la palabra:</Typography>
-                    <Typography variant='h2' sx={{ ml:1, mb:1 }} color="secondary" textTransform="capitalize">{ query }</Typography>
+                    <Typography variant='h2' sx={{ ml:1, fontWeight: 'bold'}} color="primary" textTransform="capitalize">{ query }</Typography>
                 </Box>
                 )
             }

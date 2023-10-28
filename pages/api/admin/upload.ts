@@ -32,7 +32,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 
 const saveFile = async( file: formidable.File ): Promise<string> => {
 
-    const maxSizeInBytes = 10 * 1024 * 1024;
+    const maxSizeInBytes = 5 * 1024 * 1024;
     if (file.size > maxSizeInBytes) {
         throw new Error('La imagen es demasiado grande. Por favor, sube una imagen no mayor a 10MB.');
     }

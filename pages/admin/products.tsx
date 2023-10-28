@@ -3,6 +3,7 @@ import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
 import { Box, Button, CardMedia, Grid, Link } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { DataGrid, GridColDef, GridRenderCellParams, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 import useSWR from 'swr';
 import { AdminLayout } from "@/components/layouts";
@@ -108,6 +109,7 @@ const ProductsPage = () => {
         >
             <Box display='flex' justifyContent='end' sx={ { mb: 2} }>
                 <Button
+                    variant='contained'
                     startIcon={ <AddOutlined/> }
                     color='secondary'
                     href="/admin/products/new"
@@ -134,7 +136,7 @@ const ProductsPage = () => {
                                 })}
                                     sx={{
                                     '& .MuiDataGrid-row': {
-                                        bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[200] : grey[900]),
+                                        bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[300] : grey[900]),
                                         },
                                     }}
                                     components={{
@@ -149,7 +151,7 @@ const ProductsPage = () => {
                                             </GridToolbarContainer>
                                         }
                                     }}
-                        />
+                                            />
                     </Grid>
                 </Grid>
         </AdminLayout>

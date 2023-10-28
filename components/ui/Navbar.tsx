@@ -28,8 +28,8 @@ export const Navbar = () => {
         <Toolbar>
             <NextLink legacyBehavior href='/' passHref>
                 <Link display='flex' alignItems='center'>
-                <Typography variant='h6'>Margaret Art |</Typography>
-                <Typography sx={{ ml: 0.5 }}>Shop</Typography>
+                <Typography variant='h6' style={{ color: 'white' }}>Margaret Art |</Typography>
+                <Typography sx={{ ml: 0.5, color: 'white' }}>Shop</Typography>
                 </Link>
             </NextLink>
 
@@ -40,7 +40,7 @@ export const Navbar = () => {
                 <NextLink legacyBehavior href='/category/paisajes-naturaleza'>
                         <Link>
                             <Button color={ asPath === '/category/paisajes-naturaleza' ? 'secondary': 'info'}>
-                            <Typography variant="button">
+                            <Typography sx={{ ml: 0.5 }}variant="button">
                             Paisajes y Naturaleza 
                             </Typography>
                             </Button>
@@ -78,7 +78,7 @@ export const Navbar = () => {
             ?
             (
                 <Input
-                    sx={{ display: {xs: 'none', sm: 'flex'} }}
+                    sx={{ color: 'white', display: {xs: 'none', sm: 'flex'} }}
                     className='fadeIn'
                     autoFocus
                     value={ searchTerm }
@@ -102,7 +102,7 @@ export const Navbar = () => {
             <IconButton 
                 onClick={ () => SetIsSearchVisible(true) }
                 className='fadeIn'
-                sx={{ display: { xs: 'none', sm: 'flex'} }}
+                sx={{ display: { xs: 'none', sm: 'flex', color: 'white'} }}
             >
                 <SearchOutlined/>
             </IconButton>
@@ -120,14 +120,17 @@ export const Navbar = () => {
             <SearchOutlined/>
         </IconButton>
 
+
         <NextLink legacyBehavior href="/cart" passHref>
             <Link>
-                <Badge 
-                badgeContent={ numberOfItems > 9 ? '+9': numberOfItems } color="secondary">
+                <IconButton>
+                <Badge badgeContent={numberOfItems > 9 ? '+9' : numberOfItems} color="secondary">
                     <ShoppingCartOutlinedIcon />
                 </Badge>
+                </IconButton>
             </Link>
-        </NextLink>
+         </NextLink>
+
 
         <IconButton 
         onClick={ toggleSideMenu }
@@ -138,5 +141,5 @@ export const Navbar = () => {
 
         </Toolbar>
     </AppBar>
-  )
+)
 }

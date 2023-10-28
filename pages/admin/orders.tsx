@@ -1,7 +1,8 @@
 import { ConfirmationNumberOutlined } from "@mui/icons-material";
-import { Chip, Grid } from "@mui/material";
+import { Button, Chip, Grid } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { DataGrid, GridColDef, GridRenderCellParams, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 import useSWR from 'swr';
 import { AdminLayout } from "@/components/layouts";
@@ -98,26 +99,25 @@ const OrdersPage = () => {
                                 })}
                                     sx={{
                                     '& .MuiDataGrid-row': {
-                                        bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[200] : grey[900]),
+                                        bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[300] : grey[900]),
                                         },
                                     }}
                                     components={{
                                         Toolbar: () => {
-                                            return <GridToolbarContainer
+                                            return <GridToolbarContainer 
                                                 sx={{justifyContent: 'flex-end'}}>
                                                 <GridToolbarExport
-                                                csvOptions={{
-                                                    fileName: 'Ordenes Margaret Art',
-                                                    utf8WithBom: true,
-                                            }}/>
+                                                    csvOptions={{
+                                                        fileName: 'Productos Margaret Art',
+                                                        utf8WithBom: true,
+                                                }}/>
                                             </GridToolbarContainer>
                                         }
                                     }}
-                        />
+                                            />
                     </Grid>
                 </Grid>
         </AdminLayout>
     )
 }
-
 export default OrdersPage

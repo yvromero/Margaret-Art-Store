@@ -33,8 +33,8 @@ const HomePage: NextPage = () => {
       </Box>
 
 
-        <Typography variant='h1' component='h1'>GALERIA</Typography>
-        <Typography variant='h2' sx={{ mb:2 }}>Todos los cuadros</Typography>
+        <Typography variant='h1' component='h1' sx={{ mb:1 }}>GALERIA</Typography>
+        <Typography variant='h5' sx={{ mb:3 }}>Todos los cuadros</Typography>
 
         {/* <FullScreenLoading /> */}
         {
