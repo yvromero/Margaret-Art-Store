@@ -3,7 +3,6 @@ import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
 import { Box, Button, CardMedia, Grid, Link } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { DataGrid, GridColDef, GridRenderCellParams, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
-import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 import useSWR from 'swr';
 import { AdminLayout } from "@/components/layouts";
@@ -126,10 +125,9 @@ const ProductsPage = () => {
                             rows={ rows }
                             columns={ columns }
                             pagination={true}
-                            // @ts-ignore
                             pageSize = {pageSize}
                             onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
-                            rowsPerPageOptions={[10,30,60]}
+                            rowsPerPageOptions={[10,50,100]}
                                 getRowSpacing={(params) => ({
                                     top: params.isFirstVisible ? 0 : 5,
                                     bottom: params.isLastVisible ? 0 : 5,

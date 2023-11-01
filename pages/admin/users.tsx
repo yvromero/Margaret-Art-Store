@@ -3,7 +3,7 @@ import { AdminPanelSettings } from "@mui/icons-material";
 import useSWR from 'swr';
 import moment from 'moment';
 
-import { Button, Grid, MenuItem, Select } from "@mui/material";
+import { Grid, MenuItem, Select } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 import { DataGrid, GridColDef, GridRenderCellParams, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
@@ -117,7 +117,7 @@ const UsersPage = () => {
                         // @ts-ignore
                         pageSize = {pageSize}
                         onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
-                        rowsPerPageOptions={[10,15,20]}
+                        rowsPerPageOptions={[10,50,100]}
                         getRowSpacing={(params) => ({
                             top: params.isFirstVisible ? 0 : 5,
                             bottom: params.isLastVisible ? 0 : 5,
@@ -133,7 +133,7 @@ const UsersPage = () => {
                                         sx={{justifyContent: 'flex-end'}}>
                                         <GridToolbarExport
                                             csvOptions={{
-                                                fileName: 'Productos Margaret Art',
+                                                fileName: 'Usuarios Margaret Art',
                                                 utf8WithBom: true,
                                         }}/>
                                     </GridToolbarContainer>
