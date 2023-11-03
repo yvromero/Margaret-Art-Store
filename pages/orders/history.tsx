@@ -15,8 +15,8 @@ import { useState } from 'react';
 
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 100},
-    { field: 'fullname', headerName: 'Nombre Completo', width: 230},
+    { field: 'id', headerName: 'ID', width: 120},
+    { field: 'fullname', headerName: 'Nombre Completo', width: 300},
 
     {
         field: 'paid',
@@ -35,7 +35,7 @@ const columns: GridColDef[] = [
         field: 'orden',
         headerName: 'Orden de Compra',
         sortable: false,
-        width: 200,
+        width: 300,
         renderCell: (params: GridRenderCellParams) => {
             return (
                 <NextLink legacyBehavior href={`/orders/${ params.row.orderId }`} passHref>
@@ -46,11 +46,11 @@ const columns: GridColDef[] = [
             )
         }
     },
-    { field: 'createdAt', headerName: 'Creada', width: 220,
+    { field: 'createdAt', headerName: 'Creada', width: 250,
         renderCell: (params) =>
             moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
 },
-    { field: 'updatedAt', headerName: 'Actualizada', width: 220,
+    { field: 'updatedAt', headerName: 'Actualizada', width: 250,
         renderCell: (params) =>
             moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
 },
@@ -92,8 +92,8 @@ const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
                 <DataGrid 
                     rows={ rows }
                     columns={ columns }
+                    disableSelectionOnClick
                     pagination={true}
-                    // @ts-ignore
                     pageSize = {pageSize}
                     rowsPerPageOptions={[10,15,20]}
                     onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
@@ -102,6 +102,9 @@ const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
                         bottom: params.isLastVisible ? 0 : 5,
                     })}
                     sx={{
+                    '& .MuiIconButton-root': {
+                        color: 'black', 
+                    },
                         '& .MuiDataGrid-row': {
                         bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[200] : grey[900]),
                         },

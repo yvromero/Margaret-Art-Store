@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 const DashboardPage = () => {
 
     const { data, error } = useSWR<DashboardSummaryResponse>('/api/admin/dashboard', {
-        refreshInterval: 30 * 1000 // 30 segundox
+        refreshInterval: 30 * 1000 // 30 segundos
     })
 
     const [refreshIn, setRefreshIn ] = useState( 30 );
@@ -94,28 +94,22 @@ const DashboardPage = () => {
                 subtitle={'Cuadros no disponibles'} 
                 icon={<CancelPresentationOutlined color="error" sx={{ fontSize: 40 }}/>}
             />
-
-            {/* <SummaryTile 
-                title={'20'} 
-                subtitle={'Ventas del mes'} 
-                icon={<TrendingUp color="success" sx={{ fontSize: 40 }}/>}
-            /> */}
         
             <SummaryTile 
                 title={ productsByCatNature } 
-                subtitle={'Categoría: Paisajes y Naturaleza'} // paisajes-naturaleza
+                subtitle={'Categoría: Paisajes y Naturaleza'} 
                 icon={<ColorLensOutlinedIcon sx={{ fontSize: 40 }}/>}
             />
             
             <SummaryTile 
                 title={ productsByCatFigure } 
-                subtitle={'Categoría: Retrato y Figuras'} // retrato-figuras
+                subtitle={'Categoría: Retrato y Figuras'}
                 icon={<BrushOutlinedIcon sx={{ fontSize: 40 }}/>}
             />
 
             <SummaryTile 
                 title={ productsByCatAbstract } 
-                subtitle={'Categoría: Abstracto y Contemporáneo'} // abstracto-contemporaneo
+                subtitle={'Categoría: Abstracto y Contemporáneo'} 
                 icon={<FormatColorFillOutlinedIcon sx={{ fontSize: 40 }}/>}
             />
 

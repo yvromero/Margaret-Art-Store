@@ -45,6 +45,7 @@ const columns: GridColDef[] = [
 
     { field: 'name', headerName: 'Nombre completo', width: 200 },
     { field: 'email', headerName: 'Correo electrónico', width: 200 },
+    { field: 'country', headerName: 'Destino', width: 200 },
     { field: 'createdAt', headerName: 'Creada', width: 200,
         renderCell: (params) =>
         moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
@@ -69,6 +70,7 @@ const OrdersPage = () => {
         isPaid     : order.isPaid,
         name       : (order.user as IUser).name,
         email      : (order.user as IUser).email,
+        country    : `${order.shippingAddress.city}, ${order.shippingAddress.country}`,
         createdAt  : order.createdAt,
         updatedAt  : order.updatedAt,
 
@@ -88,6 +90,7 @@ const OrdersPage = () => {
                         <DataGrid 
                             rows={ rows }
                             columns={ columns }
+                            disableSelectionOnClick
                             pagination={true}
                             pageSize = {pageSize}
                             onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
@@ -97,6 +100,9 @@ const OrdersPage = () => {
                                     bottom: params.isLastVisible ? 0 : 5,
                                 })}
                                     sx={{
+                                    '& .MuiIconButton-root': {
+                                        color: 'black', 
+                                    },
                                     '& .MuiDataGrid-row': {
                                         bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[300] : grey[900]),
                                         },

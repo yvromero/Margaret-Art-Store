@@ -14,6 +14,7 @@ import InsertChartOutlinedOutlinedIcon from '@mui/icons-material/InsertChartOutl
 import { AuthContext, UiContext } from '@/context';
 
 
+
 export const SideMenu = () => {
 
     const router = useRouter();
@@ -209,8 +210,9 @@ export const SideMenu = () => {
                                     
                                     <ListItem 
                                         button
-                                        onClick={ () => navigateTo('/admin/') }
+                                        onClick={ () => window.open('https://app.powerbi.com/view?r=eyJrIjoiZTNiMTdiODMtNzUxOC00YTc4LTlkNGEtM2ViOWIzMGFjYTM4IiwidCI6ImI1MjJhNWI5LTViZjMtNDVhMi1hZTgzLTJkZjI2YmRkYWU0ZSJ9', '_blank') }
                                     >
+                                        
                                         <ListItemIcon>
                                             <InsertChartOutlinedOutlinedIcon />
                                         </ListItemIcon>

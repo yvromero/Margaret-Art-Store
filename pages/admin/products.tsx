@@ -14,6 +14,23 @@ import { useState } from 'react';
 
 
 const columns: GridColDef[] = [
+
+    {field: 'id', headerName: 'ID', width: 40},
+    
+    {  
+        field: 'title', 
+        headerName: 'Título', 
+        width: 250,
+        renderCell: ({row}: GridRenderCellParams) => {
+            return (
+                <NextLink legacyBehavior href={`/admin/products/${ row.slug }`} passHref>
+                    <Link underline='always'> 
+                        { row.title }
+                    </Link>
+                </NextLink>
+            )
+        }
+    },
     { 
         field: 'img', 
         headerName: 'Imagen',
@@ -33,36 +50,9 @@ const columns: GridColDef[] = [
             )
         }
     },
-    {  
-        field: 'title', 
-        headerName: 'Título', 
-        width: 250,
-        renderCell: ({row}: GridRenderCellParams) => {
-            return (
-                <NextLink legacyBehavior href={`/admin/products/${ row.slug }`} passHref>
-                    <Link underline='always'> 
-                        { row.title }
-                    </Link>
-                </NextLink>
-            )
-        }
-    },
-    // {
-    //     field: 'actions',
-    //     headerName: 'Acciones',
-    //     width: 150,
-    //     renderCell: ({ row }: GridRenderCellParams) => (
-    //         <Button
-    //             variant="outlined"
-    //             color="error"
-    //             onClick={() => handleDeleteProduct(row.id)}
-    //         >
-    //             Eliminar
-    //         </Button>
-    //         ),
-    // },
+
     { field: 'price', headerName: 'Precio', width: 100 },
-    { field: 'inStock', headerName: 'Inventario', width: 100 },
+    { field: 'inStock', headerName: 'Stock', width: 80 },
     { field: 'category', headerName: 'Categoría',  width: 200},
     { field: 'theme', headerName: 'Tema', width: 100},
     { field: 'dimensions', headerName: 'Medidas', width: 100 },
@@ -81,11 +71,11 @@ const ProductsPage = () => {
 
     if ( !data && !error ) return (<></>);
 
-    const rows = data!.map( product  => ({
+    const rows = data!.map( ( product, indice )  => ({
 
-        id          : product._id,
-        img         : product.images[0],
+        id          : indice + 1,
         title       : product.title,
+        img         : product.images[0],
         category    : product.category,
         theme       : product.theme,
         price       : product.price,
@@ -124,6 +114,7 @@ const ProductsPage = () => {
                         <DataGrid 
                             rows={ rows }
                             columns={ columns }
+                            disableSelectionOnClick 
                             pagination={true}
                             pageSize = {pageSize}
                             onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
@@ -133,10 +124,14 @@ const ProductsPage = () => {
                                     bottom: params.isLastVisible ? 0 : 5,
                                 })}
                                     sx={{
+                                    '& .MuiIconButton-root': {
+                                        color: 'black', 
+                                    },
                                     '& .MuiDataGrid-row': {
                                         bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[300] : grey[900]),
-                                        },
+                                        }
                                     }}
+                                    
                                     components={{
                                         Toolbar: () => {
                                             return <GridToolbarContainer 
@@ -149,7 +144,7 @@ const ProductsPage = () => {
                                             </GridToolbarContainer>
                                         }
                                     }}
-                                            />
+                        />
                     </Grid>
                 </Grid>
         </AdminLayout>

@@ -57,6 +57,7 @@ const UsersPage = () => {
 
 
     const columns: GridColDef[] = [
+        {field: 'id', headerName: 'ID', width: 10},
         { field: 'email', headerName: 'Correo electrónico', width: 250 },
         { field: 'name', headerName: 'Nombre completo', width: 250 },
         { 
@@ -91,8 +92,8 @@ const UsersPage = () => {
 
     ];
 
-    const rows = users.map( user => ({
-        id         : user._id,
+    const rows = users.map( (user, indice) => ({
+        id         : indice + 1,
         email      : user.email,
         name       : user.name,
         role       : user.role,
@@ -113,8 +114,8 @@ const UsersPage = () => {
                     <DataGrid 
                         rows={ rows }
                         columns={ columns }
+                        disableSelectionOnClick 
                         pagination={true}
-                        // @ts-ignore
                         pageSize = {pageSize}
                         onPageSizeChange={(newPageSize:number) => setPageSize(newPageSize)}
                         rowsPerPageOptions={[10,50,100]}
@@ -123,6 +124,9 @@ const UsersPage = () => {
                             bottom: params.isLastVisible ? 0 : 5,
                         })}
                             sx={{
+                            '& .MuiIconButton-root': {
+                                    color: 'black', 
+                            },
                             '& .MuiDataGrid-row': {
                                 bgcolor: (theme) => (theme.palette.mode === 'light' ? grey[300] : grey[900]),
                                 },

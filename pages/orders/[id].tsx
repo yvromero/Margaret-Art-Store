@@ -18,6 +18,8 @@ import { CartList, OrderSummary } from "@/components/cart";
 import { IOrder } from '@/interfaces';
 import { margaretApi } from '@/fetching';
 
+
+
 export type OrderResponseBody = {
     id: string;
     status:
@@ -35,6 +37,7 @@ interface Props {
 
 const OrderPage: NextPage<Props> = ({ order }) => {
 
+    
     const router = useRouter();
     const { shippingAddress } = order;
     const [isPaying, setIsPaying] = useState(false);
@@ -70,7 +73,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
             >
                 ORDEN DE COMPRA: { order._id }
             </Typography>
-
+            
             {
                 !order.isPaid && (
                 <Chip
@@ -86,11 +89,12 @@ const OrderPage: NextPage<Props> = ({ order }) => {
 
             <Grid container sx={{ mt: 3}} className='fadeIn'>
             <Grid item xs={12} sm={ 7 }>
-
                 <CartList products={ order.orderItems }/>
-
-
+                
             </Grid>
+            
+
+            
 
             <Grid item xs={12} sm={ 5 } > 
                 <Card className='summary-card'>
@@ -188,6 +192,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
 
                     </CardContent>
                 </Card>
+                
             </Grid>
         </Grid>
 
