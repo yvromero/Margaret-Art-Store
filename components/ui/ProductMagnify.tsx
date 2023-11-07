@@ -20,7 +20,7 @@ export const ProductMagnify: FC<Props> = ({ images }) => {
                                 smallImage: {
                                     alt: image,
                                     isFluidWidth: true,
-                                    src: image
+                                    src: image,
                                 },
                                 largeImage: {
                                     src: image,

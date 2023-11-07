@@ -59,7 +59,7 @@ const ProductPage:NextPage<Props> = ({product}) => {
     <ShopLayout title={product.title} pageDescription={product.description}>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={7} style={{ marginTop: '20px' }}>
+        <Grid item xs={12} sm={7} style={{ marginTop: '20px' }} >
           {/* ImageZoom */}
           <ProductMagnify images={product.images} />
         </Grid>

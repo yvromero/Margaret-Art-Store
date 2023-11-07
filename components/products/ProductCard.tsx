@@ -17,10 +17,10 @@ export const ProductCard: FC<Props> = ({ product }) => {
           <Card
 
               sx={{
-                transition: '0.2',
+                transition: '0.1s',
                 "&:hover":
                   {
-                    transform: 'scale(1.05)'
+                    transform: 'scale(1.15)'
                   },
               }}
           >
@@ -32,7 +32,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
                       <Chip
                         color="primary"
                         label="Vendido"
-                        sx={{ position: 'absolute', zIndex:1, top:'10px', right: '10px'}}
+                        sx={{ position: 'absolute', zIndex:999, top:'10px', right: '10px'}}
                       />
                     )
                   }
@@ -43,13 +43,18 @@ export const ProductCard: FC<Props> = ({ product }) => {
 
                         alt={ product.title }
                         onLoad={ () => setIsImageLoaded(true)}
-                    />
+                        sx={{
+                          maxWidth: '100%',
+                          height: 200,
+                          objectFit: 'cover',
+                        }}
+                      />
                   </CardActionArea>
                 </Link>
               </NextLink>
           </Card>
 
-          <Box sx={{ mt: 1, display: isImageloaded ? 'block' : 'none' }} className='fadeIn'>
+          <Box sx={{ mt: 1.6, display: isImageloaded ? 'block' : 'none' }} className='fadeIn'>
               <Typography fontWeight={700}>{ product.title }</Typography>
               <Typography fontWeight={500}>{ `$${product.price}` }</Typography>
           </Box>
