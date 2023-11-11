@@ -1,10 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Button, FormControl, Grid, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import Cookies from "js-cookie";
 import { useForm } from 'react-hook-form';
 import { ShopLayout } from "@/components/layouts";
 import { CartContext } from '@/context';
+
 
 
 type FormData = {
@@ -43,12 +44,11 @@ const getAddressFromCookies = ():FormData => {
 
 const AddressPage = () => {
 
-
     const router = useRouter();
     const { updateAddress } = useContext( CartContext )
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
-        defaultValues: //getAddressFromCookies()
+        defaultValues: 
         {
             firstName     : '',
             lastName      : '',
@@ -79,13 +79,13 @@ const AddressPage = () => {
 
     return (
         <ShopLayout title={"Datos de facturación y envío"} pageDescription={"Dirección de envío del producto"} >
-            <form onSubmit={ handleSubmit(onSubmitAddress) }>
+            <form onSubmit={handleSubmit(onSubmitAddress)}>
                     <Typography variant='h2' component='h1'>Datos de facturación y envío</Typography>
 
                     <Grid container spacing={ 2 } sx={{ mt:1}}>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                                label='Nombre' 
+                                label='Nombre*' 
                                 variant="filled" 
                                 fullWidth
                                 InputLabelProps={{ shrink: true }} 
@@ -99,7 +99,7 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                                label='Apellido' 
+                                label='Apellido*' 
                                 variant="filled" 
                                 fullWidth
                                 InputLabelProps={{ shrink: true }}
@@ -113,7 +113,7 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Tipo de documento' 
+                            label='Tipo de documento*' 
                             variant="filled" 
                             fullWidth
                             InputLabelProps={{ shrink: true }}
@@ -127,7 +127,7 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Numero de documento' 
+                            label='Numero de documento*' 
                             variant="filled" 
                             fullWidth
                             InputLabelProps={{ shrink: true }}
@@ -144,7 +144,7 @@ const AddressPage = () => {
 
                         <TextField
                             variant="filled"
-                            label="País"
+                            label="País*"
                             fullWidth
                             InputLabelProps={{ shrink: true }}
     
@@ -159,7 +159,7 @@ const AddressPage = () => {
                 
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Provincia/Región' 
+                            label='Provincia/Región*' 
                             variant="filled" 
                             fullWidth
                             InputLabelProps={{ shrink: true }}
@@ -173,7 +173,7 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Ciudad' 
+                            label='Ciudad*' 
                             variant="filled" 
                             fullWidth
                             InputLabelProps={{ shrink: true }}
@@ -187,7 +187,7 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Dirección' 
+                            label='Dirección*' 
                             variant="filled" 
                             fullWidth
                             InputLabelProps={{ shrink: true }}
@@ -210,7 +210,7 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Código Postal' 
+                            label='Código Postal*' 
                             variant="filled"
                             fullWidth
                             InputLabelProps={{ shrink: true }}
@@ -224,7 +224,7 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Móvil' 
+                            label='Móvil*' 
                             variant="filled" 
                             fullWidth
                             InputLabelProps={{ shrink: true }}
@@ -233,12 +233,12 @@ const AddressPage = () => {
                             })
                             }
                             error={ !!errors.phone }
-                            helperText={ errors.documentType?.message }
+                            helperText={ errors.phone?.message }
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField 
-                            label='Email' 
+                            label='Email*' 
                             variant="filled" 
                             fullWidth
                             InputLabelProps={{ shrink: true }}
@@ -252,19 +252,35 @@ const AddressPage = () => {
                         </Grid>
                         <Grid item xs={12}>
                         <Typography variant='body2' sx={{ mt: 1 }}>
-                        Es importante que introduzcas tu número de móvil, ya que recibirás un SMS el día que se realice la entrega de la obra.
+                        Es importante que introduzcas tu número de móvil, ya que recibirás un SMS el día que se realice la entrega de la obra.* Campos obligatorios
                         </Typography>
+                        <Box
+                            sx={{
+                                border: '1px solid #ccc',
+                                borderRadius: '4px',
+                                padding: '16px',
+                                mt: 2,
+                                boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', 
+                                backgroundColor: '#f0f0f0', 
+                            }}
+                        >
+                            <Typography variant='body2' >
+                                Para envíos internacionales: Ten en cuenta que en la aduana se pueden cargar aranceles, impuestos y tasas que tendrías que pagar antes de la entrega. El cálculo de estos impuestos es imposible de calcular por parte de Margaret Art Store y depende exclusivamente de los controles aduaneros de cada país.
+                            </Typography>
+                        </Box>
                         </Grid>
                     </Grid>
-                    <Box sx={{mt: 5 }} display='flex' justifyContent='center'>
-                            <Button
+                    <Grid item xs={12}>
+                </Grid>
+                    <Box sx={{ mt: 4 }} display='flex' justifyContent='center'>
+                        <Button
                             variant='contained'
                             type="submit" 
                             color="secondary" 
                             className="circular-btn" 
                             size="large">
                                 Revisar Pedido
-                            </Button>
+                        </Button>
                     </Box>
             </form>
         </ShopLayout>
