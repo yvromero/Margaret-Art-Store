@@ -1,10 +1,7 @@
 import * as React from "react";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
-import { Box } from "@mui/material";
+import { Box, Link, Grid, Typography,Container} from "@mui/material";
+import NextLink from 'next/link';
 
 
 export default function Footer() {
@@ -80,7 +77,16 @@ export default function Footer() {
                 Plazo de entrega
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                Términos y condiciones
+                <NextLink 
+                    legacyBehavior 
+                    href="/customers/terms-conditions" passHref>
+                    <Link 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                    >
+                        Términos y condiciones
+                    </Link>
+                </NextLink>
                 </Typography>
             </Grid>
             </Grid>

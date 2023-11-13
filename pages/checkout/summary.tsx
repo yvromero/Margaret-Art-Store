@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 
-import { Box, Button, Card, CardContent, Chip, Divider, Grid, Link, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Checkbox, Chip, Divider, FormControlLabel, Grid, Link, Typography } from "@mui/material";
 import GradingIcon from '@mui/icons-material/Grading';
 import { CartContext } from '@/context';
 import { ShopLayout } from "@/components/layouts";
@@ -21,6 +21,9 @@ const SummaryPage = () => {
 
     const [isPosting, setIsPosting] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [isChecked, setChecked] = useState(false);
+    const [checkboxErrorMessage, setCheckboxErrorMessage] = useState('');
+
 
 
     useEffect(() => {
@@ -29,10 +32,23 @@ const SummaryPage = () => {
         }
     }, [ router ]);
 
-    // Crear funcion para llamar al createOrder
 
+    const handleCheckboxChange = () => {
+        setChecked(!isChecked);
+        setCheckboxErrorMessage(''); // Ocultar el mensaje de error al marcar la casilla
+    };
+
+
+    // Crear funcion para llamar al createOrder
     const onCreateOrder = async () => {
         setIsPosting(true);
+
+        if (!isChecked) {
+        // Verificar si la casilla está marcada antes de continuar
+            setIsPosting(false);
+            setCheckboxErrorMessage('Debes aceptar los términos y condiciones');
+            return;
+        }
 
         const { hasError, message } = await createOrder();
 
@@ -42,6 +58,11 @@ const SummaryPage = () => {
             setErrorMessage(message);
             return;
         }
+
+        // Resetear los estados si la orden se crea exitosamente
+        setIsPosting(false);
+        setErrorMessage('');
+        setChecked(false);
 
         router.replace(`/orders/${ message }`);
     }
@@ -97,8 +118,9 @@ const SummaryPage = () => {
                         </Box>
 
                         <OrderSummary/>
+                        <Divider sx={{ my:2 }} />
 
-                        <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
+                        <Box sx={{ mt: 3 }} display="flex" flexDirection="column">
                             <Button 
                                 startIcon={ <GradingIcon/> }
                                 variant='contained'
@@ -106,23 +128,60 @@ const SummaryPage = () => {
                                 className='circular-btn' 
                                 fullWidth
                                 onClick={ onCreateOrder }
-                                disabled={ isPosting }
+                                disabled={isPosting || !!checkboxErrorMessage || !!errorMessage}
                             >
                                 CONFIRMAR ORDEN
                             </Button>
-                            <Chip
-                                icon={ <ErrorOutline/> }
-                                className="fadeIn"
-                                color="error"
-                                label={ errorMessage }
-                                sx={{ display: errorMessage ? 'flex':'none', mt: 2}}
-                            />
 
+                        </Box>
+                        <FormControlLabel
+                            control={<Checkbox 
+                                checked={isChecked} 
+                                onChange={handleCheckboxChange}
+                                size="small"
+                                    />}
+                            label=
+                                {<span style={{ fontSize: '0.8rem', color: '#888'}}>
+                                    Acepto los{' '}
+                                    <NextLink 
+                                        legacyBehavior 
+                                        href="/customers/terms-conditions" passHref>
+                                        <Link 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            style={{ color: '#888', textDecoration: 'underline' }}>
+                                        términos y condiciones.
+                                        </Link>
+                                    </NextLink>
+                                </span>} 
+                        />
+                        <Chip
+                            icon={ <ErrorOutline/> }
+                            className="fadeIn"
+                            color="error"
+                            label={checkboxErrorMessage || errorMessage}
+                            sx={{ display: (!!checkboxErrorMessage || !!errorMessage) ? 'flex' : 'none', mt: 2 }}
+                        />
+                        <Box
+                            sx={{
+                                border: '1px solid #ccc',
+                                borderRadius: '4px',
+                                padding: '16px',
+                                mt: 1,
+                                boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', 
+                                backgroundColor: '#f0f0f0', 
+                            }}
+                        >
+                            <Typography variant='body2' >
+                            Al confirmar tu orden, serás redirigido a la pasarela de pago según tu elección (PayPal o tarjeta). 
+                            El contrato de compra se formalizará tras el envío de un correo notificándote la recepción del pago.
+                            </Typography>
                         </Box>
 
                     </CardContent>
                 </Card>
             </Grid>
+            
         </Grid>
         </ShopLayout >
     )

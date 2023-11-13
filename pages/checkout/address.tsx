@@ -264,8 +264,11 @@ const AddressPage = () => {
                                 backgroundColor: '#f0f0f0', 
                             }}
                         >
-                            <Typography variant='body2' >
+                            <Typography variant='body2'>
                                 Para envíos internacionales: Ten en cuenta que en la aduana se pueden cargar aranceles, impuestos y tasas que tendrías que pagar antes de la entrega. El cálculo de estos impuestos es imposible de calcular por parte de Margaret Art Store y depende exclusivamente de los controles aduaneros de cada país.
+                            </Typography>
+                            <Typography variant='body2' sx={{ mt: 1 }}>
+                            Una vez recibido el pedido, dispones de 14 días naturales a partir del día siguiente a la recepción para tramitar la devolución del pedido. Si tienes dudas puedes enviarnos un email a info@margaret-art.com.
                             </Typography>
                         </Box>
                         </Grid>
