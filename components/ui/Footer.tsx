@@ -55,13 +55,13 @@ export default function Footer() {
                 <Typography variant="h6" color="text.primary" gutterBottom>
                 Contáctenos
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant="body1">
                 Primer Presidente, Asunción, Paraguay
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant="body1">
                 Email: info@margaret-art.com
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant="body1">
                 Phone: +54 595 991 262626
                 </Typography>
                 
@@ -70,12 +70,46 @@ export default function Footer() {
                 <Typography variant="h6" color="text.primary" gutterBottom>
                 Servicio al cliente
                 </Typography>
+
                 <Typography variant="body1" color="text.secondary">
-                Seguimiento de mi pedido
+                <NextLink 
+                    legacyBehavior 
+                    href="/customers/shipping-policies" passHref>
+                    <Link 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                    >
+                    Envíos
+                    </Link>
+                </NextLink>
                 </Typography>
+
                 <Typography variant="body1" color="text.secondary">
-                Plazo de entrega
+                <NextLink 
+                    legacyBehavior 
+                    href="/customers/return-policy" passHref>
+                    <Link 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                    >
+                        Devoluciones
+                    </Link>
+                </NextLink>
                 </Typography>
+
+                <Typography variant="body1" color="text.secondary">
+                <NextLink 
+                    legacyBehavior 
+                    href="/customers/cookies-policies" passHref>
+                    <Link 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                    >
+                        Política de cookies
+                    </Link>
+                </NextLink>
+                </Typography>
+
                 <Typography variant="body1" color="text.secondary">
                 <NextLink 
                     legacyBehavior 
@@ -93,7 +127,7 @@ export default function Footer() {
             <Box mt={5} >
             <Typography 
                 variant="body1" 
-                color="text.primary" 
+                color="text.secondary" 
                 align="center"
                 sx={{
                     marginBottom: 0,
