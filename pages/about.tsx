@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/ui';
+import { Navbar, SideMenu } from '@/components/ui';
 import Footer from '@/components/ui/Footer';
 import {
   Box,
@@ -11,10 +11,11 @@ import {
   Typography,
 } from '@mui/material';
 
-const AboutPage: React.FC = () => {
+const AboutPage = () => {
   return (
     <>
       <Navbar />
+      <SideMenu/>
       <Box
         sx={{
           position: 'relative',
@@ -95,7 +96,7 @@ const AboutPage: React.FC = () => {
                 sx={{
                   objectFit: 'cover',
                   borderRadius: 10,
-                  height: '100%', // Ajusta la altura según tu preferencia
+                  height: '100%',
                 }}
               />
             </Grid>
@@ -104,8 +105,8 @@ const AboutPage: React.FC = () => {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'center', // Centra el contenido verticalmente
-                  height: '100%', // Ajusta la altura según tu preferencia
+                  justifyContent: 'center', 
+                  height: '100%', 
                 }}
               >
                 <Typography variant='body1' gutterBottom>

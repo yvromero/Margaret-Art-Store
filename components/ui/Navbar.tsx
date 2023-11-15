@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 
 import { AppBar, Badge, Box, Button, IconButton, Input, Link, Toolbar, Typography, InputAdornment } from '@mui/material';
-import { ClearOutlined, SearchOutlined, ShoppingCart  } from '@mui/icons-material';
+import { ClearOutlined, SearchOutlined } from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
