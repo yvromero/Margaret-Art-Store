@@ -10,7 +10,7 @@ import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
 import FormatColorFillOutlinedIcon from '@mui/icons-material/FormatColorFillOutlined';
 import InsertChartOutlinedOutlinedIcon from '@mui/icons-material/InsertChartOutlinedOutlined';
-
+import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
 import { AuthContext, UiContext } from '@/context';
 
 
@@ -33,12 +33,6 @@ export const SideMenu = () => {
         toggleSideMenu();
         router.push(url)
     }
-
-
-    // const onLogout = () => {
-    //     logoutUser();
-
-    // }
 
     return (
         <Drawer
@@ -71,6 +65,13 @@ export const SideMenu = () => {
                         />
                     </ListItem>
 
+                    <ListItem button onClick={() => navigateTo('/about')}>
+                        <ListItemIcon>
+                        <PeopleOutlineOutlinedIcon  />
+                        </ListItemIcon>
+                        <ListItemText primary={'Sobre nosotros'} />
+                    </ListItem>
+
                     {
                         isLoggedIn && (
                             <>
@@ -95,8 +96,6 @@ export const SideMenu = () => {
                             </>
                         )
                     }
-
-
 
                     <ListItem 
                         button 
@@ -134,7 +133,9 @@ export const SideMenu = () => {
                         <ListItemText primary={'Abstracto y Contemporáneo'} />
                     </ListItem>
 
+
                     {
+                        
                         isLoggedIn
                         ? (
                             <ListItem button onClick={ logoutUser }>
@@ -154,6 +155,7 @@ export const SideMenu = () => {
                                 </ListItemIcon>
                                     <ListItemText primary={'Ingresar'} />
                             </ListItem>
+                            
                         )
                     }
 
