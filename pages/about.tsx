@@ -35,23 +35,27 @@ const AboutPage = () => {
             transform: 'translate(-50%, -50%)',
             textAlign: 'center',
             color: 'whitesmoke',
+            background: 'rgba(0, 0, 0, 0.5)',
+            padding: '20px',
+            borderRadius: '10px',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
           }}
         >
-          <Typography variant='h3' align='center' gutterBottom>
+          <Typography variant='h4' align='center' gutterBottom>
             Bienvenido a Margaret Art Store
           </Typography>
           <Typography variant='h1' align='center' paragraph>
-            Conoce al artista Margarita Ruiz
+            Descubre el mundo de Margarita Ruiz, la artista detrás de las obras
           </Typography>
           <Box display='flex' justifyContent='center' mt={4}>
             <Button variant='contained' color='primary' href='/'>
-              Ir a la galeria
+              Explorar la galería
             </Button>
           </Box>
         </Container>
       </Box>
 
-      <Container sx={{ mt: 15 }}>
+      <Container sx={{ mt: 12 }}>
         <Typography variant='h1' align='center' gutterBottom>
           Margaret Art Store
         </Typography>
@@ -84,9 +88,18 @@ const AboutPage = () => {
         </Typography>
       </Container>
 
-      <Container sx={{ mt: 15 }}>
-        <Card>
-          <Grid container mb={10}>
+      <Container sx={{ mt: 12 }}>
+        <Card sx={{
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', 
+            borderRadius: '15px', 
+            overflow: 'hidden',
+            transition: 'transform 0.5s ease-in-out',
+            ':hover': {
+              transform: 'scale(1.02)',
+            },
+          }}
+        >
+          <Grid container >
             <Grid item xs={12} md={4}>
               <CardMedia
                 component='img'
@@ -95,8 +108,7 @@ const AboutPage = () => {
                 alt='Margarita Ruiz'
                 sx={{
                   objectFit: 'cover',
-                  borderRadius: 10,
-                  height: '100%',
+                  borderRadius: 4,
                 }}
               />
             </Grid>
