@@ -131,8 +131,9 @@ const TermsPage = () => {
           </li>
           <li>
             Una vez que la obra es entregada al cliente y transcurridos 14 días
-            naturales desde su recepción, plazo estipulado por MARGARETARTSTORE
-            para que el cliente pueda realizar la devolución de la obra.
+            hábiles desde su recepción, plazo estipulado por MARGARETARTSTORE
+            para que el cliente pueda realizar la devolución de la obra, siempre que
+            existan circunstancias excepcionales que justificasen el pedido.
           </li>
         </ul>
         <Typography variant='body1' sx={{ fontWeight: 'bold', mt: '1rem' }}>
@@ -173,7 +174,7 @@ const TermsPage = () => {
             coordinar la entrega de la Obra en un plazo máximo de 15 días
             hábiles a contar desde el primer intento de entrega, la compañía de
             transportes podrá proceder a la devolución de la Obra al autor de la
-            misma en el caso de un origina, asumiendo el usuario la totalidad de
+            misma en el caso de un original, asumiendo el usuario la totalidad de
             los gastos generados (entrega, devolución y cualquier otra gestión
             asociada).
           </li>
@@ -241,10 +242,32 @@ const TermsPage = () => {
         <Typography variant='body1' sx={{ fontWeight: 'bold', mt: '1rem' }}>
           Novena.- Devolución de la Obra
         </Typography>
-        El usuario gozará de un plazo de 14 días naturales a contar desde el día
-        siguiente a la recepción del pedido durante el cual podrá desistir de la
-        compraventa y devolver o cambiar la(s) obra(s). A tal fin, el usuario
-        puede:
+
+        MARGARETARTSTORE no acepta cambios ni devoluciones de obras entregadas
+          en condiciones adecuadas o debido a errores en la compra del cliente No obstante,
+          existen circunstancias excepcionales que justificarán el pedido de cambio o devolución, 
+          se citan las siguientes excepciones:
+  
+          <ul>
+            <li>
+              <strong>Envío Incorrecto:</strong> En caso de que se envíe la obra de arte
+              incorrecta, es decir, una obra diferente a la que el cliente
+              ordenó.
+            </li>
+            <li>
+              <strong>Obra Dañada o Defectuosa:</strong> Si la obra de arte llega al cliente en
+              condiciones dañadas o con defectos evidentes que afectan
+              significativamente su valor o apariencia.
+            </li>
+            <li>
+            <strong>Incumplimiento de Plazos de Entrega:</strong> Si la obra de arte no se
+              entrega dentro del plazo acordado y esto resulta en un perjuicio
+              significativo para el comprador (ver términos y condiciones).
+            </li>
+          </ul>
+          De ser así, el usuario tiene un plazo de 14 días hábiles a partir
+          del día siguiente a la recepción del pedido para enviar la solicitud
+          de la compraventa y devolver o cambiar la(s) obra(s).
         <ul>
           <li>
             Enviar un email a info@margaret-art.com para que el servicio de

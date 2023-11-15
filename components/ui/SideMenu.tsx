@@ -69,7 +69,7 @@ export const SideMenu = () => {
                         <ListItemIcon>
                         <PeopleOutlineOutlinedIcon  />
                         </ListItemIcon>
-                        <ListItemText primary={'Sobre nosotros'} />
+                        <ListItemText primary={'Sobre Nosotros'} />
                     </ListItem>
 
                     {
@@ -81,7 +81,7 @@ export const SideMenu = () => {
                                     <ListItemIcon>
                                         <AccountCircleOutlined/>
                                     </ListItemIcon>
-                                    <ListItemText primary={'Perfil'} />
+                                    <ListItemText primary={'Mis Datos'} />
                                 </ListItem>
 
                                 <ListItem 

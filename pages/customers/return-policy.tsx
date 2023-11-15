@@ -17,14 +17,33 @@ const ReturnPolicyPage = () => {
           sx={{ fontWeight: 'bold', marginBottom: '1rem' }}
         >
           POLITICA DE DEVOLUCIONES
+          
         </Typography>
-        <p>
           MARGARETARTSTORE no acepta cambios ni devoluciones de obras entregadas
-          en condiciones adecuadas o debido a errores en compras. No obstante,
-          el usuario tiene un plazo de 14 días naturales a partir del día
-          siguiente a la recepción del pedido para desistir de la compraventa y
-          devolver o cambiar la(s) obra(s).
-        </p>
+          en condiciones adecuadas o debido a errores en la compra del cliente. No obstante,
+          existen circunstancias excepcionales que justificarán el pedido de cambio o devolución, 
+          se citan las siguientes excepciones:
+        <ul>
+          <li>
+            <strong>Envío Incorrecto:</strong> En caso de que se envíe la obra
+            de arte incorrecta, es decir, una obra diferente a la que el cliente
+            ordenó.
+          </li>
+          <li>
+            <strong>Obra Dañada o Defectuosa:</strong> Si la obra de arte llega
+            al cliente en condiciones dañadas o con defectos evidentes que
+            afectan significativamente su valor o apariencia.
+          </li>
+          <li>
+            <strong>Incumplimiento de Plazos de Entrega:</strong> Si la obra de
+            arte no se entrega dentro del plazo acordado y esto resulta en un
+            perjuicio significativo para el comprador (ver términos y
+            condiciones).
+          </li>
+        </ul>
+          De ser así, el usuario tiene un plazo de 14 días naturales a partir del
+          día siguiente a la recepción del pedido para enviar la solicitud de la
+          compraventa y devolver o cambiar la(s) obra(s).
         <p>Para ello, el usuario puede:</p>
         Enviar un correo electrónico a info@margaret-art.com exponiendo su
         solicitud de cambio o devolución; todos los casos serán evaluados.
