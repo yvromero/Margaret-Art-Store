@@ -9,6 +9,7 @@ import { SWRConfig } from 'swr';
 
 import { lightTheme } from '@/themes';
 import { AuthProvider, CartProvider, UiProvider } from '../context';
+import { Toaster } from 'sonner';
 
 
 
@@ -16,6 +17,7 @@ import { AuthProvider, CartProvider, UiProvider } from '../context';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider>
+     <Toaster />
       <PayPalScriptProvider options={{clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || ''}}>
         <SWRConfig
           value={{

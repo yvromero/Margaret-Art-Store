@@ -5,14 +5,16 @@ import { useForm } from 'react-hook-form';
 
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
-import { Box, Button, capitalize, Card, CardActions, CardMedia, Chip, Divider, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography, IconButton } from '@mui/material';
+import { Box, Button, capitalize, Card, CardActions, CardMedia, Chip, Divider, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, TextField, Typography } from '@mui/material';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { AdminLayout } from '../../../components/layouts';
 import { IProduct } from '../../../interfaces';
 import { dbProducts } from '../../../database';
 import { margaretApi } from '../../../fetching';
 import { Product } from '../../../models';
+import { toast } from 'sonner';
+
 
 const validTheme  = [
     'Natura',
@@ -129,32 +131,49 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
         );
     }
 
-    
-    // Guardar producto
-    const onSubmit = async ( form: FormData ) => {
-        
-        if ( form.images.length < 1 ) return alert('Minimo 1 imagen');
-        setIsSaving(true);
+        const onSubmit = async (form: FormData) => {
+            
+            setIsSaving(true);
 
-        try {
+            if (form.images.length < 1) {
+                // Mostrar alerta de advertencia si no hay imágenes
+                toast.warning('Mínimo 1 imagen', { position: 'top-center' });
+                // No bloquear el botón si hay un warning
+                setIsSaving(false); 
+                return;
+            }
+            
+        
+            try {
             const { data } = await margaretApi({
                 url: '/admin/products',
-                method: form._id ? 'PUT': 'POST', // si tenemos un _id, actualizar sino crear
-                data: form
+                method: form._id ? 'PUT' : 'POST',
+                data: form,
             });
+        
+            // console.log({ data });
+    
+                if (!form._id) {
+                    toast.success('Producto guardado exitosamente', { position: 'top-center' });
+                    router.replace(`/admin/products/${form.slug}`);
+                } else {
+                    toast.success('Producto actualizado', { position: 'top-center' });
+                    router.replace(`/admin/products/${form.slug}`);
+                }
+                } catch (error) {
+                    console.error(error);
+                    // Mostrar alerta de error si hay un problema al guardar
+                    toast.error('Error al guardar el producto', { position: 'top-center' });
+                    // Botón desbloqueado cuando hay error
+                    setIsSaving(false);
+                }  finally {
+                    // Botón desbloqueado cuando se realiza una modificación 
+                    if (form._id) {
+                        setIsSaving(false);
+                    }
+                }
+            };
 
-            console.log({data});
-            if ( !form._id ) {
-                //recargar navegador
-                router.replace(`/admin/products/${ form.slug }`);
-            } else {
-                setIsSaving(false)
-            }
-        } catch (error) {
-            console.log(error);
-            setIsSaving(false);
-        }
-    }
 
     return (
         <AdminLayout 
@@ -162,6 +181,15 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
             subTitle={`Editar: ${ product.title }`}
             icon={ <DriveFileRenameOutline /> }
         >
+        <Box display='flex' justifyContent='left' sx={{ mb: 3 }}>
+        <Button 
+            variant='contained' 
+            color='secondary' 
+            startIcon={ <ArrowBackOutlinedIcon  /> }
+            href='/admin/products'>
+                Ir a listado de productos
+        </Button>
+        </Box>
             <form onSubmit={ handleSubmit( onSubmit ) }>
                 <Box display='flex' justifyContent='end' sx={{ mb: 3 }}>
                     <Button 
@@ -442,6 +470,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                                                         fullWidth 
                                                         color="error"
                                                         onClick={()=> onDeleteImage(img)}
+                                                        
                                                     >
                                                         Eliminar imagen
                                                     </Button>
