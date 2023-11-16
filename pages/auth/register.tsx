@@ -12,6 +12,7 @@ import { AuthContext } from '../../context';
 
 import { AuthLayout } from '../../components/layouts'
 import { validations } from '../../utils';
+import { toast } from 'sonner';
 
 
 type FormData = {
@@ -39,7 +40,9 @@ const RegisterPage = () => {
         if ( hasError ) {
             setShowError(true);
             setErrorMessage( message || '' );
-            setTimeout(() => setShowError(false), 3000);
+            setTimeout(() => setShowError(false), 5000);
+            // Mostrar notificación de error
+            toast.error('Error al crear la cuenta', { position: 'top-center' });
             return;
         }
         
@@ -138,7 +141,7 @@ const RegisterPage = () => {
                         </Grid>
                     </Grid>
                         <Chip
-                            label="No se encuentran datos de usuario"
+                            label="Credenciales inválidas"
                             color="error"
                             icon={ <ErrorOutline /> }
                             className="fadeIn"
