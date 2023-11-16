@@ -13,6 +13,7 @@ import { useState } from "react";
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'Orden ID', width: 220 },
+    { field: 'transactionId', headerName: 'ID transacción', width: 220 },
     { field: 'nroProducts', headerName: 'Nro. Productos', align: 'center', width: 150 },
     { field: 'total', headerName: 'Monto total', width: 150 },
 
@@ -45,7 +46,11 @@ const columns: GridColDef[] = [
 
     { field: 'name', headerName: 'Nombre completo', width: 200 },
     { field: 'email', headerName: 'Correo electrónico', width: 200 },
-    { field: 'country', headerName: 'Destino', width: 200 },
+    { field: 'phone', headerName: 'Número de teléfono', width: 200 },
+    { field: 'country', headerName: 'Ciudad/País Destino', width: 200 },
+    { field: 'region', headerName: 'Región/Provincia', width: 200 },
+    { field: 'address', headerName: 'Dirección', width: 300 },
+    { field: 'zip', headerName: 'Código Postal', width: 150 },
     { field: 'createdAt', headerName: 'Creada', width: 200,
         renderCell: (params) =>
         moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
@@ -64,15 +69,20 @@ const OrdersPage = () => {
     if ( !data && !error ) return (<></>);
 
     const rows = data!.map( order  => ({
-        id         : order._id,
-        nroProducts: order.numberOfItems,
-        total      : order.total,
-        isPaid     : order.isPaid,
-        name       : (order.user as IUser).name,
-        email      : (order.user as IUser).email,
-        country    : `${order.shippingAddress.city}, ${order.shippingAddress.country}`,
-        createdAt  : order.createdAt,
-        updatedAt  : order.updatedAt,
+        id           : order._id,
+        transactionId: order.transactionId,
+        nroProducts  : order.numberOfItems,
+        total        : order.total,
+        isPaid       : order.isPaid,
+        name         : (order.user as IUser).name,
+        email        : (order.user as IUser).email,
+        phone        : order.shippingAddress.phone,
+        country      : `${order.shippingAddress.city}, ${order.shippingAddress.country}`,
+        region       : order.shippingAddress.region,
+        address      : order.shippingAddress.address,
+        zip          : order.shippingAddress.zip,
+        createdAt    : order.createdAt,
+        updatedAt    : order.updatedAt,
 
     }))
 

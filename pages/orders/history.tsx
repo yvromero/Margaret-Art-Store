@@ -15,14 +15,15 @@ import { useState } from 'react';
 
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 120},
-    { field: 'fullname', headerName: 'Nombre Completo', width: 300},
+    { field: 'id', headerName: 'Orden ID', width: 250},
+    { field: 'transactionId', headerName: 'ID transacción', width: 200 },
+    { field: 'fullname', headerName: 'Nombre Completo', width: 250},
 
     {
         field: 'paid',
         headerName: 'Estado',
         description: 'Estado de la orden generada',
-        width: 200,
+        width: 150,
         renderCell: (params: GridRenderCellParams) => {
             return (
                 params.row.paid
@@ -35,7 +36,7 @@ const columns: GridColDef[] = [
         field: 'orden',
         headerName: 'Orden de Compra',
         sortable: false,
-        width: 300,
+        width: 150,
         renderCell: (params: GridRenderCellParams) => {
             return (
                 <NextLink legacyBehavior href={`/orders/${ params.row.orderId }`} passHref>
@@ -46,11 +47,11 @@ const columns: GridColDef[] = [
             )
         }
     },
-    { field: 'createdAt', headerName: 'Creada', width: 250,
+    { field: 'createdAt', headerName: 'Creada', width: 200,
         renderCell: (params) =>
             moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
 },
-    { field: 'updatedAt', headerName: 'Actualizada', width: 250,
+    { field: 'updatedAt', headerName: 'Actualizada', width: 200,
         renderCell: (params) =>
             moment(params.row.createdAt).format('YYYY-MM-DD HH:MM:SS'),
 },
@@ -65,13 +66,14 @@ const HistoryOrderPage: NextPage<Props> = ({ orders }) => {
 
     const [pageSize, setPageSize] = useState(10)
 
-    const rows = orders.map(( order, indice ) => ({
-        id: indice + 1,
-        paid: order.isPaid,
-        fullname: `${ order.shippingAddress.firstName } ${ order.shippingAddress.lastName }`,
-        orderId: order._id,
-        createdAt  : order.createdAt,
-        updatedAt  : order.updatedAt,
+    const rows = orders.map( order   => ({
+        id           : order._id,
+        transactionId: order.transactionId,
+        paid         : order.isPaid,
+        fullname     : `${ order.shippingAddress.firstName } ${ order.shippingAddress.lastName }`,
+        orderId      : order._id,
+        createdAt    : order.createdAt,
+        updatedAt    : order.updatedAt,
         
     }));
 
