@@ -62,7 +62,7 @@ export default function Footer() {
                 Email: info@margaret-art.com
                 </Typography>
                 <Typography variant="body1">
-                Phone: +54 595 991 262626
+                Phone: +595 991 262626
                 </Typography>
                 
             </Grid>

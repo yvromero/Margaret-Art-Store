@@ -57,7 +57,6 @@ const UsersPage = () => {
 
 
     const columns: GridColDef[] = [
-        {field: 'id', headerName: 'ID', width: 10},
         { field: 'email', headerName: 'Correo electrónico', width: 250 },
         { field: 'name', headerName: 'Nombre completo', width: 250 },
         { 
@@ -92,8 +91,8 @@ const UsersPage = () => {
 
     ];
 
-    const rows = users.map( (user, indice) => ({
-        id         : indice + 1,
+    const rows = users.map( (user) => ({
+        id         : user._id,
         email      : user.email,
         name       : user.name,
         role       : user.role,
